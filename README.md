@@ -1,6 +1,6 @@
 # Custom-Keyboard
  Custom keyboard with a few quirks
- ##Features:
+ ## Features:
  integrated fingerprint sensor
  Leftside Numpad
  The volume knob, dedicated media keys
