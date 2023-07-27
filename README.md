@@ -1,5 +1,5 @@
 # Numlocked: Shift
- A 75% + 25% Keyboard with extra features.
+ A 75% + 25% Keyboard with extras
  ## Features:
  - "standard" 75% ANSI US QWERTY Layout
  - integrated fingerprint sensor
