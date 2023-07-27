@@ -5,7 +5,7 @@
  - integrated fingerprint sensor
  - Leftside Numpad
  - Volume Knob, Dedicated Media Keys
- - Extra F keys, macro keys
+ - Four extra keys above the keypad, nine extra F keys. 
  - Per-key RGB Key
  - Diodeless design due to shift registers
  - RP2040 Microcontroller
