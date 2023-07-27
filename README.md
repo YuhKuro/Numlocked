@@ -16,8 +16,8 @@
 - RP2040 Microcontroller
 - Three-way USB-HUB: Input from USB-C, two USB-A Output, one JST connector to keyboard.
  
-
+Front of Keyboard PCB:
 ![Front of Keyboard PCB](https://github.com/YuhKuro/Numlocked/blob/main/images/PCBKeyboardFrnt.png)
-Front of Keyboard PCB
+Back of keyboard PCB:
 ![Back of Keyboard PCB](https://github.com/YuhKuro/Numlocked/blob/main/images/PCBKeyboardBack.png)
-Back of keyboard PCB
+
