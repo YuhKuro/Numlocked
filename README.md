@@ -14,4 +14,4 @@
 ## Technicals:
 - Diodeless Design using 74HC165D Parallel-in Serial-Out shift registers
 - RP2040 Microcontroller
-- 
+- Three-way USB-HUB: Input from USB-C, two USB-A Output, one JST connector to keyboard.
