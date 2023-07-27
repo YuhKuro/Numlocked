@@ -15,3 +15,5 @@
 - Diodeless Design using 74HC165D Parallel-in Serial-Out shift registers
 - RP2040 Microcontroller
 - Three-way USB-HUB: Input from USB-C, two USB-A Output, one JST connector to keyboard.
+![Front of Keyboard PCB](https://github.com/YuhKuro/Numlocked/blob/main/images/PCBKeyboardFrnt.png)
+![Back of Keyboard PCB](https://github.com/YuhKuro/Numlocked/blob/main/images/PCBKeyboardBack.png)
