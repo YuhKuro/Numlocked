@@ -2,6 +2,7 @@
  A 75% + 25% Keyboard with extras
  ## Features:
  - "standard" 75% ANSI US QWERTY Layout
+ - Hot Swappable
  - integrated fingerprint sensor
  - Leftside Numpad
  - Volume Knob, Dedicated Media Keys
