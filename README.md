@@ -7,14 +7,10 @@
  - Leftside Numpad
  - Volume Knob, Dedicated Media Keys
  - Four extra keys above the keypad, nine extra F keys. 
- - Per-key RGB Key
+ - Per-key RGB lighting
  - Separate USB hub with two USB-A ports and one USB-C connection
  - 128x32 OLED
  - JST Connection from the board in case a standard daughterboard is to be used. 
-## Technicals:
-- Diodeless Design using 74HC165D Parallel-in Serial-Out shift registers
-- RP2040 Microcontroller
-- Three-way USB-HUB: Input from USB-C, two USB-A Output, one JST connector to keyboard.
  
 Front of Keyboard PCB:
 ![Front of Keyboard PCB](https://github.com/YuhKuro/Numlocked/blob/main/images/PCBKeyboardFrnt.png)
