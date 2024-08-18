@@ -62,7 +62,7 @@
 #define REPORT_ID_KEYBOARD 1
 
 #define DEBOUNCE_DELAY_MS 5           // Debounce delay to filter out bouncing
-#define PRESS_AND_HOLD_DELAY_MS 350   // Time before key repeat starts
+#define PRESS_AND_HOLD_DELAY_MS 250   // Time before key repeat starts
 #define REPEAT_RATE_MS 50             // Delay between repeated keypresses
 
 #define WPM_CALC_INTERVAL_MS 5000  // Interval to calculate WPM in milliseconds (e.g., 5 seconds)
@@ -329,8 +329,8 @@ void read_keys(uint8_t* key_state) {
     }
 }
 
-static uint32_t key_press_time[TOTAL_BITS] = {0};  // Tracks when a key was first pressed
-static bool key_repeated[TOTAL_BITS] = {false};    // Tracks if the key has started repeating
+//static uint32_t key_press_time[TOTAL_BITS] = {0};  // Tracks when a key was first pressed
+//static bool key_repeated[TOTAL_BITS] = {false};    // Tracks if the key has started repeating
 static uint8_t previous_key_state[TOTAL_BITS] = {0};
 
 
@@ -353,18 +353,20 @@ static void send_keyboard() {
     uint8_t key_report[8] = {0};  // Key report to be sent (8 bytes)
     int key_index = 2;  // Start filling regular key codes from the third byte
     uint32_t current_time = board_millis();  // Get current time in milliseconds
+    bool key_pressed = false;  // Flag to check if any key is pressed
 
     for (int i = 0; i < TOTAL_BITS; i++) {
         if (key_state[i]) {
             uint8_t key = key_map[i];
-            //handle modifer keys (Ex: ALT + TAB or CTRL + C) 
+            key_pressed = true;
+
+            // Handle modifier keys (e.g., ALT, CTRL)
             if (key_is_modifier(key)) { 
                 key_report[0] |= key_modifier_bit(key);
             } else {
-              //Handle regular keys
+                // Handle regular keys
                 if (!previous_key_state[i]) {
-                    key_press_time[i] = current_time;
-                    key_repeated[i] = false;
+                    // Key has just been pressed
                     if (key_index < 8) {
                         key_report[key_index++] = key;
                         if (key != HID_KEY_SPACE) {
@@ -372,23 +374,9 @@ static void send_keyboard() {
                         }
                     }
                 } else {
-                    // Key is held down
-                    if (!key_repeated[i] && (current_time - key_press_time[i] >= PRESS_AND_HOLD_DELAY_MS)) {
-                        // Start repeating after PRESS_AND_HOLD_DELAY_MS
-                        key_repeated[i] = true;
-                        if (key_index < 8) {
-                            key_report[key_index++] = key;
-                          if (key != HID_KEY_SPACE) {
-                            global.characters_typed++;
-                          }
-                        }
-                        key_press_time[i] = current_time;  // Reset press time to repeat
-                    } else if (key_repeated[i] && (current_time - key_press_time[i] >= REPEAT_RATE_MS)) {
-                        // Continue repeating at REPEAT_RATE_MS intervals
-                        if (key_index < 8) {
-                            key_report[key_index++] = key;
-                        }
-                        key_press_time[i] = current_time;  // Reset press time to repeat
+                    // Key is held down, continue sending the same report
+                    if (key_index < 8) {
+                        key_report[key_index++] = key;
                     }
                 }
             }
@@ -397,27 +385,28 @@ static void send_keyboard() {
         previous_key_state[i] = key_state[i];  // Update the previous state
     }
 
-    // Send key report if any keys are pressed
-
-    tud_hid_keyboard_report(REPORT_ID_KEYBOARD, key_report[0], &key_report[2]);
-    calculate_wpm(current_time);
-    if (gpio_get(ENC_SW) == 0) {
-        uint16_t play_pause = HID_USAGE_CONSUMER_PLAY_PAUSE;
-        tud_hid_report(REPORT_ID_CONSUMER_CONTROL, &play_pause, 0.5);
+    // If no key is pressed, send an empty report (all keys released)
+    if (!key_pressed) {
+        memset(key_report, 0, sizeof(key_report));
     }
 
+    // Send key report
+    tud_hid_keyboard_report(REPORT_ID_KEYBOARD, key_report[0], &key_report[2]);
+
+    // Optional: Handle additional functions
+    if (gpio_get(ENC_SW) == 0) {
+        uint16_t play_pause = HID_USAGE_CONSUMER_PLAY_PAUSE;
+        tud_hid_report(REPORT_ID_CONSUMER_CONTROL, &play_pause, sizeof(play_pause));
+    }
+
+    calculate_wpm(current_time);
 }
+
 
 // Every 10ms, we will sent 1 report for each HID profile (keyboard, mouse etc ..)
 // tud_hid_report_complete_cb() is used to send the next report after previous one is complete
 void hid_task(void)
 {
-  // Poll every 10ms
-  const uint32_t interval_ms = 10;
-  static uint32_t start_ms = 0;
-
-  if ( board_millis() - start_ms < interval_ms) return; // not enough time
-  start_ms += interval_ms;
 
   //uint32_t const btn = board_button_read();
 
