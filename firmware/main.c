@@ -300,7 +300,7 @@ uint8_t key_map[TOTAL_BITS] = {
     HID_KEY_KEYPAD_2/**/, HID_KEY_KEYPAD_1/**/, HID_KEY_KEYPAD_3, HID_KEY_KEYPAD_9/**/, HID_KEY_KEYPAD_6/**/, HID_KEY_KEYPAD_5/**/, HID_KEY_KEYPAD_4/**/, HID_KEY_GUI_LEFT/**/, //left win
     HID_KEY_CONTROL_LEFT/**/, HID_KEY_KEYPAD_ENTER/**/, HID_KEY_SHIFT_LEFT, HID_KEY_F24, HID_KEY_KEYPAD_DECIMAL, HID_KEY_KEYPAD_0, HID_KEY_KEYPAD_SUBTRACT, HID_KEY_GRAVE,
     HID_KEY_TAB/**/, HID_KEY_A/**/, HID_KEY_Q/**/, HID_KEY_ESCAPE/**/, HID_KEY_CAPS_LOCK/**/, HID_KEY_Z/**/, HID_KEY_ALT_LEFT, HID_KEY_S/**/,
-    HID_KEY_F/**/, HID_KEY_G/*n*/, HID_KEY_D/**/, HID_KEY_B/**/, HID_KEY_X/**/, HID_KEY_C/**/, HID_KEY_V/**/, HID_KEY_3, // Continue with unique codes
+    HID_KEY_F/**/, HID_KEY_G/*n*/, HID_KEY_D/**/, HID_KEY_B/**/, HID_KEY_X/**/, HID_KEY_C/**/, HID_KEY_V/**/, HID_KEY_3, 
     HID_KEY_Y/**/, HID_KEY_T/**/, HID_KEY_2/*n*/, HID_KEY_1, HID_KEY_R/*n*/, HID_KEY_W/**/, HID_KEY_E/*n*/, HID_KEY_7/*n*/,
     HID_KEY_6/*n*/, HID_KEY_5/*n*/, HID_KEY_4, HID_KEY_F1, HID_KEY_F3/**/, HID_KEY_F2/*n*/, HID_KEY_F4/**/, HID_KEY_F6,
     HID_KEY_F7, HID_KEY_F5/**/, HID_KEY_F8, HID_KEY_9/*n*/, HID_KEY_MINUS/*n*/, HID_KEY_0/*n*/, HID_KEY_8/*n*/, 0x30,
@@ -370,7 +370,7 @@ static void send_keyboard() {
                     if (key_index < 8) {
                         key_report[key_index++] = key;
                         if (key != HID_KEY_SPACE) {
-                            global.characters_typed++;
+                            global.characters_typed++;  // Only count the initial press
                         }
                     }
                 } else {
@@ -401,7 +401,6 @@ static void send_keyboard() {
 
     calculate_wpm(current_time);
 }
-
 
 // Every 10ms, we will sent 1 report for each HID profile (keyboard, mouse etc ..)
 // tud_hid_report_complete_cb() is used to send the next report after previous one is complete
