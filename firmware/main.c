@@ -35,8 +35,8 @@
 #include "ssd1306.h"
 #include "pico/multicore.h"
 #include "hardware/i2c.h"
-#include "images.h"
-//#include "hardware/pwm.h"
+#include "waveanim.h"
+#include "bootanim.h"
 
 #include <math.h>
 
@@ -61,7 +61,7 @@
 
 #define REPORT_ID_KEYBOARD 1
 
-#define DEBOUNCE_DELAY_MS 5           // Debounce delay to filter out bouncing
+#define DEBOUNCE_DELAY_MS 10           // Debounce delay to filter out bouncing
 #define PRESS_AND_HOLD_DELAY_MS 250   // Time before key repeat starts
 #define REPEAT_RATE_MS 50             // Delay between repeated keypresses
 
@@ -100,47 +100,68 @@ static void calculate_wpm(uint32_t current_time);
 
 */
 
-
 void animation() {
     ssd1306_t disp;
     disp.external_vcc = false;
     ssd1306_init(&disp, 128, 32, 0x3C, i2c1);
     ssd1306_clear(&disp);
 
-    char wpm_str[10] = {0};
+    char time_wpm_str[10] = {0};
     uint16_t delay_time;
     int wpm = 0;
+    uint32_t last_wpm_time = board_millis();  // Track the last time WPM was non-zero
+    const uint32_t timeout_ms = 30000;  // 30 seconds of inactivity before turning off display
+    bool display_on = true;
+
     //TODO: Add startup animation.
-    
 
     while (1) {
         wpm = global.wpm;
-        if (wpm <= 10) {
-            delay_time = 200;  // Slow FPS for "idle".
-        } else if (wpm <= 40 && wpm > 10) {
-            delay_time = 150;  //Steadly increase for each WPM range.
-        } else if (wpm <= 80 && wpm > 40) {
-            delay_time = 100;  
-        } else if (wpm <= 100 && wpm > 80) {
-            delay_time = 75;  
+
+        if (wpm == 0) {
+            if (board_millis() - last_wpm_time >= timeout_ms) {
+                if (display_on) {
+                    ssd1306_clear(&disp);  // Clear the display
+                    ssd1306_poweroff(&disp);  // Turn off the display
+                    display_on = false;
+                }
+            }
         } else {
-            delay_time = 50;  //This is the fastest I can get the animation whiile looking good.
+            last_wpm_time = board_millis();
+            if (!display_on) {
+                ssd1306_poweron(&disp);  // Turn on the display
+                display_on = true;
+            }
         }
 
+        if (display_on) {
+            if (wpm <= 10) {
+                delay_time = 200;  // Slow FPS for "idle".
+            } else if (wpm <= 40 && wpm > 10) {
+                delay_time = 150;  // Steadily increase for each WPM range.
+            } else if (wpm <= 80 && wpm > 40) {
+                delay_time = 100;  
+            } else if (wpm <= 100 && wpm > 80) {
+                delay_time = 75;  
+            } else {
+                delay_time = 50;  // Fastest animation speed while looking good.
+            }
 
-        // Update the WPM string
-        sprintf(wpm_str, "WPM:%03d", wpm);
+            // Update the WPM string
+            sprintf(time_wpm_str, "WPM:%03d", wpm);
 
-        // Display the current frame and WPM
-        ssd1306_show_image_with_text(&disp, wave[global.currentFrame], 636, wpm_str, 1, 0, 0);
+            // Display the current frame and WPM
+            ssd1306_show_image_with_text(&disp, wave_frames[global.currentFrame], frameSize, time_wpm_str, 1, 0, 0);
 
-        // Update the frame index
-        global.currentFrame = (global.currentFrame + 1) % 10;  // Loop through 10 frames
+            // Update the frame index
+            global.currentFrame = (global.currentFrame + 1) % 10;  // Loop through 10 frames
+        }
 
         // Delay before showing the next frame
         sleep_ms(delay_time);
     }
 }
+
 
 /*WPM CALCULATOR*/
 /* Calculates the current WPM of the user by taking the number of keys typed, extrapolating to a minute
@@ -300,7 +321,7 @@ uint8_t key_map[TOTAL_BITS] = {
     HID_KEY_KEYPAD_2/**/, HID_KEY_KEYPAD_1/**/, HID_KEY_KEYPAD_3, HID_KEY_KEYPAD_9/**/, HID_KEY_KEYPAD_6/**/, HID_KEY_KEYPAD_5/**/, HID_KEY_KEYPAD_4/**/, HID_KEY_GUI_LEFT/**/, //left win
     HID_KEY_CONTROL_LEFT/**/, HID_KEY_KEYPAD_ENTER/**/, HID_KEY_SHIFT_LEFT, HID_KEY_F24, HID_KEY_KEYPAD_DECIMAL, HID_KEY_KEYPAD_0, HID_KEY_KEYPAD_SUBTRACT, HID_KEY_GRAVE,
     HID_KEY_TAB/**/, HID_KEY_A/**/, HID_KEY_Q/**/, HID_KEY_ESCAPE/**/, HID_KEY_CAPS_LOCK/**/, HID_KEY_Z/**/, HID_KEY_ALT_LEFT, HID_KEY_S/**/,
-    HID_KEY_F/**/, HID_KEY_G/*n*/, HID_KEY_D/**/, HID_KEY_B/**/, HID_KEY_X/**/, HID_KEY_C/**/, HID_KEY_V/**/, HID_KEY_3, 
+    HID_KEY_F/**/, HID_KEY_G/*n*/, HID_KEY_D/**/, HID_KEY_B/**/, HID_KEY_X/**/, HID_KEY_C/**/, HID_KEY_V/**/, HID_KEY_3, // Continue with unique codes
     HID_KEY_Y/**/, HID_KEY_T/**/, HID_KEY_2/*n*/, HID_KEY_1, HID_KEY_R/*n*/, HID_KEY_W/**/, HID_KEY_E/*n*/, HID_KEY_7/*n*/,
     HID_KEY_6/*n*/, HID_KEY_5/*n*/, HID_KEY_4, HID_KEY_F1, HID_KEY_F3/**/, HID_KEY_F2/*n*/, HID_KEY_F4/**/, HID_KEY_F6,
     HID_KEY_F7, HID_KEY_F5/**/, HID_KEY_F8, HID_KEY_9/*n*/, HID_KEY_MINUS/*n*/, HID_KEY_0/*n*/, HID_KEY_8/*n*/, 0x30,
@@ -313,7 +334,12 @@ uint8_t key_map[TOTAL_BITS] = {
 
 };
 
+
+
 void read_keys(uint8_t* key_state) {
+    static uint8_t last_state[TOTAL_BITS] = {0};
+    static uint32_t last_time[TOTAL_BITS] = {0};
+
     gpio_put(MATRIX_SHLD, 0); // Low
     sleep_us(1);              // Short delay
     gpio_put(MATRIX_SHLD, 1); // High
@@ -323,7 +349,14 @@ void read_keys(uint8_t* key_state) {
         gpio_put(MATRIX_CLK, 1);  // Pulse the clock to shift the data
         sleep_us(1);              // Short delay
         bool bit = gpio_get(MATRIX_QH); // Read the bit
-        key_state[i] = bit ? 0 : 1; // Store the bit (invert logic: 0 means pressed)
+
+        uint32_t current_time = board_millis();
+        if (bit != last_state[i] && (current_time - last_time[i] >= DEBOUNCE_DELAY_MS)) {
+            last_state[i] = bit;
+            last_time[i] = current_time;
+        }
+
+        key_state[i] = last_state[i] ? 0 : 1; // Store the bit (invert logic: 0 means pressed)
         gpio_put(MATRIX_CLK, 0);  // Reset clock to low
         sleep_us(1);              // Short delay
     }
@@ -342,6 +375,7 @@ bool key_is_modifier(uint8_t key) {
 uint8_t key_modifier_bit(uint8_t key) {
     return 1 << (key - HID_KEY_CONTROL_LEFT);
 }
+
 
 
 static void send_keyboard() {
