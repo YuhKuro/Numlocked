@@ -81,9 +81,20 @@ typedef struct {
     uint32_t last_wpm_calc_time;    // Last time WPM was calculated
     volatile int wpm;               // Words per minute
     uint8_t currentFrame;
+    bool gameMode;
 } globalVariables;
 
 globalVariables global = {0};
+/*
+globalVariables global = {
+    .last_interrupt_time = 0,
+    .characters_typed = 0,
+    .last_wpm_calc_time = 0,
+    .wpm = 0,
+    .currentFrame = 0,
+    .gameMode = false 
+};
+*/
 
 void hid_task(void);
 void gpio_initialize();
@@ -106,19 +117,19 @@ void animation() {
     ssd1306_init(&disp, 128, 32, 0x3C, i2c1);
     ssd1306_clear(&disp);
 
-    char time_wpm_str[10] = {0};
+    char time_wpm_str[15] = {0};
     uint16_t delay_time;
     int wpm = 0;
     uint32_t last_wpm_time = board_millis();  // Track the last time WPM was non-zero
     const uint32_t timeout_ms = 30000;  // 30 seconds of inactivity before turning off display
     bool display_on = true;
-
     //TODO: Add startup animation.
 
     while (1) {
         wpm = global.wpm;
 
         if (wpm == 0) {
+            // If WPM is zero, check how long it's been zero
             if (board_millis() - last_wpm_time >= timeout_ms) {
                 if (display_on) {
                     ssd1306_clear(&disp);  // Clear the display
@@ -127,6 +138,7 @@ void animation() {
                 }
             }
         } else {
+            // WPM is non-zero, reset the timer and ensure display is on
             last_wpm_time = board_millis();
             if (!display_on) {
                 ssd1306_poweron(&disp);  // Turn on the display
@@ -148,8 +160,11 @@ void animation() {
             }
 
             // Update the WPM string
-            sprintf(time_wpm_str, "WPM:%03d", wpm);
-
+            if (global.gameMode) {
+                snprintf(time_wpm_str, sizeof(time_wpm_str), "GAMEMODE: ON");
+            } else {
+                snprintf(time_wpm_str, sizeof(time_wpm_str), "WPM:%03d", wpm);
+            }
             // Display the current frame and WPM
             ssd1306_show_image_with_text(&disp, wave_frames[global.currentFrame], frameSize, time_wpm_str, 1, 0, 0);
 
@@ -392,6 +407,9 @@ static void send_keyboard() {
     for (int i = 0; i < TOTAL_BITS; i++) {
         if (key_state[i]) {
             uint8_t key = key_map[i];
+            if (global.gameMode && (key == HID_KEY_GUI_LEFT || key == HID_KEY_GUI_RIGHT)) { //if game mode is active, skip windows.
+                continue;  
+            }
             key_pressed = true;
 
             // Handle modifier keys (e.g., ALT, CTRL)
@@ -422,6 +440,10 @@ static void send_keyboard() {
     // If no key is pressed, send an empty report (all keys released)
     if (!key_pressed) {
         memset(key_report, 0, sizeof(key_report));
+    }
+
+    if (key_report[0] & key_modifier_bit(HID_KEY_CONTROL_LEFT) && key_report[2] == HID_KEY_COMMA) {
+        global.gameMode = !global.gameMode;
     }
 
     // Send key report
