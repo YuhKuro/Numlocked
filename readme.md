@@ -1,6 +1,6 @@
 # Numlocked: Shift
 ## A modular, customizable split keyboard with multiple layouts, integrated volume control, and USB hub.
-![[Ortho.png]]
+![[pictures/Ortho.png]]
 ## Directory:
 - [Keyboard Hardware](hardware/readme.md)
 - [Keyboard Firmware](firmware/readme.md)
@@ -10,7 +10,7 @@
 ## Features
 - **Keyboard Features:**
 	- **Modular split design**: Split 75% layout, flexible configuration with or without numpad.
-	![[Front.png]]
+	![[pictures/Front.png]]
 	- Magnetic connectors for on-the-fly switching
 	- **Gasket mounted design**
 	- **Integrated Volume Knob**
@@ -18,7 +18,7 @@
 	- **256x64 OLED**: 
 	- **Caps-lock, Num-lock and Scroll-Lock LEDs**
 	- **Built-in USB Hub**: 3 USB-A ports (1 vertical, 2 horizontal).
-	![[Rear.png]]
+	![[pictures/Rear.png]]
 - **Hardware**:
 	- **Shift-Registered Design**: Potentially faster scanning than traditional matrix-based keyboards.
 	- **RP2040 chip**: Power efficient, endlessly customizable, easy to program.

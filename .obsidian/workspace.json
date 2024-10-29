@@ -191,14 +191,15 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "b8f5031ca8c6bba5",
+  "active": "d4de1548e9c0a29f",
   "lastOpenFiles": [
+    "pictures",
     "Revision1/README.md",
-    "Rear.png",
+    "pictures/Rear.png",
     "case/readme.md",
     "readme.md",
-    "Front.png",
-    "Ortho.png",
+    "pictures/Front.png",
+    "pictures/Ortho.png",
     "hardware/readme.md",
     "firmware/readme.md",
     "firmware",
