@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "readme.md.md",
+                "file": "readme.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "readme.md"
+              "title": "readme"
             }
           },
           {
@@ -191,12 +191,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d4de1548e9c0a29f",
+  "active": "b8f5031ca8c6bba5",
   "lastOpenFiles": [
     "Revision1/README.md",
     "Rear.png",
     "case/readme.md",
-    "readme.md.md",
+    "readme.md",
     "Front.png",
     "Ortho.png",
     "hardware/readme.md",
