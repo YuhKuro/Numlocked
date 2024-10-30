@@ -11,11 +11,10 @@
 - **Keyboard Features:**
 	- **Modular split design**: Split 75% layout, flexible configuration with or without numpad.
 	![Front](pictures/Front.png)
-	- Magnetic connectors for on-the-fly switching
-	- **Gasket mounted design**
+	- **Magnetic connectors for on-the-fly configuration change**
+	- **Hot swappable & Gasket mount design**
 	- **Integrated Volume Knob**
-	- **128x32 OLED**:  
-	- **256x64 OLED**: 
+	- **128x32 OLED**
 	- **Caps-lock, Num-lock and Scroll-Lock LEDs**
 	- **Built-in USB Hub**: 3 USB-A ports (1 vertical, 2 horizontal).
 	  ![Rear](pictures/Rear.png)
@@ -23,7 +22,6 @@
 	- **Shift-Registered Design**: Potentially faster scanning than traditional matrix-based keyboards.
 	- **RP2040 chip**: Power efficient, endlessly customizable, easy to program.
 	-  **Real-Time Clock (RTC)**: Keeps accurate time for the user
-	- 
 
 ## Build Instructions
 *See the [Build Guide](hardware/readme.md) for detailed steps.*
