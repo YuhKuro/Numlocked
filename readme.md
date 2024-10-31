@@ -1,6 +1,6 @@
 # Numlocked
 ## A modular, customizable split keyboard with multiple layouts, integrated volume control, and USB hub.
-![[Ortho.png]]
+![Ortho](pictures/Ortho.png)
 ## Directory:
 - [Keyboard Hardware](hardware/readme.md)
 - [Keyboard Firmware](firmware/readme.md)
@@ -10,7 +10,7 @@
 ## Features
 - **Keyboard Features:**
 	- **Modular split design**: Split 75% layout, flexible configuration with or without numpad.
-	![[Front.png]]
+	![Front](pictures/Front.png)
 	- **Magnetic connectors for on-the-fly configuration change**
 	- **Hot swappable & Gasket mount design**
 	- **Integrated Volume Knob**
