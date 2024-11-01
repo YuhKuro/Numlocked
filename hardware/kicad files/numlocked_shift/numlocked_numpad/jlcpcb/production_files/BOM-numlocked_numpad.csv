@@ -1,0 +1,58 @@
+Comment,Designator,Footprint,LCSC
+240,R5,R_0603_1608Metric,C114613
+0.1 uF,"C12,C13,C14,C17,C18,C19,C2,C20,C21,C22,C23,C24,C25,C26,C27,C28,C29,C3,C4,C9",C_0603_1608Metric,C129176
+1K,R11,R_0603_1608Metric,C14676
+0.01 μF,"C1,C5",C_0603_1608Metric,C1589
+RP2040,U6,QFN-56-1EP_7x7mm_P0.4mm_EP3.2x3.2mm,C2040
+ABM8G-12.000MHZ-18-D2Y-T,X1,Crystal_SMD_Abracon_ABM8AIG-4Pin_3.2x2.5mm,C20625731
+18 pF,"C10,C11",C_0603_1608Metric,C388905
+27,"R8,R9",R_0603_1608Metric,C403127
+SN74HC165DR,"U2,U3,U4",SN74HC165DR,C61060
+1 uF,"C15,C16",C_0603_1608Metric,C77046
+74LVC1G17,U8,SOT-23-5,C7836
+10K,"RN1,RN2,RN3,RN4,RN5,RN6",R_Array_Convex_4x1206,C784821
+W25Q128JVSIQ,U7,SOIC_128JVSIQ_WIN,C97521
+10k,"R1,R12,R13,R14,R2,R3,R4,R6,R7",R_0603_1608Metric,C98220
+PEC11R-4215F-S0024,MT1,XDCR_PEC11R-4215F-S0024,
+~,S9,SW_Cherry_Kalih_1.00u,
+~,SW2,MHPS4284,
+~,S2,SW_Cherry_Kalih_1.00u,
+~,S17,SW_Cherry_Kalih_1.00u,
+~,S8,SW_Cherry_Kalih_1.00u,
+Conn_01x04,J3,Magnetic_Pogo_Pin_4pos,
+~,S6,SW_Cherry_Kalih_1.00u,
+~,S3,SW_Cherry_Kalih_1.00u,
+~,OLED1,PinSocket_1x07_P2.54mm_Vertical,
+~,S12,SW_Cherry_Kalih_1.00u,
+Conn_01x04,J4,Magnetic_Pogo_Pin_4pos,
+~,S11,SW_Cherry_Kalih_1.00u,
+~,S10,SW_Cherry_Kalih_1.00u,
+~,S16,SW_Cherry_Kalih_1.00u,
+~,S15,SW_Cherry_Kalih_2.00u_vert,
+~,S1,SW_Cherry_Kalih_1.00u,
+~,S18,SW_Cherry_Kalih_1.00u,
+~,S19,SW_Cherry_Kalih_1.00u,
+~,SW1,SK13D07VG4,
+~,S7,SW_Cherry_Kalih_2.00u,
+~,SW3,MHPS4284,
+~,S20,SW_Cherry_Kalih_2.00u_vert,
+~,S14,SW_Cherry_Kalih_1.00u,
+~,SW4,MHPS4284,
+Conn_01x02,J5,PinSocket_1x02_P2.00mm_Vertical,
+33 uF,C7,C_1206_3216Metric,
+~,U5,SC-74-6_1.55x2.9mm_P0.95mm,
+0.47 uF,C6,C_1206_3216Metric,
+0.1 uF,C31,C_0603_1608Metric,
+Conn_01x04,J2,Magnetic_Pogo_Pin_4pos,
+~,U9,SC-74-6_1.55x2.9mm_P0.95mm,
+LM3940IMP-3.3/NOPB,U1,SOT-223,
+~,U10,SC-74-6_1.55x2.9mm_P0.95mm,
+Conn_01x04,J1,Magnetic_Pogo_Pin_4pos,
+LED Power,D1,LED_0603_1608Metric,
+10K,RN7,R_Array_Convex_4x1206,
+Battery_Cell,BT1,Q&J CR1220-2,
+0.1 uF,C32,C_0603_1608Metric,
+AYF530435,J7,AYF530435,
+DS3231MZ,U11,SOIC-8_3.9x4.9mm_P1.27mm,
+Conn_01x02,J6,PinSocket_1x02_P2.00mm_Vertical,
+0,R10,R_0603_1608Metric,

@@ -1,0 +1,151 @@
+(footprint "Magnetic_Pogo_Pin_4pos"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 7.85 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "04752770-7faf-4880-ad31-a4534b723f1d")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "Magnetic_Pogo_Pin_4pos"
+		(at 0 8.5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "54914957-e524-413e-afe4-48a21e1084cc")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 7.5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "c2686ab6-bfb2-4dc3-9bf6-cf4a259f7176")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 7.5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "1c5bd32b-2ed7-4d90-b573-1b8821617a20")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 7.5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "9c3b81d5-b158-46b4-8791-44eea83c0eb8")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_rect
+		(start -11 0)
+		(end 11 5.5)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill none)
+		(layer "F.Fab")
+		(uuid "a05afe41-bb09-4382-bf81-83d29377c3d6")
+	)
+	(fp_rect
+		(start -4.75 4.49)
+		(end 4.75 6.49)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill none)
+		(layer "F.Fab")
+		(uuid "b3d5dd19-9592-400d-923d-2bbd58248e5b")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 10 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "840f391c-001f-4d33-b502-b7ff1c0d90e8")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" thru_hole circle
+		(at -3.75 5.5)
+		(size 1.8 1.8)
+		(drill 0.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(thermal_bridge_angle 90)
+		(uuid "5bfe402a-9036-4cf7-a1c7-3735715d8636")
+	)
+	(pad "2" thru_hole circle
+		(at -1.25 5.5)
+		(size 1.8 1.8)
+		(drill 0.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(thermal_bridge_angle 90)
+		(uuid "30991e33-f5d8-4621-bfe7-707070682972")
+	)
+	(pad "3" thru_hole circle
+		(at 1.25 5.5)
+		(size 1.8 1.8)
+		(drill 0.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(thermal_bridge_angle 90)
+		(uuid "d2fb490f-6cb1-466d-8576-31ebaa970622")
+	)
+	(pad "4" thru_hole circle
+		(at 3.75 5.5)
+		(size 1.8 1.8)
+		(drill 0.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(thermal_bridge_angle 90)
+		(uuid "3e595705-e1be-4a92-902c-fd4c768d83e8")
+	)
+	(model "C:/Users/yuchi/Downloads/Magnetic Pogo Connector 4 Pin (Type 3).STEP"
+		(offset
+			(xyz 0 -5.5 1)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 0 0)
+		)
+	)
+)

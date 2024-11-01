@@ -1,0 +1,111 @@
+Designator,Val,Package,Mid X,Mid Y,Rotation,Layer
+C1,0.1 uF,C_0603_1608Metric,104.75,-46.4516,0.0,bottom
+C10,0.1 uF,C_0603_1608Metric,79.7926,-27.3766,90.0,bottom
+C11,10 uF,C_0603_1608Metric,78.04,-27.3766,90.0,bottom
+C12,0.47 uF,C_1206_3216Metric,87.249293,-28.174293,90.0,bottom
+C13,33 uF,C_1206_3216Metric,97.3,-28.3,90.0,bottom
+C14,0.1 uF,C_0603_1608Metric,240.3,-47.1018,90.0,bottom
+C15,0.1 uF,C_0603_1608Metric,90.037574,-56.78316,180.0,bottom
+C16,0.1 uF,C_0603_1608Metric,82.1,-55.3766,90.0,bottom
+C2,0.1 uF,C_0603_1608Metric,126.134,-46.8836,90.0,bottom
+C3,0.1 uF,C_0603_1608Metric,148.9178,-47.1018,90.0,bottom
+C4,0.1 uF,C_0603_1608Metric,171.3206,-47.1018,90.0,bottom
+C5,0.1 uF,C_0603_1608Metric,194.587,-47.1272,90.0,bottom
+C6,0.1 uF,C_0603_1608Metric,217.2946,-47.1018,90.0,bottom
+C7,0.1 uF,C_0603_1608Metric,90.0406,-55.1894,0.0,bottom
+C8,10 uF,C_0603_1608Metric,273.67,-68.8122,0.0,bottom
+C9,0.1 uF,C_0603_1608Metric,273.67,-67.1866,0.0,bottom
+D1,LED (capslock R),LED_0805_2012Metric,263.16875,-26.0,-90.0,top
+D3,LED (numlock G),LED_0805_2012Metric,243.16875,-26.0,90.0,top
+D4,LED (scrlock Y),LED_0805_2012Metric,253.16875,-26.0,-90.0,top
+H1,MountingHole_Pad,MountingHole_2.2mm_M2_Pad,74.0,-48.8041,0.0,top
+H2,MountingHole_Pad,MountingHole_2.2mm_M2_Pad,273.16875,-156.0,0.0,top
+H3,MountingHole_Pad,MountingHole_2.2mm_M2_Pad,159.725,-156.0,0.0,top
+H4,MountingHole_Pad,MountingHole_2.2mm_M2_Pad,257.5,-24.0,0.0,top
+H5,MountingHole_Pad,MountingHole_2.2mm_M2_Pad,117.625,-76.6166,0.0,top
+H6,MountingHole_Pad,MountingHole_2.2mm_M2_Pad,250.975,-62.0116,0.0,top
+H7,MountingHole_Pad,MountingHole_2.2mm_M2_Pad,198.5875,-114.7166,0.0,top
+J1,Conn_01x04,Magnetic_Pogo_Pin_4pos,274.05,-74.7591,-90.0,top
+J2,Conn_01x04,Magnetic_Pogo_Pin_4pos,274.05,-114.6391,-90.0,top
+J3,Conn_01x04,Magnetic_Pogo_Pin_4pos,75.5,-31.2776,270.0,bottom
+J4,Conn_01x04,Magnetic_Pogo_Pin_4pos,114.3136,-128.2666,180.0,bottom
+J5,Conn_01x04,Magnetic_Pogo_Pin_4pos,136.5294,-128.2666,180.0,bottom
+R1,R,R_0603_1608Metric,261.0,-27.775,90.0,bottom
+R3,R,R_0603_1608Metric,246.1,-23.3766,180.0,bottom
+R4,R,R_0603_1608Metric,247.8,-25.0766,180.0,bottom
+R5,R,R_0603_1608Metric,249.5,-23.3766,180.0,bottom
+R6,10k,R_0603_1608Metric,97.3,-53.8766,90.0,bottom
+R7,10k,R_0603_1608Metric,85.4,-53.0766,180.0,bottom
+RN1,10K,R_Array_Convex_4x1206,100.48,-52.4716,0.0,bottom
+RN10,10K,R_Array_Convex_4x1206,184.3,-52.4716,180.0,bottom
+RN11,10K,R_Array_Convex_4x1206,207.16,-52.4716,180.0,bottom
+RN12,10K,R_Array_Convex_4x1206,230.02,-52.4716,180.0,bottom
+RN13,10K,R_Array_Convex_4x1206,237.64,-52.4716,0.0,bottom
+RN14,10K,R_Array_Convex_4x1206,252.88,-52.4716,180.0,bottom
+RN2,10K,R_Array_Convex_4x1206,123.34,-52.4716,0.0,bottom
+RN3,10K,R_Array_Convex_4x1206,146.2,-52.4716,0.0,bottom
+RN4,10K,R_Array_Convex_4x1206,169.06,-52.4716,0.0,bottom
+RN5,10K,R_Array_Convex_4x1206,191.92,-52.4716,0.0,bottom
+RN6,10K,R_Array_Convex_4x1206,214.78,-52.4716,0.0,bottom
+RN7,10K,R_Array_Convex_4x1206,115.72,-52.4716,180.0,bottom
+RN8,10K,R_Array_Convex_4x1206,138.58,-52.4716,180.0,bottom
+RN9,10K,R_Array_Convex_4x1206,161.44,-52.4716,180.0,bottom
+S1,~,SW_Cherry_Kalih_1.00u,88.3525,-64.8016,0.0,top
+S10,~,SW_Cherry_Kalih_1.00u,126.4525,-64.8016,0.0,top
+S11,~,SW_Cherry_Kalih_1.00u,121.69,-102.9016,0.0,top
+S12,~,SW_Cherry_Kalih_1.00u,135.9775,-40.9891,0.0,top
+S13,~,SW_Cherry_Kalih_1.00u,135.9775,-83.8516,0.0,top
+S14,~,SW_Cherry_Kalih_1.00u,140.74,-102.9016,0.0,top
+S15,~,SW_Cherry_Kalih_1.00u,145.5025,-64.8016,0.0,top
+S16,~,SW_Cherry_Kalih_1.00u,131.215,-121.9516,0.0,top
+S17,~,SW_Cherry_Kalih_1.00u,155.0275,-83.8516,0.0,top
+S18,~,SW_Cherry_Kalih_1.00u,159.79,-102.9016,0.0,top
+S19,~,SW_Cherry_Kalih_1.00u,174.0775,-83.8516,0.0,top
+S2,~,SW_Cherry_Kalih_1.00u,97.8775,-83.8516,0.0,top
+S20,~,SW_Cherry_Kalih_1.00u,159.79,-40.9891,0.0,top
+S21,~,SW_Cherry_Kalih_1.00u,169.315,-121.9516,0.0,top
+S22,~,SW_Cherry_Kalih_1.00u,150.265,-121.9516,0.0,top
+S23,~,SW_Cherry_Kalih_1.00u,178.84,-102.9016,0.0,top
+S24,~,SW_Cherry_Kalih_1.00u,164.5525,-64.8016,0.0,top
+S25,~,SW_Cherry_Kalih_1.00u,164.5525,-141.0016,0.0,top
+S26,~,SW_Cherry_Kalih_1.00u,193.1275,-83.8516,0.0,top
+S27,~,SW_Cherry_Kalih_1.00u,183.6025,-64.8016,0.0,top
+S28,~,SW_Cherry_Kalih_1.00u,178.84,-40.9891,0.0,top
+S29,~,SW_Cherry_Kalih_1.00u,197.89,-102.9016,0.0,top
+S3,~,SW_Cherry_Kalih_1.00u,78.8275,-40.9891,0.0,top
+S30,~,SW_Cherry_Kalih_1.00u,188.365,-121.9516,0.0,top
+S31,~,SW_Cherry_Kalih_1.00u,212.1775,-83.8516,0.0,top
+S32,~,SW_Cherry_Kalih_1.00u,202.6525,-64.8016,0.0,top
+S33,~,SW_Cherry_Kalih_1.00u,183.6025,-141.0016,0.0,top
+S34,~,SW_Cherry_Kalih_1.00u,202.6525,-141.0016,0.0,top
+S35,~,SW_Cherry_Kalih_1.75u,214.55875,-121.9516,0.0,top
+S36,~,SW_Cherry_Kalih_1.00u,197.89,-40.9891,0.0,top
+S37,~,SW_Cherry_Kalih_2.25u,229.54375,-106.0741,0.0,top
+S38,~,SW_Cherry_Kalih_1.75u,235.99,-83.8516,0.0,top
+S39,~,SW_Cherry_Kalih_1.00u,245.515,-126.7141,0.0,top
+S4,~,SW_Cherry_Kalih_1.00u,97.8775,-40.9891,0.0,top
+S40,~,SW_Cherry_Kalih_1.00u,226.465,-145.7641,0.0,top
+S41,~,SW_Cherry_Kalih_1.00u,245.515,-145.7641,0.0,top
+S42,~,SW_Cherry_Kalih_2.00u,231.925,-67.9491,0.0,top
+S43,~,SW_Cherry_Kalih_1.00u,264.565,-145.7641,0.0,top
+S44,~,SW_Cherry_Kalih_1.00u,216.94,-40.9891,0.0,top
+S45,~,SW_Cherry_Kalih_1.00u,240.7525,-40.9891,0.0,top
+S46,~,SW_Cherry_Kalih_1.00u,264.565,-40.9891,0.0,top
+S47,~,SW_Cherry_Kalih_1.00u,264.565,-102.9016,0.0,top
+S48,~,SW_Cherry_Kalih_1.00u,264.565,-83.8516,0.0,top
+S49,~,SW_Cherry_Kalih_1.00u,264.565,-64.8016,0.0,top
+S5,~,SW_Cherry_Kalih_1.00u,116.9275,-40.9891,0.0,top
+S6,~,SW_Cherry_Kalih_1.00u,102.64,-102.9016,0.0,top
+S7,~,SW_Cherry_Kalih_1.00u,116.9275,-83.8516,0.0,top
+S8,~,SW_Cherry_Kalih_1.00u,107.4025,-64.8016,0.0,top
+S9,~,SW_Cherry_Kalih_1.00u,112.165,-121.9516,0.0,top
+U1,SN74HC165DR,SOIC127P600X175-16N,108.1,-52.4716,0.0,bottom
+U10,74LVC1G17,SOT-23-5,86.0,-55.5766,180.0,bottom
+U2,SN74HC165DR,SOIC127P600X175-16N,130.96,-52.4716,0.0,bottom
+U3,SN74HC165DR,SOIC127P600X175-16N,153.82,-52.4716,0.0,bottom
+U4,SN74HC165DR,SOIC127P600X175-16N,176.68,-52.4716,0.0,bottom
+U5,SN74HC165DR,SOIC127P600X175-16N,199.54,-52.4716,0.0,bottom
+U6,SN74HC165DR,SOIC127P600X175-16N,222.4,-52.4716,0.0,bottom
+U7,~,SC-74-6_1.55x2.9mm_P0.95mm,94.2,-55.25,0.0,bottom
+U8,LM3940IMP-3.3/NOPB,SOT-223,92.249293,-32.224293,270.0,bottom
+U9,SN74HC165DR,SOIC127P600X175-16N,245.26,-52.4716,0.0,bottom

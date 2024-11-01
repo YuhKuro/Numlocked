@@ -1,0 +1,71 @@
+Comment,Designator,Footprint,LCSC
+DS3231MZ,U10,SOIC-8_3.9x4.9mm_P1.27mm,C107410
+0.1 uF,"C1,C10,C15,C18,C2,C22,C23,C24,C25,C26,C27,C28,C3,C30,C32,C33,C34,C35,C36,C37,C38,C39,C4,C5,C6,C7,C8,C9",C_0603_1608Metric,C129176
+1K,R5,R_0603_1608Metric,C14676
+10 uF,"C29,C31",C_0603_1608Metric,C18800
+RP2040,U1,QFN-56-1EP_7x7mm_P0.4mm_EP3.2x3.2mm,C2040
+ABM8-272-T3,X1,Crystal_SMD_Abracon_ABM8AIG-4Pin_3.2x2.5mm,C20625731
+1 uF,"C11,C12",C_0603_1608Metric,C2214844
+18 pF,"C13,C14",C_0603_1608Metric,C388905
+27,"R2,R3",R_0603_1608Metric,C403127
+AYF530435,J8,AYF530435,C588007
+SN74HC165DR,"U13,U4,U5,U6,U7",SOP-16_3.9x9.9mm_P1.27mm,C61060
+Battery_Cell,BT1,Q&J CR1220-2,C70381
+74LVC1G17,"U11,U12",SOT-23-5,C7836
+10K,"RN1,RN10,RN11,RN2,RN3,RN4,RN5,RN6,RN7,RN8,RN9",R_Array_Convex_4x1206,C784821
+W25Q128JVSIQ,U2,SOIC127P790X216-8N,C97521
+10k,"R10,R4,R6,R8,R9",R_0603_1608Metric,C98220
+~,S32,SW_Cherry_Kalih_1.00u,
+Conn_01x02,J2,PinSocket_1x02_P2.00mm_Vertical,
+~,S38,SW_Cherry_Kalih_1.00u,
+~,S36,SW_Cherry_Kalih_1.00u,
+~,S4,SW_Cherry_Kalih_1.00u,
+~,S31,SW_Cherry_Kalih_1.00u,
+~,S20,SW_Cherry_Kalih_1.00u,
+~,S2,SW_Cherry_Kalih_1.00u,
+~,S35,SW_Cherry_Kalih_1.00u,
+~,S8,SW_Cherry_Kalih_2.25u,
+~,S30,SW_Cherry_Kalih_1.00u,
+~,S37,SW_Cherry_Kalih_1.00u,
+~,S33,SW_Cherry_Kalih_6.25u,
+~,S10,SW_Cherry_Kalih_1.00u,
+~,S25,SW_Cherry_Kalih_1.00u,
+~,S24,SW_Cherry_Kalih_1.00u,
+Conn_01x04,J7,Magnetic_Pogo_Pin_4pos,
+~,S21,SW_Cherry_Kalih_1.00u,
+~,S14,SW_Cherry_Kalih_1.00u,
+~,S29,SW_Cherry_Kalih_1.00u,
+~,S19,SW_Cherry_Kalih_1.00u,
+Conn_01x04,J6,Magnetic_Pogo_Pin_4pos,
+~,S1,SW_Cherry_Kalih_1.00u,
+~,S34,SW_Cherry_Kalih_1.00u,
+~,S26,SW_Cherry_Kalih_1.00u,
+~,S11,SW_Cherry_Kalih_1.25u,
+~,S15,SW_Cherry_Kalih_1.00u,
+~,S9,SW_Cherry_Kalih_1.25u,
+~,S6,SW_Cherry_Kalih_1.5u,
+~,S17,SW_Cherry_Kalih_1.00u,
+~,S28,SW_Cherry_Kalih_1.00u,
+~,S7,SW_Cherry_Kalih_1.75u,
+~,S3,SW_Cherry_Kalih_1.00u,
+~,S16,SW_Cherry_Kalih_1.00u,
+~,S18,SW_Cherry_Kalih_1.00u,
+~,S5,SW_Cherry_Kalih_1.00u,
+SSD1306,Brd1,SSD1306-0.91-OLED-4pin-128x32,
+~,S27,SW_Cherry_Kalih_1.00u,
+~,S12,SW_Cherry_Kalih_1.25u,
+Conn_01x04,J5,Magnetic_Pogo_Pin_4pos,
+~,S13,SW_Cherry_Kalih_1.00u,
+~,S23,SW_Cherry_Kalih_1.00u,
+~,S22,SW_Cherry_Kalih_1.00u,
+NC,C19,C_0603_1608Metric,
+Conn_01x04,J3,Magnetic_Pogo_Pin_4pos,
+~,U9,SC-74-6_1.55x2.9mm_P0.95mm,
+33 uF,C17,C_1206_3216Metric,
+0.47 uF,C16,C_1206_3216Metric,
+LM3940IMP-3.3/NOPB,U3,SOT-223,
+~,U8,SC-74-6_1.55x2.9mm_P0.95mm,
+Conn_01x04,J4,Magnetic_Pogo_Pin_4pos,
+LED (capslock R),D2,LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder,
+82,R11,R_0603_1608Metric,
+Conn_01x02,J1,PinSocket_1x02_P2.00mm_Vertical,
