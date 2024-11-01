@@ -11,7 +11,7 @@
 - **Keyboard Features:**
 	- **Modular split design**: Split 75% layout, flexible configuration with or without numpad.
 	![Front](pictures/Front.png)
-	- **Magnetic connectors for on-the-fly configuration change**
+	- **Magnetic connectors for quick configuration changes**
 	- **Hot swappable & Gasket mount design**
 	- **Integrated Volume Knob**
 	- **128x32 OLED**
