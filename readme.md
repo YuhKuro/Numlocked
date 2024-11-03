@@ -1,6 +1,5 @@
 # Numlocked
-## A modular, customizable split keyboard with multiple layouts, integrated volume control, and USB hub.
-
+## A modular, customizable split keyboard
 ![Ortho](pictures/Ortho.png)
 ## Directory:
 - [Keyboard Hardware](hardware/readme.md)
@@ -23,6 +22,10 @@
 	- **Shift-Registered Design**: Potentially faster scanning than traditional matrix-based keyboards.
 	- **RP2040 chip**: Power efficient, endlessly customizable, easy to program.
 	-  **Real-Time Clock (RTC)**: Keeps accurate time for the user
+- Build:
+	- Akko CS Silver Switches
+	- Durock V2 Stabilizers
+	- FR4 Plate
 
 ## Build Instructions
 *See the [Build Guide](hardware/readme.md) for detailed steps.*
