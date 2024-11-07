@@ -41,23 +41,31 @@
 #include <math.h>
 
 
-// GPIO Definitions
-#define LED_MAIN 11
-#define LED_CAP 12
+// GPIO PIN DEFINITIONS
 
-#define MATRIX_CLK 16
-#define MATRIX_CLKINH 17
-#define MATRIX_SHLD 18
-#define MATRIX_QH 19
+#define OLED_SDA 0
+#define OLED_SCL 1 
+#define USB_BOOT 2
+#define rightCheck 3
+#define numpadCheck 4
+#define numlockScrlockLED 5
+#define capsLED 6
+#define ENC_A 7
+#define ENC_B 11
+#define shreg_SH_LD 16
+#define shreg_SerialOut 17
+#define shreg_CLK 18
+#define spaceBar 19
+#define RTC_RST 20
+#define RTC_INT 21
+#define RTC_SDA 22
+#define RTC_SCL 23
+#define RTC_32KHZ 36
 
-#define ENC_SW 8
-#define ENC_A 9
-#define ENC_B 10
-
-#define OLED_SDA 22
-#define OLED_SCL 23 
+// END GPIO PIN DEFINITIONS
 
 #define TOTAL_BITS 120 //The total number of keys on the keyboard. 8-bits x 15 shift regs = 120 bits.
+#define TOTAL_KEYS 121 //120 bits for shift reg + 1 for spacebar.
 
 #define REPORT_ID_KEYBOARD 1
 
@@ -219,17 +227,15 @@ void encoder_callback(uint gpio, uint32_t events) {
 
     uint32_t current_time = board_millis();
 
-    // Debounce: Ignore interrupts occurring within 5ms of the last one
     if ((current_time - global.last_interrupt_time) < 5) {
         return;
     }
     global.last_interrupt_time = current_time;
 
-    // Read current states of ENC_A and ENC_B
+
     uint8_t enc_a_state = gpio_get(ENC_A);
     uint8_t enc_b_state = gpio_get(ENC_B);
 
-    // Combine the states into a single value (enc_a_state: bit 1, enc_b_state: bit 0)
     uint8_t current_state = (enc_a_state << 1) | enc_b_state;
 
     // Determine direction by comparing the current state to the previous state
@@ -237,14 +243,14 @@ void encoder_callback(uint gpio, uint32_t events) {
         (last_state == 0b01 && current_state == 0b00) ||
         (last_state == 0b00 && current_state == 0b10) ||
         (last_state == 0b10 && current_state == 0b11)) {
-        // Clockwise rotation
+
         uint16_t volume_up = HID_USAGE_CONSUMER_VOLUME_INCREMENT;
         tud_hid_report(REPORT_ID_CONSUMER_CONTROL, &volume_up, 1);
     } else if ((last_state == 0b11 && current_state == 0b10) ||
                (last_state == 0b10 && current_state == 0b00) ||
                (last_state == 0b00 && current_state == 0b01) ||
                (last_state == 0b01 && current_state == 0b11)) {
-        // Counter-clockwise rotation
+ 
         uint16_t volume_down = HID_USAGE_CONSUMER_VOLUME_DECREMENT;
         tud_hid_report(REPORT_ID_CONSUMER_CONTROL, &volume_down, 1);
     }
@@ -254,26 +260,50 @@ void encoder_callback(uint gpio, uint32_t events) {
     last_state = current_state;
 }
 
-void switch_callback(uint gpio, uint32_t events) {
-    // Send the media key
-    uint16_t play_pause = HID_USAGE_CONSUMER_PLAY_PAUSE;
-    tud_hid_report(REPORT_ID_CONSUMER_CONTROL, &play_pause, 0.5);
-}
-
-
 void gpio_initialize() {
 
-    gpio_init(MATRIX_CLK);
-    gpio_set_dir(MATRIX_CLK, GPIO_OUT);
+    gpio_init(USB_BOOT);
+    gpio_set_dir(USB_BOOT, GPIO_IN);
 
-    gpio_init(MATRIX_CLKINH);
-    gpio_set_dir(MATRIX_CLKINH, GPIO_OUT);    
+    gpio_init(rightCheck);
+    gpio_set_dir(rightCheck, GPIO_IN);
 
-    gpio_init(MATRIX_SHLD);
-    gpio_set_dir(MATRIX_SHLD, GPIO_OUT);
+    gpio_init(numpadCheck);
+    gpio_set_dir(numpadCheck, GPIO_IN);
 
-    gpio_init(MATRIX_QH);
-    gpio_set_dir(MATRIX_QH, GPIO_IN);
+    gpio_init(numlockScrlockLED);
+    gpio_set_dir(numlockScrlockLED, GPIO_IN); //IN means both off. Assert for numlock on, deassert for scrlock on.
+
+    gpio_init(capsLED);
+    gpio_set_dir(capsLED, GPIO_OUT); //Assert for caps on, deassert for caps off.
+
+    gpio_init(shreg_SH_LD);
+    gpio_set_dir(shreg_SH_LD, GPIO_OUT);
+
+    gpio_init(shreg_SerialOut);
+    gpio_set_dir(shreg_SerialOut, GPIO_IN);
+
+    gpio_init(shreg_CLK);
+    gpio_set_dir(shreg_CLK, GPIO_OUT);
+
+    gpio_init(spaceBar);
+    gpio_set_dir(spaceBar, GPIO_IN);
+
+    gpio_init(RTC_RST);
+    gpio_set_dir(RTC_RST, GPIO_OUT);
+
+    gpio_init(RTC_INT);
+    gpio_set_dir(RTC_INT, GPIO_IN);
+
+    gpio_init(RTC_SDA);
+    gpio_set_dir(RTC_SDA, GPIO_IN);
+
+    gpio_init(RTC_SCL);
+    gpio_set_dir(RTC_SCL, GPIO_IN);
+
+    gpio_init(RTC_32KHZ);
+    gpio_set_dir(RTC_32KHZ, GPIO_IN);
+
     gpio_init(ENC_A);
     gpio_set_dir(ENC_A, GPIO_IN);
     gpio_disable_pulls(ENC_A);
@@ -282,16 +312,9 @@ void gpio_initialize() {
     gpio_set_dir(ENC_B, GPIO_IN);
     gpio_disable_pulls(ENC_B);
 
-    gpio_init(ENC_SW);
-    gpio_set_dir(ENC_SW, GPIO_IN);
-
     // Register the callback for ENC_A on falling edge
     gpio_set_irq_enabled_with_callback(ENC_A, GPIO_IRQ_EDGE_FALL, true, &encoder_callback);
     gpio_set_irq_enabled_with_callback(ENC_B, GPIO_IRQ_EDGE_FALL, true, &encoder_callback);
-
-    // Register the callback for the encoder switch on falling edge
-    gpio_pull_up(ENC_SW);
-    gpio_set_irq_enabled_with_callback(ENC_SW, GPIO_IRQ_EDGE_FALL | GPIO_IRQ_EDGE_RISE, true, &switch_callback);
 
     i2c_init(i2c1, 400000);
     gpio_set_function(OLED_SDA, GPIO_FUNC_I2C);
@@ -330,7 +353,7 @@ int main(void)
 // USB HID
 //--------------------------------------------------------------------+
 // HID_KEY_F21 is top left numpad macro.
-uint8_t key_map_standard[TOTAL_BITS] = {
+uint8_t key_map_standard[TOTAL_KEYS] = {
     HID_KEY_5, HID_KEY_T, HID_KEY_G, HID_KEY_B, HID_KEY_V, HID_KEY_C, HID_KEY_F, HID_KEY_D,
     HID_KEY_4, HID_KEY_R, HID_KEY_E, HID_KEY_F4, HID_KEY_F3, HID_KEY_W, HID_KEY_3, HID_KEY_X,
     HID_KEY_S, HID_KEY_A, HID_KEY_Z, HID_KEY_Q, HID_KEY_ALT_LEFT, HID_KEY_CONTROL_LEFT, HID_KEY_2, HID_KEY_GUI_LEFT,
@@ -349,7 +372,9 @@ uint8_t key_map_standard[TOTAL_BITS] = {
     HID_KEY_KEYPAD_SUBTRACT, HID_KEY_KEYPAD_ADD, HID_KEY_F27 /*UNPLUGGED*/,  HID_KEY_F24 /*VOLUMEKNOB*/, HID_KEY_KEYPAD_ENTER, HID_KEY_KEYPAD_3,
     HID_KEY_KEYPAD_6, HID_KEY_KEYPAD_9, HID_KEY_KEYPAD_DIVIDE, HID_KEY_KEYPAD_DECIMAL, HID_KEY_KEYPAD_MULTIPLY, HID_KEY_F23 /*Top right half key*/, HID_KEY_F27 /*UNPLUGGED*/,
     HID_KEY_KEYPAD_2, HID_KEY_KEYPAD_5, HID_KEY_KEYPAD_8, HID_KEY_F27 /*UNPLUGGED*/, HID_KEY_KEYPAD_0, HID_KEY_KEYPAD_1, HID_KEY_F22 /*Top middle half key*/, HID_KEY_F21 /*Top left half key*/,
-    HID_KEY_KEYPAD_4, HID_KEY_KEYPAD_7, HID_KEY_KEYPAD_NUM_LOCK
+    HID_KEY_KEYPAD_4, HID_KEY_KEYPAD_7, HID_KEY_KEYPAD_NUM_LOCK,
+
+    HID_KEY_SPACE
 
 };
 
@@ -372,7 +397,9 @@ uint8_t key_map_noright[TOTAL_BITS] = {
     HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,
     HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,
     HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,
-    HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/
+    HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,HID_KEY_F27 /*UNPLUGGED*/,
+
+    HID_KEY_SPACE
 
 };
 
@@ -388,9 +415,9 @@ void read_keys(uint8_t* keyState) {
     
     //This loop shifts the data for n number of keys to read the state of each key.
     for (int i = 0; i < TOTAL_BITS; i++) {
-        gpio_put(MATRIX_CLK, 1);  // Pulse the clock to shift the data
+        gpio_put(shreg_CLK, 1);  // Pulse the clock to shift the data
         sleep_us(1);              // Short delay
-        bool bit = gpio_get(MATRIX_QH); // Read the bit
+        bool bit = gpio_get(shreg_SerialOut); // Read the bit
 
         uint32_t current_time = board_millis();
         if (bit != last_state[i] && (current_time - last_time[i] >= DEBOUNCE_DELAY_MS)) {
@@ -399,15 +426,13 @@ void read_keys(uint8_t* keyState) {
         }
 
         keyState[i] = last_state[i] ? 0 : 1; // Store the bit (invert logic: 0 means pressed)
-        gpio_put(MATRIX_CLK, 0);  // Reset clock to low
+        gpio_put(shreg_CLK, 0);  // Reset clock to low
         sleep_us(1);              // Short delay
     }
+    keyState[i] = gpio_get(spaceBar) ? 0 : 1; // Store the bit (invert logic: 0 means pressed);
 }
 
-//static uint32_t key_press_time[TOTAL_BITS] = {0};  // Tracks when a key was first pressed
-//static bool key_repeated[TOTAL_BITS] = {false};    // Tracks if the key has started repeating
-static uint8_t previousKeyState[TOTAL_BITS] = {0};
-
+static uint8_t previousKeyState[TOTAL_KEYS] = {0};
 
 bool key_is_modifier(uint8_t key) {
     return (key >= HID_KEY_CONTROL_LEFT && key <= HID_KEY_GUI_RIGHT);
@@ -423,7 +448,7 @@ uint8_t key_modifier_bit(uint8_t key) {
 static void keyboardLoop() {
     if (!tud_hid_ready()) return;
 
-    uint8_t keyState[TOTAL_BITS] = {0};
+    uint8_t keyState[TOTAL_KEYS] = {0};
     read_keys(keyState);
 
     uint8_t key_report[8] = {0};  // Key report to be sent (8 bytes)
@@ -431,15 +456,18 @@ static void keyboardLoop() {
     uint32_t current_time = board_millis();  // Get current time in milliseconds
     bool key_pressed = false;  // Flag to check if any key is pressed
 
-    for (int i = 0; i < TOTAL_BITS; i++) {
+    //check the state of the keyboard; use secondary table if rightside is disconnected, numpad is connected.
+    uint8_t* key_map = (gpio_get(rightCheck) == 1 && gpio_get(numpadCheck) == 0) ? key_map_noright : key_map_standard;
+
+    for (int i = 0; i < TOTAL_KEYS; i++) {
         if (keyState[i]) {
             uint8_t key = key_map_standard[i];
+          
             if (global.gameMode && (key == HID_KEY_GUI_LEFT)) { //if game mode is active, skip left windows key.
                 continue;                                       
             }
             key_pressed = true;
 
-            
             if (key_is_modifier(key)) {                         // Handle modifier keys (e.g., ALT, CTRL)
                 key_report[0] |= key_modifier_bit(key);         //if key is a modifier key, add to report.
             } else {                                            // Handle regular keys
@@ -475,10 +503,6 @@ static void keyboardLoop() {
     tud_hid_keyboard_report(REPORT_ID_KEYBOARD, key_report[0], &key_report[2]);
 
     // Optional: Handle additional functions
-    if (gpio_get(ENC_SW) == 0) {
-        uint16_t play_pause = HID_USAGE_CONSUMER_PLAY_PAUSE;
-        tud_hid_report(REPORT_ID_CONSUMER_CONTROL, &play_pause, sizeof(play_pause));
-    }
 
     calculate_wpm(current_time);
 }
