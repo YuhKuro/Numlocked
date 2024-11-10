@@ -39,7 +39,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "firmware/readme.md",
+                "file": "case/readme.md",
                 "mode": "source",
                 "source": false
               },
@@ -191,6 +191,8 @@
   },
   "active": "cef741d7b349ac55",
   "lastOpenFiles": [
+    "hardware/readme.md",
+    "firmware/readme.md",
     "readme.md",
     "pictures/Front.png",
     "Revision1/README.md",
@@ -199,8 +201,6 @@
     "pictures/Rear.png",
     "pictures",
     "case/readme.md",
-    "hardware/readme.md",
-    "firmware/readme.md",
     "firmware",
     "Revision1/firmware/README.md",
     "case",
