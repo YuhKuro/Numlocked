@@ -13,7 +13,7 @@
 The keyboard consists of four PCBs: A USB-Hub and three PCBs for each part of the keyboard: Leftside, Rightside and Numpad.
 Each component is connected via magnetic pogo pins to transmit Power, Ground, keyboard signals and LED signals.
 
-## Keyboard-Fundamentals
+## Keyboard Fundamentals
 Although most keyboards use a matrix-and-diode system, this keyboard uses a Parallel-load Serial-Shift shift-register approach.
 
 Think of it like a train with containers moving along a circular track. Each container represents a key position, and the train can either load or shift its contents.
