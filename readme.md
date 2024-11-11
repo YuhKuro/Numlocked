@@ -1,5 +1,5 @@
 # Numlocked
-## A modular, customizable split keyboard
+## A Modular, Customizable Split Keyboard
 ![Ortho](pictures/Ortho.png)
 ## Directory:
 - [Keyboard Hardware](hardware/readme.md)
@@ -13,6 +13,7 @@
 	![Front](pictures/Front.png)
 	- **Magnetic connectors for quick configuration changes**
 	- **Hot swappable & Gasket mount design**
+	- **Dual-Core Custom Firmware**
 	- **Integrated Volume Knob**
 	- **128x32 OLED**
 	- **Caps-lock, Num-lock and Scroll-Lock LEDs**
@@ -21,7 +22,7 @@
 - **Hardware**:
 	- **Shift-Registered Design**: Potentially faster scanning than traditional matrix-based keyboards.
 	- **RP2040 chip**: Power efficient, endlessly customizable, easy to program.
-	-  **Real-Time Clock (RTC)**: Keeps accurate time for the user
+	- **Real-Time Clock (RTC)**: Keeps accurate time for the user
 - Build:
 	- Akko CS Silver Switches
 	- Durock V2 Stabilizers
@@ -30,5 +31,5 @@
 ## Build Instructions
 *See the [Build Guide](hardware/readme.md) for detailed steps.*
 ## Customization
-Firmware, coded in C, which leverages all the features of this keyboard is provided in this repo. [Learn more](firmware/readme.md)
+Firmware, coded in C, which leverages all the features of this keyboard are provided in this repo. [Learn more](firmware/readme.md)
 Please note that QMK/VIA are currently incompatible with shift-register based keyboard designs.
