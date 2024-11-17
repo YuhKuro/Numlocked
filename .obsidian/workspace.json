@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "readme.md",
+                "file": "hardware/readme.md",
                 "mode": "source",
                 "source": false
               },
@@ -35,8 +35,7 @@
               "title": "readme"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -177,8 +176,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "b8f5031ca8c6bba5",
+  "active": "03bf324b2a5e44e5",
   "lastOpenFiles": [
+    "readme.md",
+    "hardware/readme.md",
     "pictures/Diagrams/ShiftRegFlowchart.drawio",
     "pictures/Diagrams",
     "pictures/drawio",
@@ -187,11 +188,9 @@
     "pictures/Schematics/Muxes-and-Debouncing.png",
     "Revision1/README.md",
     "case/readme.md",
-    "hardware/readme.md",
     "pictures/Schematics/RP2040-Flash-RTC.png",
     "pictures/Schematics/USB-Hub-Overview.png",
     "pictures/Rear.png",
-    "readme.md",
     "pictures/Front.png",
     "firmware/readme.md",
     "pictures/Ortho.png",
