@@ -45,7 +45,7 @@ The Hub PCB is centered around a one-to-four USB 2.0 Full Speed HUB. There is on
 
 To minimize space used in the case, there is a notched hole on the PCB itself to allow the FFC Cable to connect between the Hub to the keyboard PCB even when the two PCBs may be flush.
 
-![[USB-Hub-Overview.png]]
+![USB Hub](../pictures/Schematics/USB-Hub-Overview.png)
 ## Left-Side PCB
 The Left-Side PCB serves as the core of the keyboard’s functionality and is the only component capable of operating independently. This is due to the onboard RP2040 microcontroller, which manages all keyboard input processing. The Left-Side PCB features an FFC connector linking it to the USB Hub PCB, enabling seamless integration within the keyboard assembly.
 The Left-Side PCB Features:
@@ -61,7 +61,7 @@ The Left-Side PCB Features:
 - Real-time Clock (RTC) and CR1220 coin battery
 ### RP2040
 The MCU for this keyboard is the RP2040, select for its cost, power efficiency and ease-of-programming, along with its plethora of GPIO pins and IO options. 
-![[RP2040-Flash-RTC.png]]
+![RP2040 and Components](../pictures/Schematics/RP2040-Flash-RTC.png)
 ## Right-Side PCB
 The Right-side PCB handles the right side of the keyboard's inputs and passes it the left-side of the keyboard.
 Furthermore, the Right-Side PCB (if present) will also pass through the Numpad's data to the left side of the keyboard. This design was chosen to minimize the number of Magnetic Pogo Pin Connectors
