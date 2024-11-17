@@ -27,9 +27,15 @@
 	- Akko CS Silver Switches
 	- Durock V2 Stabilizers
 	- FR4 Plate
+	- Red Oak Case
 
 ## Build Instructions
 *See the [Build Guide](hardware/readme.md) for detailed steps.*
 ## Customization
 Firmware, coded in C, which leverages all the features of this keyboard are provided in this repo. [Learn more](firmware/readme.md)
 Please note that QMK/VIA are currently incompatible with shift-register based keyboard designs.
+## Often Asked Questions
+- Why is it split?
+	- For SMD Reflow Soldering, the largest surface area my hotplate could manage was 400x400mm. I also wanted to experiment with ergonomics.
+- What was the total cost?
+	- Will update once everything is complete.

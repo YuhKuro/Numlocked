@@ -31,15 +31,12 @@ This system also allows for minimal debouncing, requires zero diodes, only requi
 ### Why this method?
 Using shift registers allows for overall less individual soldering, easier programming and most importantly, only requires three pins (SH/~LD, CLK and Serial-Out).
 If we chain shift registers beginning with the removable parts, such as the numpad, and transmit the serial-out to the next removable part, such as the right side, and finally to the left-side, we can manage a system with only one MCU by using multiplexers to avoid unknown values. 
-![[Muxes-and-Debouncing.png]]
+![[../pictures/Schematics/Muxes-and-Debouncing.png]]
 We can do this by using multiplexers, which are basically data switches, and schmitt triggers which help ensure a clear signal. By using the schmitt triggers, the multiplexers always have a clean input on which component is connected. 
-The logic table looks like the following:
-Is the numpad connected?
-Yes: Use the numpad's serial out and connect it to the next multiplexer
-No: Use a 3v3 through a 10k-ohm res (a high 1) as a blanked "no keys pressed".
-Is the right side connected?
-Yes: Use the right side's output as the initial input for the left-side's shift registers. This is because the right-side will always handle the numpad if the numpad is connected.
-No: Use the numpad's output directly. The result of the first mux is passed directly here.
+
+The flow chart into the first shift register of the left side is the following:
+
+![[../pictures/Diagrams/LeftSideMuxFlowChart.png]]
 
 The edge case of numpad connected, but no right side is handled in software.
 
