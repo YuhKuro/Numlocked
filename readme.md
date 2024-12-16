@@ -20,12 +20,12 @@
 	- **Built-in USB Hub**: 3 USB-A ports (1 vertical, 2 horizontal).
 	  ![Rear](pictures/Rear.png)
 - **Hardware**:
-	- **Shift-Registered Design**: Potentially faster scanning than traditional matrix-based keyboards.
+	- **Shift-Registered Design**: Faster scanning than traditional matrix-based keyboards.
 	- **RP2040 chip**: Power efficient, endlessly customizable, easy to program.
-	- **Real-Time Clock (RTC)**: Keeps accurate time for the user
-- Build:
+	- **Real-Time Clock (RTC)**: Keeps accurate time for the user.
+- **Keyboard Build**:
 	- Akko CS Silver Switches
-	- Durock V2 Stabilizers
+	- Durock V2 PCB Mount Stabilizers
 	- FR4 Plate
 	- Red Oak Case
 
