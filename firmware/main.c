@@ -109,6 +109,16 @@ void gpio_initialize();
 void animation();
 static void calculate_wpm(uint32_t current_time);
 
+void process_usb_data(uint8_t* data, uint16_t length) {
+    if (length > 0) {
+        if (data[0] == 0x01) {
+            global.gameMode == true;
+        } else if (data[0] == 0x00) {
+            global.gameMode == false;
+        }
+    }
+}
+
 
 /* OLED Animation function. */
 /*Runs on the second RP2040 core (Core 1), separate from the keyboard main code.
