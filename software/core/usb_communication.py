@@ -23,10 +23,10 @@ else:
 device.set_configuration()
 
 # Send data to the device
-def send_message_to_keyboard(message):
+def sendUSBCommand(id, message):
+
     try:
-        # Assuming OUT endpoint is 1
-        device.write(OUT_ENDPOINT_ADDRESS, message)
+        device.write(OUT_ENDPOINT_ADDRESS, id + "" + message)
         print("Message sent!")
     except usb.core.USBError as e:
         print(f"Error sending message: {e}")

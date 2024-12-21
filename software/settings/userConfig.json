@@ -1,0 +1,10 @@
+{
+    "OLEDsettings": {
+        "displayTime": false,
+        "displayWPM": true,
+        "timezone": "Device Time (Default)"
+    },
+    "UserSettings": {
+        "autoGameMode": true
+    }
+}
