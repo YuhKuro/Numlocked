@@ -8,6 +8,8 @@ from core.process_monitor import get_running_processes
 from core.usb_communication import sendUSBCommand
 from core.process_monitor import generate_background_process_list
 
+from sockets.socketControl import SocketClient
+
 # USB Messaging RULES
 # 1. enable/disable WPM
 # 2. enable/disable Time (enable and send c)
@@ -20,11 +22,13 @@ backGroundPath = os.path.join(scriptDir, "../settings/backgroundApps.json")
 configPath = os.path.join(scriptDir, "../settings/userConfig.json")
 gameModeAppsPath = os.path.join(scriptDir, "../settings/gameModeAppsList.json")
 
+
 class Widget(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, server, parent=None):
         super().__init__(parent)
         self.ui = Ui_widget()
         self.ui.setupUi(self)
+        self.server = server
 
         self.gameModeOn = False
 
@@ -50,24 +54,34 @@ class Widget(QWidget):
         self.ui.displayTime.stateChanged.connect(self.displayTime)
         self.ui.timezoneBox.currentIndexChanged.connect(self.updateTimezone)
         self.ui.autoGameMode.stateChanged.connect(self.autoGameMode)
-
     #These updates are not saved unless the apply button is clicked. A preview is shown to the user.
     def updateTimezone(self):
         #update to the selected timezone on the keyboard.
-        sendUSBCommand("3", self.ui.timezoneBox.currentText())
+        self.server.sendMessage("3:" + self.ui.timezoneBox.currentText())
+        
         
     def displayWPM(self):
         # Display the WPM on the keyboard
-        sendUSBCommand("1", "")
+        if self.ui.displayWPM.isChecked():
+            self.server.sendMessage("1A")
+        else:
+            self.server.sendMessage("1B")
     
     def displayTime(self):
         # check timezone, then send the current time to the keyboard
-        sendUSBCommand("2", "")
+        if self.ui.displayTime.isChecked():
+            self.server.sendMessage("2A")
+        else:
+            self.server.sendMessage("2B")
     
     def autoGameMode(self):
         # Automatically enable game mode when a game is detected
         # Send signal to background C program.
-        sendUSBCommand("4", "")
+        if self.ui.autoGameMode.isChecked():
+            self.server.sendMessage("4A") # Enable auto game mode
+        else:
+            self.server.sendMessage("4B")
+
 
     def loadUserSettings(self):
         """Load user settings and game mode apps from JSON files."""
@@ -113,6 +127,24 @@ class Widget(QWidget):
         with open(configPath, "w") as file:
             json.dump(settings, file, indent=4)
         print("Settings saved!")
+
+        # Send the updated settings to the pipe, to be sent to the keyboard
+        if self.ui.displayTime.isChecked():
+            self.server.sendMessage("2A")
+        else:
+            self.server.sendMessage("2B")
+        if self.ui.displayWPM.isChecked():
+            self.server.sendMessage("1A")
+        else:
+            self.server.sendMessage("1B")
+        if self.ui.autoGameMode.isChecked():
+            self.server.sendMessage("4A")
+        else:
+            self.server.sendMessage("4B")
+            
+        self.server.sendMessage("3:" + self.ui.timezoneBox.currentText())
+
+
 
     def updateRunningApps(self):
         processes = get_running_processes()
