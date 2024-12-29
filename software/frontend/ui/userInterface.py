@@ -8,7 +8,7 @@ from core.process_monitor import get_running_processes
 from core.usb_communication import sendUSBCommand
 from core.process_monitor import generate_background_process_list
 
-from sockets.socketControl import SocketClient
+from sockets.socketControl import SocketServer
 
 # USB Messaging RULES
 # 1. enable/disable WPM
