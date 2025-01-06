@@ -2,7 +2,7 @@
     "OLEDsettings": {
         "displayTime": false,
         "displayWPM": true,
-        "timezone": "JST (Tokyo)"
+        "timezone": "CST (Chicago)"
     },
     "UserSettings": {
         "autoGameMode": true

@@ -13,6 +13,15 @@
 #define BUFFER_SIZE 256
 #define QUEUE_SIZE 100
 
+enum timeZones {
+    deviceTime = 0,
+    EST = 1,
+    CST = 2,
+    JST = 3
+};
+
+int timeZone = deviceTime;
+
 typedef struct {
     char message[BUFFER_SIZE];
 } queueItem;
@@ -123,10 +132,20 @@ void sendMessage(SOCKET sock, const char *message) {
     }
 }
 
-void getCurrentTime(char *buffer, size_t bufferSize) {
-    time_t now = time(NULL);
-    struct tm *timeinfo = localtime(&now);
-    strftime(buffer, bufferSize, "%Y-%m-%d %H:%M:%S", timeinfo);
+void getDesiredTime(char *buffer, size_t bufferSize, int timeZone) {
+    time_t t = time(NULL);
+    struct tm *timeinfo = gmtime(&t);
+    if (timeZone == CST) {
+        timeinfo->tm_hour -= 6;
+    } else if (timeZone == JST) {
+        timeinfo->tm_hour += 9;
+    } else if (timeZone == EST) {
+        timeinfo->tm_hour -= 5;
+    } else if (timeZone == deviceTime) {
+        timeinfo = localtime(&t);
+    }
+    strftime(buffer, bufferSize, "%I:%M%p", timeinfo);
+
 }
 
 
@@ -136,8 +155,27 @@ DWORD WINAPI usbWorkerThread(LPVOID param) {
 
     while (1) {
         if (dequeue(queue, messageBuffer)) {
-            // Simulate sending the message via USB to the keyboard
-            printf("Sending to USB: %s\n", messageBuffer);
+            //check if the message contains mention of timezone change
+            if (strstr(messageBuffer, "3") != NULL) {
+                if (strstr(messageBuffer, "EST") != NULL) {
+                    printf("Timezone changed to EST\n");
+                    timeZone = EST;
+                } else if (strstr(messageBuffer, "CST") != NULL) {
+                    printf("Timezone changed to CST\n");
+                    timeZone = CST;
+                } else if (strstr(messageBuffer, "JST") != NULL) {
+                    printf("Timezone changed to JST\n");
+                    timeZone = JST;
+                } else if (strstr(messageBuffer, "device") != NULL) {
+                    printf("Timezone changed to device time\n");
+                    timeZone = deviceTime;
+                } 
+                char timeMessage[BUFFER_SIZE];
+                getDesiredTime(timeMessage, sizeof(timeMessage), timeZone);
+                printf("Sending to USB: %s\n", timeMessage);
+            } else {
+                printf("Sending to USB: %s\n", messageBuffer);
+            }
         }
         Sleep(50); // Small delay to reduce CPU usage
     }
@@ -164,7 +202,7 @@ int main() {
         time_t now = time(NULL);
 
         if (difftime(now, lastUpdate) >= 3600 || lastUpdate == 0) {
-            getCurrentTime(timeMessage, sizeof(timeMessage));
+            getDesiredTime(timeMessage, sizeof(timeMessage), timeZone);
             enqueue(&queue, timeMessage);
             lastUpdate = now;
         }

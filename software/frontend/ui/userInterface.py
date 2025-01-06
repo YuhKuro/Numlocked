@@ -1,5 +1,6 @@
 
 import sys
+import time
 import os
 import json
 from .ui_form import Ui_widget  # Import the generated UI class
@@ -133,15 +134,18 @@ class Widget(QWidget):
             self.server.sendMessage("2A")
         else:
             self.server.sendMessage("2B")
+        #sleep for a bit to allow the keyboard to process the message
+        time.sleep(0.1)
         if self.ui.displayWPM.isChecked():
             self.server.sendMessage("1A")
         else:
             self.server.sendMessage("1B")
+        time.sleep(0.1)
         if self.ui.autoGameMode.isChecked():
             self.server.sendMessage("4A")
         else:
             self.server.sendMessage("4B")
-            
+        time.sleep(0.1)
         self.server.sendMessage("3:" + self.ui.timezoneBox.currentText())
 
 
@@ -230,14 +234,17 @@ class Widget(QWidget):
             self.server.sendMessage("2A")
         else:
             self.server.sendMessage("2B")
+        time.sleep(0.1)
         if self.ui.displayWPM.isChecked():
             self.server.sendMessage("1A")
         else:
             self.server.sendMessage("1B")
+        time.sleep(0.1)
         if self.ui.autoGameMode.isChecked():
             self.server.sendMessage("4A")
         else:
             self.server.sendMessage("4B")
+        time.sleep(0.1)
             
         self.server.sendMessage("3:" + self.ui.timezoneBox.currentText())
 
