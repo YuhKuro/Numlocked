@@ -4,6 +4,7 @@
 #include <winsock2.h>
 #include <windows.h>
 #include <time.h>
+#include <stdbool.h>
 
 #pragma comment(lib, "ws2_32.lib")
 
@@ -22,12 +23,14 @@ typedef struct{
     CRITICAL_SECTION lock;
 } messageQueue;
 
-void initQueue(messageQueue queue){
+void initQueue(messageQueue *queue){
     queue->front = 0;
     queue->rear = -1;
     queue->size = 0;
     InitializeCriticalSection(&queue->lock);
 }
+
+
 
 int isQueueFull(messageQueue *queue){
     return queue->size == QUEUE_SIZE;
@@ -127,7 +130,8 @@ void getCurrentTime(char *buffer, size_t bufferSize) {
 }
 
 
-DWORD WINAPI usbWorkerThread(LPVOID param, messageQueue *queue) {
+DWORD WINAPI usbWorkerThread(LPVOID param) {
+    messageQueue *queue = (messageQueue *)param;
     char messageBuffer[BUFFER_SIZE];
 
     while (1) {
@@ -140,35 +144,61 @@ DWORD WINAPI usbWorkerThread(LPVOID param, messageQueue *queue) {
     return 0;
 }
 
-int main() {
 
+int main() {
     messageQueue queue;
-    initQueue(queue);   
+    initQueue(&queue);
     setLowPriority();
 
-    SOCKET sock = connectToServer(SERVER_IP, SERVER_PORT);
-    if (sock == INVALID_SOCKET) {
-        cleanupQueue(&queue);
+    HANDLE hThread = CreateThread(NULL, 0, usbWorkerThread, &queue, 0, NULL);
+    if (hThread == NULL) {
+        printf("Failed to create USB worker thread. Error: %lu\n", GetLastError());
+        freeQueue(&queue);
         return 1;
     }
 
     time_t lastUpdate = 0;
     char timeMessage[BUFFER_SIZE];
-
+    SOCKET sock = INVALID_SOCKET;
     while (1) {
         time_t now = time(NULL);
 
-        // Check if an hour has passed or it's the first run
         if (difftime(now, lastUpdate) >= 3600 || lastUpdate == 0) {
-                    getCurrentTime(timeMessage, sizeof(timeMessage));
-                    enqueue(&queue, timeMessage); // Add time update to the queue
-                    lastUpdate = now;
+            getCurrentTime(timeMessage, sizeof(timeMessage));
+            enqueue(&queue, timeMessage);
+            lastUpdate = now;
         }
 
-        Sleep(5000); // Sleep for 5 seconds to reduce CPU usage
-    }
+        if (sock == INVALID_SOCKET) {
+            sock = connectToServer(SERVER_IP, SERVER_PORT);
+            if (sock == INVALID_SOCKET) {
+                printf("HUB GUI is inactive. Retrying in 5 seconds...\n");
+            } //else {
+                //sendMessage(sock, "Backend connected to frontend\n");
+           // }
+            Sleep(5000); // Sleep for 5 seconds to reduce CPU usage when not connected.
+        } else {
+            int iResult;
+            char recvbuf[BUFFER_SIZE];
+            int recvbuflen = BUFFER_SIZE;
 
+            iResult = recv(sock, recvbuf, recvbuflen - 1, 0);
+            if (iResult > 0) {
+                recvbuf[iResult] = '\0'; // Null-terminate the received message
+                printf("Message received: %s\n", recvbuf);
+                enqueue(&queue, recvbuf);
+            } else {
+                printf("recv failed: %d\n", WSAGetLastError());
+                closesocket(sock);
+                sock = INVALID_SOCKET;
+            }
+        }
+    }
+    printf("Exiting program...\n");
+    WaitForSingleObject(hThread, INFINITE);
+    CloseHandle(hThread);
     closesocket(sock);
+    freeQueue(&queue);
     WSACleanup();
     return 0;
 }

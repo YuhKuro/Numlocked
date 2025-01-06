@@ -5,7 +5,7 @@ import json
 from .ui_form import Ui_widget  # Import the generated UI class
 from PySide6.QtWidgets import QApplication, QWidget, QListWidgetItem
 from core.process_monitor import get_running_processes
-from core.usb_communication import sendUSBCommand
+#from core.usb_communication import sendUSBCommand
 from core.process_monitor import generate_background_process_list
 
 from sockets.socketControl import SocketServer
@@ -218,6 +218,7 @@ class Widget(QWidget):
         self.saveUserSettings()
         # Send the updated game mode apps list to the keyboard
         #sendUSBCommand(5, self.gameModeApps)
+        
     
     def cancelChanges(self):
         #Load the game mode apps list from a JSON file.
@@ -225,7 +226,20 @@ class Widget(QWidget):
         # Update the gameModeAppsList widget
         self.update_game_mode_apps_list()
         # Send the current settings to the keyboard, undoing any changes
-        sendUSBCommand("")
+        if self.ui.displayTime.isChecked():
+            self.server.sendMessage("2A")
+        else:
+            self.server.sendMessage("2B")
+        if self.ui.displayWPM.isChecked():
+            self.server.sendMessage("1A")
+        else:
+            self.server.sendMessage("1B")
+        if self.ui.autoGameMode.isChecked():
+            self.server.sendMessage("4A")
+        else:
+            self.server.sendMessage("4B")
+            
+        self.server.sendMessage("3:" + self.ui.timezoneBox.currentText())
 
     def toggleGameMode(self):
         """Toggle the game mode on/off."""
@@ -235,9 +249,11 @@ class Widget(QWidget):
         # Update button text based on the new state
         if self.gameModeOn:
             self.ui.manuallyToggleGameMode.setText("Deactivate Game Mode")
+            self.server.sendMessage("5A")
         else:
             self.ui.manuallyToggleGameMode.setText("Activate Game Mode")
+            self.server.sendMessage("5B")
 
         # Send the USB command to toggle game mode on the keyboard
-        sendUSBCommand("5", "")
+        
 

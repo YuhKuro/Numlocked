@@ -1,10 +1,10 @@
 {
     "OLEDsettings": {
         "displayTime": false,
-        "displayWPM": false,
-        "timezone": "Device Time (Default)"
+        "displayWPM": true,
+        "timezone": "JST (Tokyo)"
     },
     "UserSettings": {
-        "autoGameMode": false
+        "autoGameMode": true
     }
 }
