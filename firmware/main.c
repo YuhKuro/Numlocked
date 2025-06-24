@@ -415,8 +415,10 @@ uint8_t key_map_noright[TOTAL_BITS] = {
 
 
 void read_keys(uint8_t* keyState) {
-    static uint8_t last_state[TOTAL_BITS] = {0};
-    static uint32_t last_time[TOTAL_BITS] = {0};
+    static uint8_t raw_state[TOTAL_BITS] = {0};        // Last raw reading
+    static uint8_t debounced_state[TOTAL_BITS] = {0};  // Stable debounced state
+    static uint32_t last_change_time[TOTAL_BITS] = {0};
+
 
     gpio_put(MATRIX_SHLD, 0); // Set shift register shift/~load pin low to load in data.
     sleep_us(1);              // Short delay
@@ -430,10 +432,18 @@ void read_keys(uint8_t* keyState) {
         bool bit = gpio_get(shreg_SerialOut); // Read the bit
 
         uint32_t current_time = board_millis();
-        if (bit != last_state[i] && (current_time - last_time[i] >= DEBOUNCE_DELAY_MS)) {
-            last_state[i] = bit;
-            last_time[i] = current_time;
+        bool current_raw = gpio_get(shreg_SerialOut);
+        
+        if (current_raw != raw_state[i]) {
+            // Raw state changed - reset debounce timer
+            raw_state[i] = current_raw;
+            last_change_time[i] = current_time;
+        } else if ((current_time - last_change_time[i]) >= DEBOUNCE_DELAY_MS) {
+            // Raw state has been stable for debounce period
+            debounced_state[i] = raw_state[i];
         }
+        
+        keyState[i] = debounced_state[i] ? 0 : 1;
 
         keyState[i] = last_state[i] ? 0 : 1; // Store the bit (invert logic: 0 means pressed)
         gpio_put(shreg_CLK, 0);  // Reset clock to low
