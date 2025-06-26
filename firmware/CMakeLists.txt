@@ -21,6 +21,16 @@ target_include_directories(numlocked PUBLIC
 	${CMAKE_CURRENT_LIST_DIR}
 )
 
+target_compile_options(numlocked PRIVATE
+	-Wall
+	-Wextra
+	#	-Wpedantic
+	-Wshadow
+	-Wunused
+	-Wuninitialized
+)
+
+
 # Link libraries
 target_link_libraries(numlocked
 	pico_stdlib

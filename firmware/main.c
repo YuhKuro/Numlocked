@@ -80,7 +80,7 @@
 
 #define ACTIVE_SPEED 40  // above this wpm value typing animation to trigger
 
-#define TIME_BUFFER_SIZE 7
+#define TIME_BUFFER_SIZE 8
 
 
 
@@ -107,19 +107,37 @@ globalVariables global = {
 };
 */
 
+static uint8_t current_hour = 12;
+static uint8_t current_minute = 0; 
+static bool current_isAM = true;
+static absolute_time_t last_minute_update;
+
+
+
 void hid_task(void);
 void gpio_initialize();
 void animation();
 static void calculate_wpm(uint32_t current_time);
 
-void process_usb_data(uint8_t* data, uint16_t length) {
-    if (length > 0) {
-        if (data[0] == 0x01) {
-            global.gameMode == true;
-        } else if (data[0] == 0x00) {
-            global.gameMode == false;
+
+void update_time() {
+    absolute_time_t now = get_absolute_time();
+
+    if (absolute_time_diff_us(last_minute_update, now) >= 60000000){
+        current_minute++;
+        if (current_minute >= 60){
+            current_minute = 0;
+            current_hour++;
+            if (current_hour == 12){
+                current_isAM = !current_isAM;
+            }
+            if (current_hour > 12){
+                current_hour = 1;
+            }
         }
+        last_minute_update = now; 
     }
+
 }
 
 
@@ -137,9 +155,9 @@ void cdc_animation() {
     disp.external_vcc = false;
     ssd1306_init(&disp, 128, 32, 0x3C, i2c1);
     ssd1306_clear(&disp);
-    char time[TIME_BUFFER_SIZE];
+    char time_str[TIME_BUFFER_SIZE];
     char time_wpm_str[15] = {0};
-    uint16_t delay_time;
+    uint16_t delay_time = 200;
     int wpm = 0;
     uint32_t last_wpm_time = board_millis();  // Track the last time WPM was non-zero
     const uint32_t timeout_ms = 30000;  // 30 seconds of inactivity before turning off display
@@ -172,11 +190,13 @@ void cdc_animation() {
 				displayTime = (action == 'A');
 				break;
 			case 3:
-				for (int i = 0; i < TIME_BUFFER_SIZE; i++){
-					time[i] = (char) multicore_fifo_pop_blocking();
-				}
+                for (int i = 0; i < TIME_BUFFER_SIZE; i++){
+                    time_str[i] = multicore_fifo_pop_blocking();
+                }
+                current_hour = (time_str[0] - '0') * 10 + (time_str[1] - '0');
+                current_minute = (time_str[3] - '0' * 10) + (time_str[4] - '0');
+                current_isAM = (time_str[5] == 'A');
 				break;
-				
 			case 4:
 				global.gameMode = (action == 'A');
 				break;
@@ -218,21 +238,27 @@ void cdc_animation() {
                 delay_time = 50;  // Fastest animation speed while looking good.
             }
 
-            // Update the WPM string
-            if (global.gameMode) {
-                snprintf(time_wpm_str, sizeof(time_wpm_str), "GAMEMODE: ON");
-            } else {
-                snprintf(time_wpm_str, sizeof(time_wpm_str), "WPM:%03d", wpm);
-            }
-            // Display the current frame and WPM
-            ssd1306_show_image_with_text(&disp, wave_frames[global.currentFrame], frameSize, time_wpm_str, 1, 0, 0);
+            // Update the WPM string with options:
+            if (displayTime) {
+                sprintf(time_wpm_str, "%d:%02d %s ", current_hour, current_minute, current_isAM ? "AM" : "PM") ;
+	        }
+            if (displayWPM) {
+                snprintf(time_wpm_str, sizeof(time_wpm_str), "WPM:%03d ", wpm);
+            } 
 
-            // Update the frame index
-            global.currentFrame = (global.currentFrame + 1) % 10;  // Loop through 10 frames
+            if (global.gameMode) {
+                snprintf(time_wpm_str, sizeof(time_wpm_str), "GAMEMODE: ON ");
+            }
+                // Display the current frame and WPM
+                ssd1306_show_image_with_text(&disp, wave_frames[global.currentFrame], frameSize, time_wpm_str, 1, 0, 0);
+
+                // Update the frame index
+                global.currentFrame = (global.currentFrame + 1) % 10;  // Loop through 10 frames
         }
 
         // Delay before showing the next frame
         sleep_ms(delay_time);
+        update_time();
     }
 }
 
@@ -420,7 +446,7 @@ void tud_cdc_rx_cb(uint8_t itf)
    uint8_t temp_buffer[CFG_TUD_CDC_RX_BUFSIZE];
     // read the available data 
    uint32_t count = tud_cdc_n_read(itf, temp_buffer, sizeof(temp_buffer));
-   for (int i = 0; i < count; i++){
+   for (uint32_t i = 0; i < count; i++){
   	multicore_fifo_push_blocking(temp_buffer[i]);
    }
    //echo back ack message
@@ -501,11 +527,10 @@ void read_keys(uint8_t* keyState) {
     for (int i = 0; i < TOTAL_BITS; i++) {
         gpio_put(shreg_CLK, 1);  // Pulse the clock to shift the data
         sleep_us(1);              // Short delay
-        bool bit = gpio_get(shreg_SerialOut); // Read the bit
 
-        uint32_t current_time = board_millis();
-        bool current_raw = gpio_get(shreg_SerialOut);
-        
+        bool current_raw = gpio_get(shreg_SerialOut); // Read the bit
+        uint32_t current_time = board_millis();       
+
         if (current_raw != raw_state[i]) {
             // Raw state changed - reset debounce timer
             raw_state[i] = current_raw;
@@ -554,7 +579,7 @@ static void keyboardLoop() {
 
     for (int i = 0; i < TOTAL_KEYS; i++) {
         if (keyState[i]) {
-            uint8_t key = key_map_standard[i];
+            uint8_t key = key_map[i];
           
             if (global.gameMode && (key == HID_KEY_GUI_LEFT)) { //if game mode is active, skip left windows key.
                 continue;                                       
