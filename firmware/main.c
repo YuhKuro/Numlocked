@@ -80,8 +80,9 @@
 
 #define ACTIVE_SPEED 40  // above this wpm value typing animation to trigger
 
+#define TIME_BUFFER_SIZE 7
 
-//static uint32_t last_encoder_state = 0;
+volatile uint8_t lastEncoderState = 0;
 
 typedef struct {
     uint32_t last_interrupt_time;
@@ -119,7 +120,6 @@ void process_usb_data(uint8_t* data, uint16_t length) {
     }
 }
 
-void custom_cdc_task(void);
 
 /* OLED Animation function. */
 /*Runs on the second RP2040 core (Core 1), separate from the keyboard main code.
@@ -129,23 +129,56 @@ void custom_cdc_task(void);
 * Each frame is located in the wave array in images.h.
 */
 
-void animation() {
+
+void cdc_animation() {
     ssd1306_t disp;
     disp.external_vcc = false;
     ssd1306_init(&disp, 128, 32, 0x3C, i2c1);
     ssd1306_clear(&disp);
-
+    char time[TIME_BUFFER_SIZE];
     char time_wpm_str[15] = {0};
     uint16_t delay_time;
     int wpm = 0;
     uint32_t last_wpm_time = board_millis();  // Track the last time WPM was non-zero
     const uint32_t timeout_ms = 30000;  // 30 seconds of inactivity before turning off display
+    
     bool display_on = true;
-    //TODO: Add startup animation.
 
+    bool displayWPM = false;
+    bool displayTime = false;
+    //TODO: Add startup animation.
     while (1) {
-        //custom tasks
-        custom_cdc_task();
+	if (multicore_fifo_rvalid()) {
+		uint8_t header = multicore_fifo_pop_blocking();
+		//New data from windows
+		
+		//"A" means turn on. "B" means turn off.
+		//1 means WPM. So message "1A" means turn ON WPM display. Message "1B" means turn off WPM display.
+		//2: display time
+		//3: Time change (timezone update). Sends the current time to the keyboard in XX:XX Format.
+		//4: game mode (4A -> disable win key)
+		uint8_t action = multicore_fifo_pop_blocking();
+		switch(header){
+			case 1:
+				displayWPM = (action == 'A');
+				break;
+			case 2:
+				displayTime = (action == 'A');
+				break;
+			case 3:
+				for (int i = 0; i < TIME_BUFFER_SIZE; i++){
+					time[i] = (char) multicore_fifo_pop_blocking();
+				}
+				break;
+				
+			case 4:
+				global.gameMode = (action == 'A');
+				break;
+			default:
+				break;
+		}	
+		 
+	}
         wpm = global.wpm;
 
         if (wpm == 0) {
@@ -235,45 +268,48 @@ static void calculate_wpm(uint32_t current_time) {
 //static uint8_t last_state = 0b11;  // Initialize with the idle state (11)
     
 /* Called when the encoder is rotated in clockwise or counterclockwise direction. */
-/*
-void encoder_callback(uint gpio, uint32_t events) {
 
+void encoderCallBack(uint gpio, uint32_t events) {
 
-    uint32_t current_time = board_millis();
+    static uint32_t lastValidTime = 0;
+    uint32_t currentTime = board_millis();
 
-    if ((current_time - global.last_interrupt_time) < 5) {
+    if ((currentTime - lastValidTime) < 20) {
         return;
     }
-    global.last_interrupt_time = current_time;
+    lastValidTime = currentTime;
 
 
     uint8_t enc_a_state = gpio_get(ENC_A);
     uint8_t enc_b_state = gpio_get(ENC_B);
 
-    uint8_t current_state = (enc_a_state << 1) | enc_b_state;
+    uint8_t currentEncoderState = (enc_a_state << 1) | enc_b_state;
 
+    uint16_t volumeUp = HID_USAGE_CONSUMER_VOLUME_INCREMENT;
+    uint16_t volumeDown = HID_USAGE_CONSUMER_VOLUME_INCREMENT;
+    uint16_t release = 0;
     // Determine direction by comparing the current state to the previous state
-    if ((last_state == 0b11 && current_state == 0b01) ||
-        (last_state == 0b01 && current_state == 0b00) ||
-        (last_state == 0b00 && current_state == 0b10) ||
-        (last_state == 0b10 && current_state == 0b11)) {
-
-        uint16_t volume_up = HID_USAGE_CONSUMER_VOLUME_INCREMENT;
-        tud_hid_report(REPORT_ID_CONSUMER_CONTROL, &volume_up, 1);
-    } else if ((last_state == 0b11 && current_state == 0b10) ||
-               (last_state == 0b10 && current_state == 0b00) ||
-               (last_state == 0b00 && current_state == 0b01) ||
-               (last_state == 0b01 && current_state == 0b11)) {
+    if ((lastEncoderState == 0b11 && currentEncoderState == 0b01) ||
+        (lastEncoderState == 0b01 && currentEncoderState == 0b00) ||
+        (lastEncoderState == 0b00 && currentEncoderState == 0b10) ||
+        (lastEncoderState == 0b10 && currentEncoderState == 0b11)) {
+        tud_hid_report(REPORT_ID_CONSUMER_CONTROL, &volumeUp, 2);
+	sleep_ms(10);
+	tud_hid_report(REPORT_ID_CONSUMER_CONTROL, &release, 2);
+    } else if ((lastEncoderState == 0b11 && currentEncoderState == 0b10) ||
+               (lastEncoderState == 0b10 && currentEncoderState == 0b00) ||
+               (lastEncoderState == 0b00 && currentEncoderState == 0b01) ||
+               (lastEncoderState == 0b01 && currentEncoderState == 0b11)) {
  
-        uint16_t volume_down = HID_USAGE_CONSUMER_VOLUME_DECREMENT;
-        tud_hid_report(REPORT_ID_CONSUMER_CONTROL, &volume_down, 1);
+        tud_hid_report(REPORT_ID_CONSUMER_CONTROL, &volumeDown, 2);
+	tud_hid_report(REPORT_ID_CONSUMER_CONTROL, &release, 2);	
     }
     
 
     // Update the last state with the current state
-    last_state = current_state;
+    lastEncoderState = currentEncoderState;
 }
-*/
+
 void gpio_initialize() {
 
     gpio_init(USB_BOOT);
@@ -326,15 +362,17 @@ void gpio_initialize() {
     gpio_set_dir(ENC_B, GPIO_IN);
     gpio_disable_pulls(ENC_B);
 
+    lastEncoderState = (gpio_get(ENC_A)<<1) | gpio_get(ENC_B);
     // Register the callback for ENC_A on falling edge
-    //gpio_set_irq_enabled_with_callback(ENC_A, GPIO_IRQ_EDGE_FALL, true, &encoder_callback);
-    //gpio_set_irq_enabled_with_callback(ENC_B, GPIO_IRQ_EDGE_FALL, true, &encoder_callback);
-
+    gpio_set_irq_enabled_with_callback(ENC_A, GPIO_IRQ_EDGE_FALL, true, &encoderCallBack);
+   
     i2c_init(i2c1, 400000);
     gpio_set_function(OLED_SDA, GPIO_FUNC_I2C);
     gpio_set_function(OLED_SCL, GPIO_FUNC_I2C);
     gpio_pull_up(OLED_SDA);
     gpio_pull_up(OLED_SCL);
+
+
 }
 /*------------- MAIN -------------*/
 int main(void)
@@ -351,7 +389,7 @@ int main(void)
     board_init_after_tusb();
   }
 
-  multicore_launch_core1(animation);
+  multicore_launch_core1(cdc_animation);
 
   stdio_init_all(); //let pico sdk use the first cdc interface for stdio
 
@@ -370,45 +408,21 @@ int main(void)
 //USB CDC
 //-----------------------------------------------------------------
 
-void custom_cdc_task(void)
-{
-    // polling CDC interfaces if wanted
-
-    // Check if CDC interface 0 (for pico sdk stdio) is connected and ready
-
-    if (tud_cdc_n_connected(0)) {
-        // print on CDC 0 some debug message
-        printf("Connected to CDC 0\n");
-        sleep_ms(5000); // wait for 5 seconds
-    }
-}
 
 
 // callback when data is received on a CDC interface
 void tud_cdc_rx_cb(uint8_t itf)
 {
-    // allocate buffer for the data in the stack
-    uint8_t buf[CFG_TUD_CDC_RX_BUFSIZE];
-
-    printf("RX CDC %d\n", itf);
-
+   uint8_t temp_buffer[CFG_TUD_CDC_RX_BUFSIZE];
     // read the available data 
-    // | IMPORTANT: also do this for CDC0 because otherwise
-    // | you won't be able to print anymore to CDC0
-    // | next time this function is called
-    uint32_t count = tud_cdc_n_read(itf, buf, sizeof(buf));
+   uint32_t count = tud_cdc_n_read(itf, temp_buffer, sizeof(temp_buffer));
+   for (int i = 0; i < count; i++){
+  	multicore_fifo_push_blocking(temp_buffer[i]);
+   }
+   //echo back ack message
+   tud_cdc_n_write(itf, (uint8_t const *) "OK\r\n", 4);
+   tud_cdc_n_write_flush(itf);
 
-    // check if the data was received on the second cdc interface
-    if (itf == 1) {
-        // process the received data
-        buf[count] = 0; // null-terminate the string
-        // now echo data back to the console on CDC 0
-        printf("Received on CDC 1: %s\n", buf);
-
-        // and echo back OK on CDC 1
-        tud_cdc_n_write(itf, (uint8_t const *) "OK\r\n", 4);
-        tud_cdc_n_write_flush(itf);
-    }
 }
 
 
