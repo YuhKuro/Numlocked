@@ -82,6 +82,8 @@
 
 #define TIME_BUFFER_SIZE 7
 
+
+
 volatile uint8_t lastEncoderState = 0;
 
 typedef struct {
@@ -146,7 +148,11 @@ void cdc_animation() {
 
     bool displayWPM = false;
     bool displayTime = false;
-    //TODO: Add startup animation.
+
+    //startup animation.
+    for (int i = 0; i < BOOTANIMFRAMES; i++) {
+    	ssd1306_bmp_show_image(&disp, startup_frames[i], frameSize);
+    }
     while (1) {
 	if (multicore_fifo_rvalid()) {
 		uint8_t header = multicore_fifo_pop_blocking();
@@ -390,8 +396,6 @@ int main(void)
   }
 
   multicore_launch_core1(cdc_animation);
-
-  stdio_init_all(); //let pico sdk use the first cdc interface for stdio
 
   while (1)
   {
