@@ -29,7 +29,7 @@
 #include <string.h>
 
 #include "bsp/board_api.h"
-#include "tusb.h"
+#include <tusb.h>
 #include "usb_descriptors.h"
 
 #include "ssd1306.h"
@@ -119,6 +119,7 @@ void process_usb_data(uint8_t* data, uint16_t length) {
     }
 }
 
+void custom_cdc_task(void);
 
 /* OLED Animation function. */
 /*Runs on the second RP2040 core (Core 1), separate from the keyboard main code.
@@ -143,6 +144,8 @@ void animation() {
     //TODO: Add startup animation.
 
     while (1) {
+        //custom tasks
+        custom_cdc_task();
         wpm = global.wpm;
 
         if (wpm == 0) {
@@ -337,6 +340,7 @@ void gpio_initialize() {
 int main(void)
 {
   board_init();
+  tusb_init();
 
   // init device stack on configured roothub port
   tud_init(BOARD_TUD_RHPORT);
@@ -349,10 +353,13 @@ int main(void)
 
   multicore_launch_core1(animation);
 
+  stdio_init_all(); //let pico sdk use the first cdc interface for stdio
+
   while (1)
   {
     tud_task(); // tinyusb device task
     hid_task();
+    
   }
 
 
