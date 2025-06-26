@@ -37,6 +37,7 @@
 #include "hardware/i2c.h"
 #include "waveanim.h"
 #include "bootanim.h"
+#include "pico/time.h"
 
 #include <math.h>
 
@@ -590,8 +591,9 @@ static void keyboardLoop() {
                 key_report[0] |= key_modifier_bit(key);         //if key is a modifier key, add to report.
             } else {                                            // Handle regular keys
                 if (!previousKeyState[i]) {                   // Key has just been pressed
-                    if (key_index < 8) {
-                        key_report[key_index++] = key;
+                    if (key_index < 6) {
+                        key_report[key_index + 2] = key;
+                        key_index++;
                         if (key != HID_KEY_SPACE) {
                             global.characters_typed++;  // only count the initial press
                         }
@@ -599,7 +601,8 @@ static void keyboardLoop() {
                 } else {
                     // Key is held down, continue sending the same report
                     if (key_index < 8) {
-                        key_report[key_index++] = key;
+                        key_report[key_index + 2] = key;
+                        key_index++;
                     }
                 }
             }
