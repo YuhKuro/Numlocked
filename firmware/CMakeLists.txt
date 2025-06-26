@@ -25,6 +25,7 @@ target_include_directories(numlocked PUBLIC
 target_link_libraries(numlocked
 	pico_stdlib
 	pico_unique_id
+	pico_multicore
 	tinyusb_device
 	tinyusb_board
 	hardware_i2c
