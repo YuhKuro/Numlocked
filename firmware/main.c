@@ -159,7 +159,7 @@ void cdc_animation() {
     char time_str[TIME_BUFFER_SIZE];
     char time_wpm_str[15] = {0};
     uint16_t delay_time = 200;
-    int wpm = 0;
+    
     uint32_t last_wpm_time = board_millis();  // Track the last time WPM was non-zero
     const uint32_t timeout_ms = 30000;  // 30 seconds of inactivity before turning off display
     
@@ -206,7 +206,7 @@ void cdc_animation() {
 		}	
 		 
 	}
-        wpm = global.wpm;
+        int wpm = global.wpm;
 
         if (wpm == 0) {
             // If WPM is zero, check how long it's been zero
@@ -229,11 +229,11 @@ void cdc_animation() {
         if (display_on) {
             if (wpm <= 10) {
                 delay_time = 200;  // Slow FPS for "idle".
-            } else if (wpm <= 40 && wpm > 10) {
+            } else if (wpm <= 40) {
                 delay_time = 150;  // Steadily increase for each WPM range.
-            } else if (wpm <= 80 && wpm > 40) {
+            } else if (wpm <= 80) {
                 delay_time = 100;  
-            } else if (wpm <= 100 && wpm > 80) {
+            } else if (wpm <= 100) {
                 delay_time = 75;  
             } else {
                 delay_time = 50;  // Fastest animation speed while looking good.
@@ -576,7 +576,7 @@ static void keyboardLoop() {
     bool key_pressed = false;  // Flag to check if any key is pressed
 
     //check the state of the keyboard; use secondary table if rightside is disconnected, numpad is connected.
-    uint8_t* key_map = (gpio_get(rightCheck) == 1 && gpio_get(numpadCheck) == 0) ? key_map_noright : key_map_standard;
+    const uint8_t* key_map = (gpio_get(rightCheck) == 1 && gpio_get(numpadCheck) == 0) ? key_map_noright : key_map_standard;    //keep keymap constant for any particular run.
 
     for (int i = 0; i < TOTAL_KEYS; i++) {
         if (keyState[i]) {
@@ -591,9 +591,8 @@ static void keyboardLoop() {
                 key_report[0] |= key_modifier_bit(key);         //if key is a modifier key, add to report.
             } else {                                            // Handle regular keys
                 if (!previousKeyState[i]) {                   // Key has just been pressed
-                    if (key_index < 6) {
-                        key_report[key_index + 2] = key;
-                        key_index++;
+                    if (key_index < 8) {
+                        key_report[key_index++] = key;
                         if (key != HID_KEY_SPACE) {
                             global.characters_typed++;  // only count the initial press
                         }
@@ -601,8 +600,7 @@ static void keyboardLoop() {
                 } else {
                     // Key is held down, continue sending the same report
                     if (key_index < 8) {
-                        key_report[key_index + 2] = key;
-                        key_index++;
+                        key_report[key_index++] = key;
                     }
                 }
             }
