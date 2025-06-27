@@ -1,5 +1,5 @@
 # Numlocked
-## A Modular, Customizable Split Keyboard
+## A Custom Split Keyboard
 ![Ortho](pictures/Ortho.png)
 ## Directory:
 - [Keyboard Hardware](hardware/readme.md)
