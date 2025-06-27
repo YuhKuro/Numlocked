@@ -79,9 +79,9 @@ class Widget(QWidget):
         # Automatically enable game mode when a game is detected
         # Send signal to background C program.
         if self.ui.autoGameMode.isChecked():
-            self.server.sendMessage("4A") # Enable auto game mode
+            self.server.sendMessage("5A") # Enable auto game mode
         else:
-            self.server.sendMessage("4B")
+            self.server.sendMessage("5B")
 
 
     def loadUserSettings(self):
@@ -142,9 +142,9 @@ class Widget(QWidget):
             self.server.sendMessage("1B")
         time.sleep(0.1)
         if self.ui.autoGameMode.isChecked():
-            self.server.sendMessage("4A")
+            self.server.sendMessage("5A")
         else:
-            self.server.sendMessage("4B")
+            self.server.sendMessage("5B")
         time.sleep(0.1)
         self.server.sendMessage("3:" + self.ui.timezoneBox.currentText())
 
@@ -241,9 +241,9 @@ class Widget(QWidget):
             self.server.sendMessage("1B")
         time.sleep(0.1)
         if self.ui.autoGameMode.isChecked():
-            self.server.sendMessage("4A")
+            self.server.sendMessage("5A")
         else:
-            self.server.sendMessage("4B")
+            self.server.sendMessage("5B")
         time.sleep(0.1)
             
         self.server.sendMessage("3:" + self.ui.timezoneBox.currentText())
@@ -256,10 +256,10 @@ class Widget(QWidget):
         # Update button text based on the new state
         if self.gameModeOn:
             self.ui.manuallyToggleGameMode.setText("Deactivate Game Mode")
-            self.server.sendMessage("5A")
+            self.server.sendMessage("4A")
         else:
             self.ui.manuallyToggleGameMode.setText("Activate Game Mode")
-            self.server.sendMessage("5B")
+            self.server.sendMessage("4B")
 
         # Send the USB command to toggle game mode on the keyboard
         

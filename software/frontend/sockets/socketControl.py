@@ -52,9 +52,7 @@ class SocketServer:
 
                 print(f"Received from client: {message}")
                 
-                # Respond to the client
-                response = f"Server received: {message}"
-                self.sendMessage(response)
+                #handle message. If client is responding, update GUI. EX, game mode.
         except Exception as e:
             print(f"Error handling client: {e}")
         finally:
