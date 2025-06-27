@@ -621,8 +621,7 @@ static void keyboardLoop() {
     // Send key report
     tud_hid_keyboard_report(REPORT_ID_KEYBOARD, key_report[0], &key_report[2]);
 
-    // Optional: Handle additional functions
-
+    //Calculate WPM
     calculate_wpm(current_time);
 }
 
