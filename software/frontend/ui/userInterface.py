@@ -4,6 +4,7 @@ import time
 import os
 import json
 from .ui_form import Ui_widget  # Import the generated UI class
+from PySide6.QtCore import QThread
 from PySide6.QtWidgets import QApplication, QWidget, QListWidgetItem
 from core.process_monitor import get_running_processes
 #from core.usb_communication import sendUSBCommand
@@ -30,14 +31,15 @@ class Widget(QWidget):
         self.ui = Ui_widget()
         self.ui.setupUi(self)
         self.server = server
+        global gameModeOn 
+        gameModeOn = False
+        #self.gameModeOn = False
 
-        self.gameModeOn = False
 
-        # Create a background process list; This will not be used unless needed.
-        # generate_background_process_list()
-        
         # Load game mode apps from JSON
         self.loadUserSettings()
+
+        
 
         # Populate the gameModeAppsList with initial values
         self.updateRunningApps()
@@ -148,7 +150,14 @@ class Widget(QWidget):
         time.sleep(0.1)
         self.server.sendMessage("3:" + self.ui.timezoneBox.currentText())
 
+    def updateGameModeFromServer(self, is_on: bool):
+        global gameModeOn
+        gameModeOn = is_on
 
+        if is_on:
+            self.ui.manuallyToggleGameMode.setText("Deactivate Game Mode")
+        else:
+            self.ui.manuallyToggleGameMode.setText("Activate Game Mode")
 
     def updateRunningApps(self):
         processes = get_running_processes()
@@ -251,16 +260,23 @@ class Widget(QWidget):
     def toggleGameMode(self):
         """Toggle the game mode on/off."""
         # Toggle the game mode state
-        self.gameModeOn = not self.gameModeOn
+        #self.gameModeOn = not self.gameModeOn
+        global gameModeOn
+        gameModeOn = not gameModeOn
 
         # Update button text based on the new state
-        if self.gameModeOn:
+        if gameModeOn:
             self.ui.manuallyToggleGameMode.setText("Deactivate Game Mode")
+            
             self.server.sendMessage("4A")
         else:
             self.ui.manuallyToggleGameMode.setText("Activate Game Mode")
             self.server.sendMessage("4B")
 
         # Send the USB command to toggle game mode on the keyboard
+
+        if self.ui.autoGameMode.isChecked():
+            self.server.sendMessage("5B") # Enable auto game mode
+            self.ui.autoGameMode.setChecked(False)
         
 

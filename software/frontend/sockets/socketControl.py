@@ -1,16 +1,20 @@
 import socket
+from PySide6.QtCore import QObject, Signal
 
-class SocketServer:
+
+class SocketServer(QObject):
+    gameModeChanged = Signal(bool)
     def __init__(self, host='127.0.0.1', port=8080):
+        super().__init__()
         self.host = host
         self.port = port
         self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.client_socket = None  # Store the connected client socket
-
+    
     def start(self):
         try:
             self.server_socket.bind((self.host, self.port))
-            self.server_socket.listen(5)  # Listen for up to 5 connections
+            self.server_socket.listen(1)
             print(f"Server started on {self.host}:{self.port}")
             
             while True:
@@ -45,12 +49,21 @@ class SocketServer:
         try:
             while True:
                 # Receive a message from the client
-                message = self.client_socket.recv(1024).decode()
+                message = self.client_socket.recv(1024).decode().strip()
                 if not message:  # If the client disconnects
                     print("Client disconnected.")
                     break
 
                 print(f"Received from client: {message}")
+                global gameModeOn
+                if message == "4A":
+                    print("Enable Game Mode.")
+                    gameModeOn = True
+                    self.gameModeChanged.emit(True)  
+                elif message == "4B":
+                    print("Disable Game Mode.")
+                    gameModeOn = False
+                    self.gameModeChanged.emit(False)  
                 
                 #handle message. If client is responding, update GUI. EX, game mode.
         except Exception as e:
