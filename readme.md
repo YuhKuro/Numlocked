@@ -15,12 +15,13 @@
 	- **Magnetic connectors for quick configuration changes**
 			![magnets](pictures/splitViewGreen.bmp)
 	- **Hot swappable & Gasket mount design**
+			![Hotswap](pictures/hotswapGreen.bmp)
 	- **Dual-Core Custom Firmware**
 	- **Integrated Volume Knob**
 	- **128x32 OLED**
 	- **Caps-lock, Num-lock and Scroll-Lock LEDs**
 	- **Built-in USB Hub**: 3 USB-A ports (1 vertical, 2 horizontal).
-			  ![Rear](pictures/rearViewGreen.bmp)
+		  ![Rear](pictures/rearViewGreen.bmp)
 - **Hardware**:
 	- **Shift-Registered Design**: Faster scanning than traditional matrix-based keyboards.
 	- **RP2040 chip**: Power efficient, endlessly customizable, easy to program.
