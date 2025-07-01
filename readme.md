@@ -8,20 +8,20 @@
 - [Keyboard Case and Plate](case/readme.md)
 - [Revision 1](Revision1/readme.md)
 ## Features
-- **Keyboard Features:**
-	- **Modular split design**: Split 75% layout, flexible configuration with or without numpad.
-			![Front](pictures/mainViewGreenTogether.bmp)
-			![Main](pictures/mainViewGreen.bmp)
-	- **Magnetic connectors for quick configuration changes**
-			![magnets](pictures/splitViewGreen.bmp)
-	- **Hot swappable & Gasket mount design**
-			![Hotswap](pictures/hotswapGreen.bmp)
-	- **Dual-Core Custom Firmware**
-	- **Integrated Volume Knob**
-	- **128x32 OLED**
-	- **Caps-lock, Num-lock and Scroll-Lock LEDs**
-	- **Built-in USB Hub**: 3 USB-A ports (1 vertical, 2 horizontal).
-		  ![Rear](pictures/rearViewGreen.bmp)
+### **Keyboard Features:**
+#### - **Modular split design**: Split 75% layout, flexible configuration with or without numpad.
+![Front](pictures/mainViewGreenTogether.bmp)
+![Main](pictures/mainViewGreen.bmp)
+#### - **Magnetic connectors for quick configuration changes**
+![magnets](pictures/splitViewGreen.bmp)
+#### - **Hot swappable & Gasket mount design**
+![Hotswap](pictures/hotswapGreen.bmp)
+#### - **Dual-Core Custom Firmware**
+#### - **Integrated Volume Knob**
+#### - **128x32 OLED**
+#### - **Caps-lock, Num-lock and Scroll-Lock LEDs**
+#### - **Built-in USB Hub**: 3 USB-A ports (1 vertical, 2 horizontal).
+![Rear](pictures/rearViewGreen.bmp)
 - **Hardware**:
 	- **Shift-Registered Design**: Faster scanning than traditional matrix-based keyboards.
 	- **RP2040 chip**: Power efficient, endlessly customizable, easy to program.
