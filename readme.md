@@ -1,6 +1,11 @@
 # Numlocked
+<<<<<<< Updated upstream
 ## A Custom Split Keyboard
 ![Ortho](pictures/Ortho.png)
+=======
+## A Modular, Customizable Split Keyboard
+
+>>>>>>> Stashed changes
 ## Directory:
 - [Keyboard Hardware](hardware/readme.md)
 - [Keyboard Firmware](firmware/readme.md)
@@ -10,7 +15,8 @@
 ## Features
 - **Keyboard Features:**
 	- **Modular split design**: Split 75% layout, flexible configuration with or without numpad.
-	![Front](pictures/Front.png)
+	![Front](pictures/mainViewGreenTogether.bmp)
+	![Main](pictures/mainViewGreen.bmp)
 	- **Magnetic connectors for quick configuration changes**
 	- **Hot swappable & Gasket mount design**
 	- **Dual-Core Custom Firmware**
@@ -18,7 +24,7 @@
 	- **128x32 OLED**
 	- **Caps-lock, Num-lock and Scroll-Lock LEDs**
 	- **Built-in USB Hub**: 3 USB-A ports (1 vertical, 2 horizontal).
-	  ![Rear](pictures/Rear.png)
+	  ![Rear](pictures/rearViewGreen.bmp)
 - **Hardware**:
 	- **Shift-Registered Design**: Faster scanning than traditional matrix-based keyboards.
 	- **RP2040 chip**: Power efficient, endlessly customizable, easy to program.
@@ -39,3 +45,7 @@ Please note that QMK/VIA are currently incompatible with shift-register based ke
 	- For SMD Reflow Soldering, the largest surface area my hotplate could manage was 400x400mm. I also wanted to experiment with ergonomics.
 - What was the total cost?
 	- Will update once everything is complete.
+
+## Thanks To:
+- [SSD1306 library] (https://github.com/daschr/pico-ssd1306) by dachr. I added a function to print both images and text, but it was with his foundations that I was able to quickly get the OLED working.
+- [cJSON library] (https://github.com/DaveGamble/cJSON) by DaveGamble. I swear I'm always using this. Its never failed me once. 

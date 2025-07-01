@@ -1,1 +1,1 @@
-Designed out of red oak
+Designed in inventor. Built using red oak.

@@ -2,6 +2,8 @@
     "gameModeApps": [
         "cs2.exe",
         "FSD-Win64-Shipping.exe",
-        "PlateUp.exe"
+        "PlateUp.exe",
+        "PEAK.exe",
+        "LMSR_Windows64_Steam.exe"
     ]
 }
