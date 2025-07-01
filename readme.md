@@ -1,6 +1,6 @@
 # Numlocked
 
-## A Modular, Customizable Split Keyboard
+## A Fully Custom Modular Split Keyboard
 ![Ortho](pictures/orthoGreen.bmp)
 ## Directory:
 - [Keyboard Hardware](hardware/readme.md)
@@ -9,17 +9,19 @@
 - [Revision 1](Revision1/readme.md)
 ## Features
 ### **Keyboard Features:**
-#### - **Modular split design**: Split 75% layout, flexible configuration with or without numpad.
+#### - **Modular split design**: Split 75% layout, flexible configuration with or without numpad
 ![Front](pictures/mainViewGreenTogether.bmp)
 ![Main](pictures/mainViewGreen.bmp)
 #### - **Magnetic connectors for quick configuration changes**
 ![magnets](pictures/splitViewGreen.bmp)
 #### - **Hot swappable & Gasket mount design**
 ![Hotswap](pictures/hotswapGreen.bmp)
-#### - **Built-in USB Hub**: 3 USB-A ports (1 vertical, 2 horizontal).
+#### - **Built-in USB Hub**: 3 USB-A ports (1 vertical, 2 horizontal)
 ![Rear](pictures/rearViewGreen.bmp)
-#### - **Integrated Volume Knobs**
+#### - **Integrated Volume Knobs**: Two customizable rotary encoders
+![Encoder](pictures/twoEncodersGreen.bmp)
 #### - **128x32 OLED**
+![OLED](pictures/OLEDViewGreen.bmp)
 #### - **Caps-lock, Num-lock and Scroll-Lock LEDs**
 #### - **Dual-Core Custom Firmware**
 
