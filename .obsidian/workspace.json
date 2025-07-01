@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "hardware/readme.md",
+                "file": "readme.md",
                 "mode": "source",
                 "source": false
               },
@@ -22,12 +22,12 @@
             }
           },
           {
-            "id": "86426541a6f125c9",
+            "id": "82dd16016aec61bc",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "hardware/readme.md",
+                "file": "case/readme.md",
                 "mode": "source",
                 "source": false
               },
@@ -35,7 +35,8 @@
               "title": "readme"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -54,7 +55,8 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "alphabetical",
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -176,29 +178,35 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "03bf324b2a5e44e5",
+  "active": "82dd16016aec61bc",
   "lastOpenFiles": [
     "readme.md",
+    "case/keycaps/Qwerty Row/OldVersions/Key_Y.0002.ipt",
+    "case/keycaps/Qwerty Row/OldVersions/Key_W.0002.ipt",
+    "case/keycaps/Qwerty Row/OldVersions/Key_U.0002.ipt",
+    "case/keycaps/Qwerty Row/OldVersions/Key_Tab.0001.ipt",
+    "case/keycaps/Qwerty Row/OldVersions/Key_T.0002.ipt",
+    "case/keycaps/Qwerty Row/OldVersions/Key_RBracket.0004.ipt",
+    "case/keycaps/Qwerty Row/OldVersions/Key_R.0002.ipt",
+    "case/keycaps/Qwerty Row/OldVersions/Key_QWERTY.0001.ipt",
+    "case/keycaps/Qwerty Row/OldVersions/Key_Q.0002.ipt",
+    "case/keycaps/Qwerty Row/OldVersions/Key_PgDn.0001.ipt",
+    "pictures/statusLEDView.png",
+    "pictures/KeyboardAssemblyProd.png",
+    "pictures/OLEDViewGreen.bmp",
+    "pictures/KeyboardAssemblyProd.bmp",
+    "pictures/twoEncodersGreen.bmp",
     "hardware/readme.md",
-    "pictures/Diagrams/ShiftRegFlowchart.drawio",
-    "pictures/Diagrams",
-    "pictures/drawio",
-    "pictures/New folder",
-    "pictures/Diagrams/LeftSideMuxFlowChart.png",
-    "pictures/Schematics/Muxes-and-Debouncing.png",
-    "Revision1/README.md",
+    "pictures/hotswapGreen.bmp",
+    "pictures/connectorsGreen.bmp",
+    "pictures/splitViewGreen.bmp",
+    "pictures/orthoGreen.bmp",
+    "pictures/orthoGreenUncrop.bmp",
+    "firmware/README.md",
     "case/readme.md",
-    "pictures/Schematics/RP2040-Flash-RTC.png",
-    "pictures/Schematics/USB-Hub-Overview.png",
-    "pictures/Rear.png",
-    "pictures/Front.png",
+    "Revision1/README.md",
     "firmware/readme.md",
-    "pictures/Ortho.png",
-    "pictures",
-    "firmware",
     "Revision1/firmware/README.md",
-    "case",
-    "hardware",
     "firmware.md",
     "README.md"
   ]

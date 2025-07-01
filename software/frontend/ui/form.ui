@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>widget</class>
+ <widget class="QWidget" name="widget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>563</width>
+    <height>608</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Numlocked Hub</string>
+  </property>
+  <property name="windowIcon">
+   <iconset theme="QIcon::ThemeIcon::InputKeyboard"/>
+  </property>
+  <widget class="QComboBox" name="timezoneBox">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>110</y>
+     <width>171</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Device Time (Default)</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>EST (New York)</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>CST (Chicago)</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>JST (Tokyo)</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QPushButton" name="applyChanges">
+   <property name="geometry">
+    <rect>
+     <x>319</x>
+     <y>500</y>
+     <width>101</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Save Changes</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="cancelChanges">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>500</y>
+     <width>101</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="detectApps">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>110</y>
+     <width>131</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Detect Applications</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="removeSelectedApp">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>370</y>
+     <width>151</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Remove from Game Mode</string>
+   </property>
+  </widget>
+  <widget class="QListWidget" name="runningAppsList">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>180</y>
+     <width>151</width>
+     <height>191</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="displayWPM">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>180</y>
+     <width>101</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Display WPM</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="displayTime">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>150</y>
+     <width>101</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Display Time</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="gameModeSelectedApp">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>370</y>
+     <width>151</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Move to Game Mode Apps</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="manuallyToggleGameMode">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>270</y>
+     <width>131</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Activate Game-Mode</string>
+   </property>
+  </widget>
+  <widget class="QListWidget" name="gameModeAppsList">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>180</y>
+     <width>151</width>
+     <height>191</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="gamemodelabel">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>160</y>
+     <width>151</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Game Mode Applications</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="currentapplication">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>160</y>
+     <width>151</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Running Applications</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="logoText">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>10</y>
+     <width>191</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>25</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Numlocked</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>70</y>
+     <width>161</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Keyboard Control</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>10</y>
+     <width>231</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>___________________________</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="autoGameMode">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>210</y>
+     <width>201</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Automatically Enable Game Mode</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Logo">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>20</y>
+     <width>81</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>Orig.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <zorder>label_3</zorder>
+  <zorder>timezoneBox</zorder>
+  <zorder>applyChanges</zorder>
+  <zorder>cancelChanges</zorder>
+  <zorder>detectApps</zorder>
+  <zorder>removeSelectedApp</zorder>
+  <zorder>runningAppsList</zorder>
+  <zorder>displayWPM</zorder>
+  <zorder>displayTime</zorder>
+  <zorder>gameModeSelectedApp</zorder>
+  <zorder>manuallyToggleGameMode</zorder>
+  <zorder>gameModeAppsList</zorder>
+  <zorder>gamemodelabel</zorder>
+  <zorder>currentapplication</zorder>
+  <zorder>logoText</zorder>
+  <zorder>label_2</zorder>
+  <zorder>autoGameMode</zorder>
+  <zorder>Logo</zorder>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -13,6 +13,8 @@ C17,33 uF,C_1206_3216Metric,93.74,-32.11,270.0,bottom
 C18,0.1 uF,C_0603_1608Metric,115.3,-30.5,90.0,bottom
 C19,NC,C_0603_1608Metric,117.4027,-30.4964,90.0,bottom
 C2,0.1 uF,C_0603_1608Metric,153.67,-146.9644,0.0,bottom
+C20,0.01 uF,C_0603_1608Metric,34.3,-60.9,270.0,bottom
+C21,0.01 uF,C_0603_1608Metric,38.6,-60.875,270.0,bottom
 C22,0.1 uF,C_0603_1608Metric,81.5,-53.1,90.0,bottom
 C23,0.1 uF,C_0603_1608Metric,101.7,-53.0,90.0,bottom
 C24,0.1 uF,C_0603_1608Metric,122.9,-53.0,90.0,bottom
@@ -26,19 +28,19 @@ C30,0.1 uF,C_0603_1608Metric,149.25,-33.75,270.0,bottom
 C31,10 uF,C_0603_1608Metric,147.5,-33.75,270.0,bottom
 C32,0.1 uF,C_0603_1608Metric,192.55,-155.3,270.0,bottom
 C33,0.1 uF,C_0603_1608Metric,203.6826,-152.146,90.0,bottom
-C34,0.1 uF,C_0603_1608Metric,42.75,-53.4,0.0,bottom
+C34,0.1 uF,C_0603_1608Metric,51.4,-47.3,180.0,bottom
 C35,0.1 uF,C_0603_1608Metric,50.4,-60.75,180.0,bottom
-C36,0.1 uF,C_0603_1608Metric,47.3,-54.1,0.0,bottom
-C37,0.1 uF,C_0603_1608Metric,42.75,-59.25,0.0,bottom
+C36,0.1 uF,C_0603_1608Metric,47.425,-53.7,0.0,bottom
+C37,0.1 uF,C_0603_1608Metric,43.5,-63.3,270.0,bottom
 C38,0.1 uF,C_0603_1608Metric,162.8,-154.4,270.0,bottom
 C39,0.1 uF,C_0603_1608Metric,62.05,-54.75,270.0,bottom
 C4,0.1 uF,C_0603_1608Metric,153.67,-148.6154,0.0,bottom
 C5,0.1 uF,C_0603_1608Metric,155.0,-154.4,0.0,bottom
 C6,0.1 uF,C_0603_1608Metric,163.95,-142.7,180.0,bottom
 C7,0.1 uF,C_0603_1608Metric,170.4086,-148.844,180.0,bottom
-C8,0.1 uF,C_0603_1608Metric,159.1,-154.2,270.0,bottom
-C9,0.1 uF,C_0603_1608Metric,157.4642,-154.2,270.0,bottom
-D2,LED (capslock R),LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder,69.4,-114.9,0.0,top
+C8,0.1 uF,C_0603_1608Metric,159.0,-154.6,270.0,bottom
+C9,0.1 uF,C_0603_1608Metric,157.4,-154.6,270.0,bottom
+D2,LED (capslock R),LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder,69.4,-115.7,0.0,top
 H1,MountingHole_Pad,MountingHole_2.2mm_M2_Pad,30.46045,-39.71,0.0,top
 H2,MountingHole_Pad,MountingHole_2.2mm_M2_Pad,142.5,-36.6,0.0,top
 H3,MountingHole_Pad,MountingHole_2.2mm_M2_Pad,30.46045,-161.4,0.0,top
@@ -47,22 +49,28 @@ H5,MountingHole_Pad,MountingHole_2.2mm_M2_Pad,52.6542,-139.1666,0.0,top
 H6,MountingHole_Pad,MountingHole_2.2mm_M2_Pad,147.9042,-82.0166,0.0,top
 H7,MountingHole_Pad,MountingHole_2.2mm_M2_Pad,133.6167,-120.1166,0.0,top
 J1,Conn_01x02,PinSocket_1x02_P2.00mm_Vertical,134.6,-35.9,180.0,top
-J2,Conn_01x02,PinSocket_1x02_P2.00mm_Vertical,131.3622,-35.9156,180.0,top
+J2,Conn_01x02,PinSocket_1x02_P2.00mm_Vertical,131.4,-35.9,180.0,top
 J3,Conn_01x04,Magnetic_Pogo_Pin_4pos,29.5792,-80.1591,270.0,bottom
 J4,Conn_01x04,Magnetic_Pogo_Pin_4pos,29.5792,-120.0391,270.0,bottom
 J5,Conn_01x04,Magnetic_Pogo_Pin_4pos,151.9292,-36.6776,-90.0,top
 J6,Conn_01x04,Magnetic_Pogo_Pin_4pos,201.7428,-144.6666,0.0,top
 J7,Conn_01x04,Magnetic_Pogo_Pin_4pos,223.9586,-144.6666,0.0,top
-J8,AYF530435,AYF530435,73.9648,-41.05,0.0,bottom
-R10,10k,R_0603_1608Metric,42.75,-60.75,0.0,bottom
-R11,82,R_0603_1608Metric,69.3,-117.2,180.0,bottom
+J8,SM04B-SRSS-TB,CONN_SM04B-SRSS-TB_JST,74.2,-40.6279,180.0,bottom
+MT1,PEC11R-4215F-S0024,XDCR_PEC11R-4215F-S0024,38.3667,-48.9291,0.0,top
+R1,10k,R_0603_1608Metric,35.9,-53.6,90.0,bottom
+R10,10k,R_0603_1608Metric,43.5,-59.9,90.0,bottom
+R11,82,R_0603_1608Metric,69.3,-118.1,180.0,bottom
+R12,10k,R_0603_1608Metric,35.0,-58.3,180.0,bottom
+R13,10k,R_0603_1608Metric,39.4,-58.4,180.0,bottom
+R14,10k,R_0603_1608Metric,36.8,-44.2,180.0,bottom
 R2,27,R_0603_1608Metric,149.7076,-149.1234,180.0,bottom
 R3,27,R_0603_1608Metric,149.7076,-150.6728,180.0,bottom
 R4,10k,R_0603_1608Metric,170.4,-150.4,180.0,bottom
 R5,1K,R_0603_1608Metric,151.1142,-141.9901,270.0,bottom
 R6,10k,R_0603_1608Metric,55.9,-55.7,270.0,bottom
+R7,10k,R_0603_1608Metric,40.8,-53.5,90.0,bottom
 R8,10k,R_0603_1608Metric,175.8,-149.3,270.0,bottom
-R9,10k,R_0603_1608Metric,42.75,-55.0,0.0,bottom
+R9,10k,R_0603_1608Metric,48.3,-47.3,0.0,bottom
 RN1,10K,R_Array_Convex_4x1206,79.3494,-58.4962,0.0,bottom
 RN10,10K,R_Array_Convex_4x1206,59.0294,-58.4962,0.0,bottom
 RN11,10K,R_Array_Convex_4x1206,74.2694,-58.4962,180.0,bottom
@@ -114,8 +122,8 @@ S8,~,SW_Cherry_Kalih_2.25u,74.08545,-130.5241,0.0,top
 S9,~,SW_Cherry_Kalih_1.25u,87.67545,-146.4016,0.0,top
 U1,RP2040,QFN-56-1EP_7x7mm_P0.4mm_EP3.2x3.2mm,161.8202,-148.0481,270.0,bottom
 U10,DS3231MZ,SOIC-8_3.9x4.9mm_P1.27mm,197.993,-154.0,180.0,bottom
-U11,74LVC1G17,SOT-23-5,46.7,-51.5,180.0,bottom
-U12,74LVC1G17,SOT-23-5,46.4,-61.6,180.0,bottom
+U11,74LVC1G17,SOT-23-5,49.6,-50.3,270.0,bottom
+U12,74LVC1G17,SOT-23-5,46.5,-61.6,180.0,bottom
 U13,SN74HC165DR,SOP-16_3.9x9.9mm_P1.27mm,66.6494,-58.4962,0.0,bottom
 U2,W25Q128JVSIQ,SOIC127P790X216-8N,142.0368,-142.3924,0.0,bottom
 U3,LM3940IMP-3.3/NOPB,SOT-223,88.8,-33.8,270.0,bottom

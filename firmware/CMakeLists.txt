@@ -1,25 +1,102 @@
 cmake_minimum_required(VERSION 3.13)
 
-add_executable(dev_hid_composite)
 
-target_sources(dev_hid_composite PUBLIC
-        ${CMAKE_CURRENT_LIST_DIR}/main.c
-        ${CMAKE_CURRENT_LIST_DIR}/usb_descriptors.c
-         ${CMAKE_CURRENT_LIST_DIR}/ssd1306.c
-        )
+#Set pico-sdk source directory. This is probably different for you!
+set(PICO_SDK_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../../pico-sdk")
 
-# Make sure TinyUSB can find tusb_config.h
-target_include_directories(dev_hid_composite PUBLIC
-        ${CMAKE_CURRENT_LIST_DIR})
+include (${PICO_SDK_PATH}/pico_sdk_init.cmake)
 
-# In addition to pico_stdlib required for common PicoSDK functionality, add dependency on tinyusb_device
-# for TinyUSB device support and tinyusb_board for the additional board support library used by the example
-target_link_libraries(dev_hid_composite PUBLIC pico_stdlib pico_unique_id tinyusb_device tinyusb_board hardware_i2c pico_multicore hardware_pwm)
+pico_sdk_init()
 
-# Uncomment this line to enable fix for Errata RP2040-E5 (the fix requires use of GPIO 15)
-#target_compile_definitions(dev_hid_composite PUBLIC PICO_RP2040_USB_DEVICE_ENUMERATION_FIX=1)
 
-pico_add_extra_outputs(dev_hid_composite)
+project(numlocked)
 
-# add url via pico_set_program_url
-example_auto_set_url(dev_hid_composite)
+
+
+
+
+add_executable(numlocked
+	main.c
+	usb_descriptors.c
+	ssd1306.c
+)
+
+#Include directories
+target_include_directories(numlocked PUBLIC
+	${CMAKE_CURRENT_LIST_DIR}
+)
+
+target_link_options(numlocked PRIVATE 
+    -Wl,-Map=${CMAKE_BINARY_DIR}/firmware.map
+    -Wl,--print-memory-usage
+)
+
+
+target_compile_options(numlocked PRIVATE
+	-Wall
+	-Wextra
+	#	-Wpedantic
+	-Wshadow
+	-Wunused
+	-Wuninitialized
+	-fstack-usage
+	-fstack-check
+	-Wstack-usage=512
+)
+
+
+
+# Link libraries
+target_link_libraries(numlocked
+	pico_stdlib
+	pico_unique_id
+	pico_multicore
+	pico_time
+	tinyusb_device
+	tinyusb_board
+	hardware_i2c
+)
+
+#Enable USB
+pico_enable_stdio_usb(numlocked 1)
+
+# Generate .uf2
+pico_add_extra_outputs(numlocked)
+
+
+
+find_program(ARM_SIZE arm-none-eabi-size)
+find_program(ARM_OBJDUMP arm-none-eabi-objdump)
+
+
+# Only add memory analysis if tools are available
+if(ARM_SIZE)
+    add_custom_command(TARGET numlocked POST_BUILD
+        COMMAND ${ARM_SIZE} $<TARGET_FILE:numlocked>
+        COMMENT "Memory usage:"
+    )
+    
+    add_custom_target(memory_report
+        COMMAND ${ARM_SIZE} -A -d $<TARGET_FILE:numlocked>
+        DEPENDS numlocked
+    )
+endif()
+
+find_program(CPPCHECK cppcheck)
+if(CPPCHECK)
+    add_custom_target(static_analysis
+        COMMAND ${CPPCHECK} --enable=all --inconclusive 
+                --std=c11 --platform=unix32
+                ${CMAKE_SOURCE_DIR}/src
+    )
+endif()
+
+
+
+add_custom_target(stack_report
+    COMMAND find ${CMAKE_BINARY_DIR} -name "*.su" -exec cat {} +
+    DEPENDS numlocked
+    COMMENT "Stack usage per function:"
+)
+
+

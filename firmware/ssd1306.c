@@ -120,7 +120,7 @@ inline void ssd1306_deinit(ssd1306_t *p) {
 }
 
 inline void ssd1306_poweroff(ssd1306_t *p) {
-    ssd1306_write(p, SET_DISP|0x00);
+    ssd1306_write(p, SET_DISP);
 }
 
 inline void ssd1306_poweron(ssd1306_t *p) {
