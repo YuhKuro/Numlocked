@@ -164,6 +164,7 @@
   },
   "active": "03bf324b2a5e44e5",
   "lastOpenFiles": [
+<<<<<<< Updated upstream
     "pictures/rearViewGreen.bmp",
     "pictures/mainViewGreenTogether.bmp",
     "pictures/mainViewGreen.bmp",
@@ -171,6 +172,15 @@
     "case/readme.md",
     "readme.md",
     "pictures/KeyboardGreenUSBs.bmp",
+=======
+    "firmware/README.md",
+    "case/readme.md",
+    "readme.md",
+    "pictures/rearViewGreen.bmp",
+    "pictures/KeyboardGreenUSBs.bmp",
+    "pictures/mainViewGreenTogether.bmp",
+    "pictures/mainViewGreen.bmp",
+>>>>>>> Stashed changes
     "hardware/readme.md",
     "pictures/Diagrams/ShiftRegFlowchart.drawio",
     "pictures/Diagrams",

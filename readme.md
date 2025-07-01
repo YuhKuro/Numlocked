@@ -1,7 +1,12 @@
 # Numlocked
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 ## A Custom Split Keyboard
 ![Ortho](pictures/Ortho.png)
+=======
+## A Modular, Customizable Split Keyboard
+
+>>>>>>> Stashed changes
 =======
 ## A Modular, Customizable Split Keyboard
 
