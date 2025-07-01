@@ -23,6 +23,7 @@
 #### - **128x32 OLED**
 ![OLED](pictures/OLEDViewGreen.bmp)
 #### - **Caps-lock, Num-lock and Scroll-Lock LEDs**
+![LEDs](pictures/statusLEDView.png)
 #### - **Dual-Core Custom Firmware**
 
 - **Hardware**:
