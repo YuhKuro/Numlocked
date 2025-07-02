@@ -1,7 +1,7 @@
 # Numlocked
 
 ## A Fully Custom Modular Split Keyboard
-![Ortho](pictures/orthoGreen.bmp)
+![Ortho](pictures/orthoGreen.png)
 ## Directory:
 - [Keyboard Hardware](hardware/readme.md)
 - [Keyboard Firmware](firmware/readme.md)
@@ -10,18 +10,18 @@
 ## Features
 ### **Keyboard Features:**
 #### - **Modular split design**: Split 75% layout, flexible configuration with or without numpad
-![Front](pictures/mainViewGreenTogether.bmp)
-![Main](pictures/mainViewGreen.bmp)
+![Front](pictures/mainViewGreenTogether.png)
+![Main](pictures/mainViewGreen.png)
 #### - **Magnetic connectors for quick configuration changes**
-![magnets](pictures/splitViewGreen.bmp)
+![magnets](pictures/splitViewGreen.png)
 #### - **Hot swappable & Gasket mount design**
-![Hotswap](pictures/hotswapGreen.bmp)
+![Hotswap](pictures/hotswapGreen.png)
 #### - **Built-in USB Hub**: 3 USB-A ports (1 vertical, 2 horizontal)
-![Rear](pictures/rearViewGreen.bmp)
+![Rear](pictures/rearViewGreen.png)
 #### - **Integrated Volume Knobs**: Two customizable rotary encoders
-![Encoder](pictures/twoEncodersGreen.bmp)
+![Encoder](pictures/twoEncodersGreen.png)
 #### - **128x32 OLED**
-![OLED](pictures/OLEDViewGreen.bmp)
+![OLED](pictures/OLEDViewGreen.png)
 #### - **Caps-lock, Num-lock and Scroll-Lock LEDs**
 ![LEDs](pictures/statusLEDView.png)
 #### - **Dual-Core Custom Firmware**
@@ -41,12 +41,13 @@
 ## Customization
 Firmware, coded in C, which leverages all the features of this keyboard are provided in this repo. [Learn more](firmware/readme.md)
 Please note that QMK/VIA are currently incompatible with shift-register based keyboard designs.
-## Often Asked Questions
+## Commonly Asked Questions
 - Why is it split?
-	- For SMD Reflow Soldering, the largest surface area my hotplate could manage was 400x400mm. I also wanted to experiment with ergonomics.
+	- I wanted to experiment with ergonomics. Another reason was production, The largest surface area my hotplate could manage was 400x400mm for reflow soldering.
 - What was the total cost?
 	- Will update once everything is complete.
 
-## Thanks To:
+## Thank you to:
 - [SSD1306 library] (https://github.com/daschr/pico-ssd1306) by dachr. I added a function to print both images and text, but it was with his foundations that I was able to quickly get the OLED working.
 - [cJSON library] (https://github.com/DaveGamble/cJSON) by DaveGamble. I swear I'm always using this. Its never failed me once. 
+- And you, for viewing!
