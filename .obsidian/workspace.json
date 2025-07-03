@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "readme.md",
+                "file": "firmware/README.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "readme"
+              "title": "README"
             }
           }
         ],
@@ -180,20 +180,22 @@
   },
   "active": "82dd16016aec61bc",
   "lastOpenFiles": [
-    "pictures/twoEncodersGreen.png",
+    "software/readme.md",
+    "pictures/GUI.md",
+    "pictures/GUIExample.png",
+    "software/frontend/Orig.png",
+    "readme.md",
+    "pictures/orthoGreen.png",
     "pictures/statusLEDView.png",
+    "pictures/mainViewGreen.png",
+    "software/frontend/ui/ui_form.py.MhsnUI",
+    "pictures/twoEncodersGreen.png",
     "pictures/splitViewGreen.png",
     "pictures/rearViewGreen.png",
-    "pictures/orthoGreen.png",
     "pictures/OLEDViewGreen.png",
     "pictures/mainViewGreenTogether.png",
-    "pictures/mainViewGreen.png",
-    "pictures/hotswapGreen.png",
-    "pictures/KeyboardAssemblyProd.png",
-    "pictures/Source bitmap files/twoEncodersGreen.bmp",
     "pictures/Source bitmap files",
     "pictures/Old Images",
-    "readme.md",
     "case/readme.md",
     "case/keycaps/Qwerty Row/OldVersions/Key_Y.0002.ipt",
     "case/keycaps/Qwerty Row/OldVersions/Key_W.0002.ipt",
@@ -202,7 +204,6 @@
     "case/keycaps/Qwerty Row/OldVersions/Key_T.0002.ipt",
     "case/keycaps/Qwerty Row/OldVersions/Key_RBracket.0004.ipt",
     "case/keycaps/Qwerty Row/OldVersions/Key_R.0002.ipt",
-    "case/keycaps/Qwerty Row/OldVersions/Key_QWERTY.0001.ipt",
     "hardware/readme.md",
     "firmware/README.md",
     "Revision1/README.md",
