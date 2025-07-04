@@ -1,7 +1,5 @@
-# Numlocked
 
-## A Fully Custom Modular Split Keyboard
-![Ortho](pictures/orthoGreen.png)
+![ThreeFourths](pictures/ThreeFourthGreen.png)
 ## Directory:
 - [Keyboard Hardware](hardware/readme.md)
 - [Keyboard Firmware](firmware/readme.md)
