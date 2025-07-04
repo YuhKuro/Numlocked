@@ -8,7 +8,7 @@
 ## Features
 ### **Keyboard Features:**
 #### - **Modular split design**: Split 75% layout, flexible configuration with or without numpad
-![Front](pictures/mainViewGreenTogether.png)
+![Front](pictures/mainViewTogetherGreen.png)
 ![Main](pictures/mainViewGreen.png)
 #### - **Magnetic connectors for quick configuration changes**
 ![magnets](pictures/splitViewGreen.png)
