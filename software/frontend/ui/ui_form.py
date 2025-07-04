@@ -128,7 +128,7 @@ class Ui_widget(object):
         self.timezoneBox.setItemText(2, QCoreApplication.translate("widget", u"CST (Chicago)", None))
         self.timezoneBox.setItemText(3, QCoreApplication.translate("widget", u"JST (Tokyo)", None))
 
-        self.applyChanges.setText(QCoreApplication.translate("widget", u"Apply Changes", None))
+        self.applyChanges.setText(QCoreApplication.translate("widget", u"Save Changes", None))
         self.cancelChanges.setText(QCoreApplication.translate("widget", u"Cancel", None))
         self.detectApps.setText(QCoreApplication.translate("widget", u"Detect Applications", None))
         self.removeSelectedApp.setText(QCoreApplication.translate("widget", u"Remove from Game Mode", None))

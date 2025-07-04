@@ -22,7 +22,7 @@ cmake ..
 make
 ```
 
-Then, you can use picotool to flash. Move to whereever you installed picotool and:  
+Then, you can use picotool to flash. Move to wherever you installed picotool and:  
 ```
 sudo ./picotool load PARENT/Numlocked/firmware/build/numlocked.uf2
 
