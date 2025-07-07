@@ -22,7 +22,8 @@
 ![OLED](pictures/OLEDViewGreen.png)
 #### - **Caps-lock, Num-lock and Scroll-Lock LEDs**
 ![LEDs](pictures/statusLEDView.png)
-#### - **Dual-Core Custom Firmware**
+#### - **Open Source**
+![Ortho](pictures/OrthoGreen.png)
 
 - **Hardware**:
 	- **Shift-Registered Design**: Faster scanning than traditional matrix-based keyboards.
@@ -49,3 +50,5 @@ Please note that QMK/VIA are currently incompatible with shift-register based ke
 - [SSD1306 library] (https://github.com/daschr/pico-ssd1306) by dachr. I added a function to print both images and text, but it was with his foundations that I was able to quickly get the OLED working.
 - [cJSON library] (https://github.com/DaveGamble/cJSON) by DaveGamble. I swear I'm always using this. Its never failed me once. 
 - And you, for viewing!
+
+
