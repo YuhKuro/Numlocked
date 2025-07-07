@@ -23,7 +23,7 @@
 #### - **Caps-lock, Num-lock and Scroll-Lock LEDs**
 ![LEDs](pictures/statusLEDView.png)
 #### - **Open Source**
-![Ortho](pictures/OrthoGreen.png)
+![Ortho](pictures/orthoGreen.png)
 
 - **Hardware**:
 	- **Shift-Registered Design**: Faster scanning than traditional matrix-based keyboards.
