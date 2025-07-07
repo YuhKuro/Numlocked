@@ -1,5 +1,5 @@
 
-![ThreeFourths](pictures/ThreeFourthGreen.png)
+![ThreeFourths](pictures/threeFourthGIF.gif)
 ## Directory:
 - [Keyboard Hardware](hardware/readme.md)
 - [Keyboard Firmware](firmware/readme.md)
