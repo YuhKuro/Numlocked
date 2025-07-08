@@ -1,5 +1,5 @@
 
-![ThreeFourths](pictures/loopedGIF.gif)
+![GIF](pictures/loopedGIF.gif)
 ## Directory:
 - [Keyboard Hardware](hardware/readme.md)
 - [Keyboard Firmware](firmware/readme.md)
