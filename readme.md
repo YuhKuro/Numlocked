@@ -1,5 +1,5 @@
 
-![ThreeFourths](pictures/threeFourthGIF.gif)
+![ThreeFourths](pictures/loopedGIF.gif)
 ## Directory:
 - [Keyboard Hardware](hardware/readme.md)
 - [Keyboard Firmware](firmware/readme.md)
@@ -16,7 +16,7 @@
 ![Hotswap](pictures/hotswapGreen.png)
 #### - **Built-in USB Hub**: 3 USB-A ports (1 vertical, 2 horizontal)
 ![Rear](pictures/rearViewGreen.png)
-#### - **Integrated Volume Knobs**: Two customizable rotary encoders
+#### - **Volume Knobs and Five Macro Keys**
 ![Encoder](pictures/twoEncodersGreen.png)
 #### - **128x32 OLED**
 ![OLED](pictures/OLEDViewGreen.png)
@@ -27,16 +27,16 @@
 
 - **Hardware**:
 	- **Shift-Registered Design**: Faster scanning than traditional matrix-based keyboards.
-	- **RP2040 chip**: Power efficient, endlessly customizable, easy to program.
+	- **RP2040 chip**: Easy to program, very customizable, affordable.
 	- **Real-Time Clock (RTC)**: Keeps accurate time for the user.
-- **Keyboard Build**:
+- **My Numlocked Build**:
 	- Akko CS Silver Switches
 	- Durock V2 PCB Mount Stabilizers
 	- FR4 Plate
 	- Red Oak Case
 
 ## Build Instructions
-*See the [Build Guide](hardware/readme.md) for detailed steps.*
+*See the [Build Guide](hardware/docs/buildInstructions.md) for detailed steps.*
 ## Customization
 Firmware, coded in C, which leverages all the features of this keyboard are provided in this repo. [Learn more](firmware/readme.md)
 Please note that QMK/VIA are currently incompatible with shift-register based keyboard designs.
