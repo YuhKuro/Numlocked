@@ -1,5 +1,5 @@
 
-![ThreeFourths](pictures/ThreeFourthGreen.png)
+![GIF](pictures/loopedGIF.gif)
 ## Directory:
 - [Keyboard Hardware](hardware/readme.md)
 - [Keyboard Firmware](firmware/readme.md)
@@ -16,26 +16,27 @@
 ![Hotswap](pictures/hotswapGreen.png)
 #### - **Built-in USB Hub**: 3 USB-A ports (1 vertical, 2 horizontal)
 ![Rear](pictures/rearViewGreen.png)
-#### - **Integrated Volume Knobs**: Two customizable rotary encoders
+#### - **Volume Knobs and Five Macro Keys**
 ![Encoder](pictures/twoEncodersGreen.png)
 #### - **128x32 OLED**
 ![OLED](pictures/OLEDViewGreen.png)
 #### - **Caps-lock, Num-lock and Scroll-Lock LEDs**
 ![LEDs](pictures/statusLEDView.png)
-#### - **Dual-Core Custom Firmware**
+#### - **Open Source**
+![Ortho](pictures/orthoGreen.png)
 
 - **Hardware**:
 	- **Shift-Registered Design**: Faster scanning than traditional matrix-based keyboards.
-	- **RP2040 chip**: Power efficient, endlessly customizable, easy to program.
+	- **RP2040 chip**: Easy to program, very customizable, affordable.
 	- **Real-Time Clock (RTC)**: Keeps accurate time for the user.
-- **Keyboard Build**:
+- **My Numlocked Build**:
 	- Akko CS Silver Switches
 	- Durock V2 PCB Mount Stabilizers
 	- FR4 Plate
 	- Red Oak Case
 
 ## Build Instructions
-*See the [Build Guide](hardware/readme.md) for detailed steps.*
+*See the [Build Guide](hardware/docs/buildInstructions.md) for detailed steps.*
 ## Customization
 Firmware, coded in C, which leverages all the features of this keyboard are provided in this repo. [Learn more](firmware/readme.md)
 Please note that QMK/VIA are currently incompatible with shift-register based keyboard designs.
@@ -49,3 +50,5 @@ Please note that QMK/VIA are currently incompatible with shift-register based ke
 - [SSD1306 library] (https://github.com/daschr/pico-ssd1306) by dachr. I added a function to print both images and text, but it was with his foundations that I was able to quickly get the OLED working.
 - [cJSON library] (https://github.com/DaveGamble/cJSON) by DaveGamble. I swear I'm always using this. Its never failed me once. 
 - And you, for viewing!
+
+

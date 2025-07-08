@@ -28,13 +28,13 @@
   
   - Or better yet, [Board Cleaner]
   
-  †: You do not *need* these items if you execute making them perfectly.
+  †: You do not *need* these items if you execute making them perfectly (Impossible).
 
 #### Soldering (Reflow)
 
 Begin by placing your stencil over your pads and spreading your solder paste thinly.
 
-Place your components carefully onto the PCB, ensuring orientation is accurate.
+Place the SMD components carefully onto the PCB, ensuring orientation is accurate.
 
 Place your PCB and preheat to around 180 C. Leave for around 3 minutes.
 
