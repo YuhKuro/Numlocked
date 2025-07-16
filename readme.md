@@ -16,19 +16,19 @@
 ![Hotswap](pictures/hotswapGreen.png)
 #### - **Built-in USB Hub**: 3 USB-A ports (1 vertical, 2 horizontal)
 ![Rear](pictures/rearViewGreen.png)
-#### - **Volume Knobs and Five Macro Keys**
+#### - **Volume Knobs and Five Macro Keys**: Customizable for any function
 ![Encoder](pictures/twoEncodersGreen.png)
-#### - **128x32 OLED**
+#### - **128x32 OLED**: Custom animations
 ![OLED](pictures/OLEDViewGreen.png)
 #### - **Caps-lock, Num-lock and Scroll-Lock LEDs**
 ![LEDs](pictures/statusLEDView.png)
+#### -**Custom Hardware**: Three multilayer PCBs custom designed for Numlocked
+![Hardware](pictures/PCBRender.png)
+- **Shift-Registered Design**: Faster scanning than traditional matrix-based keyboards.
+- **RP2040 chip**: Easy to program, very customizable, affordable.
+- **Real-Time Clock (RTC)**: Keeps accurate time for the user.
 #### - **Open Source**
 ![Ortho](pictures/orthoGreen.png)
-
-- **Hardware**:
-	- **Shift-Registered Design**: Faster scanning than traditional matrix-based keyboards.
-	- **RP2040 chip**: Easy to program, very customizable, affordable.
-	- **Real-Time Clock (RTC)**: Keeps accurate time for the user.
 - **My Numlocked Build**:
 	- Akko CS Silver Switches
 	- Durock V2 PCB Mount Stabilizers
