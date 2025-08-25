@@ -1,0 +1,134 @@
+Designator,Val,Package,Mid X,Mid Y,Rotation,Layer
+Brd1,SSD1306,SSD1306-0.91-OLED-4pin-128x32,119.5452,-32.4746,0.0,top
+C1,0.1 uF,C_0603_1608Metric,68.9202,-58.3481,90.0,bottom
+C10,0.1 uF,C_0603_1608Metric,63.5952,-68.1481,180.0,bottom
+C11,1 uF,C_0603_1608Metric,66.6202,-57.9481,180.0,bottom
+C12,1 uF,C_0603_1608Metric,66.6202,-59.6481,180.0,bottom
+C13,18 pF,C_0603_1608Metric,53.9202,-66.3481,90.0,bottom
+C14,18 pF,C_0603_1608Metric,48.1,-66.3481,90.0,bottom
+C15,0.1 uF,C_0603_1608Metric,83.1,-62.7,270.0,bottom
+C16,0.47 uF,C_1206_3216Metric,84.5,-32.7,270.0,bottom
+C17,33 uF,C_1206_3216Metric,94.3,-32.8,270.0,bottom
+C18,0.1 uF,C_0603_1608Metric,115.3,-30.5,90.0,bottom
+C19,NC,C_0603_1608Metric,117.4027,-30.4964,90.0,bottom
+C2,0.1 uF,C_0603_1608Metric,68.1625,-64.4,180.0,bottom
+C20,0.01 uF,C_0603_1608Metric,41.3,-44.9,270.0,bottom
+C21,0.01 uF,C_0603_1608Metric,36.4,-45.775,0.0,bottom
+C22,0.1 uF,C_0603_1608Metric,84.5,-53.3,90.0,bottom
+C23,0.1 uF,C_0603_1608Metric,103.8906,-53.0,90.0,bottom
+C24,0.1 uF,C_0603_1608Metric,125.0906,-53.0,90.0,bottom
+C25,0.1 uF,C_0603_1608Metric,144.9906,-53.0352,90.0,bottom
+C26,0.1 uF,C_0603_1608Metric,47.05,-57.8,180.0,bottom
+C27,0.1 uF,C_0603_1608Metric,41.225,-64.2,180.0,bottom
+C28,0.1 uF,C_0603_1608Metric,30.5,-72.7,180.0,bottom
+C29,10 uF,C_0603_1608Metric,30.5,-74.5,180.0,bottom
+C3,0.1 uF,C_0603_1608Metric,53.8532,-60.8627,90.0,bottom
+C30,0.1 uF,C_0603_1608Metric,149.25,-33.75,270.0,bottom
+C31,10 uF,C_0603_1608Metric,147.5,-33.75,270.0,bottom
+C34,0.1 uF,C_0603_1608Metric,33.5,-68.9,0.0,bottom
+C35,0.1 uF,C_0603_1608Metric,42.375,-57.7,180.0,bottom
+C36,0.1 uF,C_0603_1608Metric,41.1,-68.7,180.0,bottom
+C37,0.1 uF,C_0603_1608Metric,44.3,-65.7,0.0,bottom
+C38,0.1 uF,C_0603_1608Metric,58.0,-57.5,0.0,bottom
+C39,0.1 uF,C_0603_1608Metric,48.8,-79.3,180.0,bottom
+C4,0.1 uF,C_0603_1608Metric,67.4,-62.8,180.0,bottom
+C5,0.1 uF,C_0603_1608Metric,66.6202,-56.4,180.0,bottom
+C6,0.1 uF,C_0603_1608Metric,58.8,-68.5,270.0,bottom
+C7,0.1 uF,C_0603_1608Metric,51.2116,-61.9041,0.0,bottom
+C8,0.1 uF,C_0603_1608Metric,62.6202,-56.1481,90.0,bottom
+C9,0.1 uF,C_0603_1608Metric,64.2202,-56.1481,90.0,bottom
+D2,LED (capslock R),LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder,69.4,-115.1,0.0,top
+H1,MountingHole_Pad,MountingHole_2.2mm_M2_Pad,30.46045,-39.71,0.0,top
+H2,MountingHole_Pad,MountingHole_2.2mm_M2_Pad,142.5,-36.6,0.0,top
+H3,MountingHole_Pad,MountingHole_2.2mm_M2_Pad,30.46045,-161.4,0.0,top
+H4,MountingHole_Pad,MountingHole_2.2mm_M2_Pad,239.1542,-161.4,0.0,top
+H5,MountingHole_Pad,MountingHole_2.2mm_M2_Pad,52.6542,-139.1666,0.0,top
+H6,MountingHole_Pad,MountingHole_2.2mm_M2_Pad,147.9042,-82.0166,0.0,top
+H7,MountingHole_Pad,MountingHole_2.2mm_M2_Pad,133.6167,-120.1166,0.0,top
+J1,Conn_01x02,PinSocket_1x02_P2.00mm_Vertical,131.5,-35.9,180.0,top
+J2,Conn_01x02,PinSocket_1x02_P2.00mm_Vertical,134.6,-35.9,180.0,top
+J3,Conn_01x04,Magnetic_Pogo_Pin_4pos,29.5792,-80.1591,270.0,bottom
+J4,Conn_01x04,Magnetic_Pogo_Pin_4pos,29.5792,-120.0391,270.0,bottom
+J5,Conn_01x04,Magnetic_Pogo_Pin_4pos,151.9292,-36.6776,-90.0,top
+J6,Conn_01x04,Magnetic_Pogo_Pin_4pos,201.7428,-144.6666,0.0,top
+J7,Conn_01x04,Magnetic_Pogo_Pin_4pos,223.9586,-144.6666,0.0,top
+J8,SM04B-SRSS-TB,CONN_SM04B-SRSS-TB_JST,74.2,-40.772099,0.0,bottom
+MT1,PEC11R-4215F-S0024,XDCR_PEC11R-4215F-S0024,38.3667,-48.4291,180.0,top
+R1,10k,R_0603_1608Metric,42.9,-40.175,90.0,bottom
+R10,10k,R_0603_1608Metric,44.3,-64.15,0.0,bottom
+R11,82,R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,69.3,-118.1,180.0,bottom
+R12,10k,R_0603_1608Metric,42.9,-43.2,90.0,bottom
+R13,10k,R_0603_1608Metric,36.4,-44.2,0.0,bottom
+R14,10k,R_0603_1608Metric,38.9,-56.4,270.0,bottom
+R15,DNF,R_0603_1608Metric,73.3,-72.5,180.0,bottom
+R2,27,R_0603_1608Metric,70.548945,-62.2779,0.0,bottom
+R3,27,R_0603_1608Metric,70.548945,-60.7285,0.0,bottom
+R4,10k,R_0603_1608Metric,51.2202,-60.3481,0.0,bottom
+R5,1K,R_0603_1608Metric,83.1,-68.3,270.0,bottom
+R6,10k,R_0603_1608Metric,33.5,-65.3,0.0,bottom
+R7,10k,R_0603_1608Metric,34.1,-43.4,90.0,bottom
+R8,1K,R_0603_1608Metric,51.2,-63.5,180.0,bottom
+R9,10k,R_0603_1608Metric,33.5,-67.2,0.0,bottom
+RN1,10K,R_Array_Convex_4x1206,81.6,-57.8,0.0,bottom
+RN10,10K,R_Array_Convex_4x1206,43.78,-85.435,0.0,bottom
+RN11,10K,R_Array_Convex_4x1206,59.02,-85.435,180.0,bottom
+RN2,10K,R_Array_Convex_4x1206,96.78,-58.4962,180.0,bottom
+RN3,10K,R_Array_Convex_4x1206,101.86,-58.4962,0.0,bottom
+RN4,10K,R_Array_Convex_4x1206,117.1,-58.4962,180.0,bottom
+RN5,10K,R_Array_Convex_4x1206,122.18,-58.4962,0.0,bottom
+RN6,10K,R_Array_Convex_4x1206,137.42,-58.4962,180.0,bottom
+RN7,10K,R_Array_Convex_4x1206,142.5,-58.4962,0.0,bottom
+RN8,10K,R_Array_Convex_4x1206,159.45,-61.5,180.0,bottom
+S1,~,SW_Cherry_Kalih_1.00u,62.8767,-74.7816,180.0,top
+S10,~,SW_Cherry_Kalih_1.00u,100.9767,-74.7816,180.0,top
+S11,~,SW_Cherry_Kalih_1.25u,63.86295,-146.4016,0.0,top
+S12,~,SW_Cherry_Kalih_1.25u,111.48795,-146.4016,0.0,top
+S13,~,SW_Cherry_Kalih_1.00u,90.0567,-89.2516,0.0,top
+S14,~,SW_Cherry_Kalih_1.00u,104.3442,-127.3516,0.0,top
+S15,~,SW_Cherry_Kalih_1.00u,94.8192,-108.3016,0.0,top
+S16,~,SW_Cherry_Kalih_1.00u,113.8692,-108.3016,0.0,top
+S17,~,SW_Cherry_Kalih_1.00u,123.3942,-127.3516,0.0,top
+S18,~,SW_Cherry_Kalih_1.00u,118.6317,-70.2016,0.0,top
+S19,~,SW_Cherry_Kalih_1.00u,109.1067,-89.2516,0.0,top
+S2,~,SW_Cherry_Kalih_1.00u,81.9267,-74.7816,180.0,top
+S20,~,SW_Cherry_Kalih_1.00u,123.3942,-46.3891,0.0,top
+S21,~,SW_Cherry_Kalih_1.00u,142.4442,-46.3891,0.0,top
+S22,~,SW_Cherry_Kalih_1.00u,128.1567,-89.2516,0.0,top
+S23,~,SW_Cherry_Kalih_1.00u,147.2067,-89.2516,0.0,top
+S24,~,SW_Cherry_Kalih_1.00u,137.6817,-70.2016,0.0,top
+S25,~,SW_Cherry_Kalih_1.00u,132.9192,-108.3016,0.0,top
+S26,~,SW_Cherry_Kalih_1.00u,151.9692,-108.3016,0.0,top
+S27,~,SW_Cherry_Kalih_1.00u,142.4442,-127.3516,0.0,top
+S28,~,SW_Cherry_Kalih_1.00u,161.4942,-127.3516,0.0,top
+S29,~,SW_Cherry_Kalih_1.00u,180.5442,-127.3516,0.0,top
+S3,~,SW_Cherry_Kalih_1.00u,61.4817,-46.3891,0.0,top
+S30,~,SW_Cherry_Kalih_1.00u,171.0192,-108.3016,0.0,top
+S31,~,SW_Cherry_Kalih_1.00u,166.2567,-89.2516,0.0,top
+S32,~,SW_Cherry_Kalih_1.00u,156.7317,-70.2016,0.0,top
+S33,~,SW_Cherry_Kalih_6.25u,183.62295,-149.5491,0.0,top
+S34,~,SW_Cherry_Kalih_1.00u,37.6692,-127.3516,0.0,top
+S35,~,SW_Cherry_Kalih_1.00u,37.6692,-108.3016,0.0,top
+S36,~,SW_Cherry_Kalih_1.00u,39.0642,-93.8316,180.0,top
+S37,~,SW_Cherry_Kalih_1.00u,39.0642,-74.7816,180.0,top
+S38,~,SW_Cherry_Kalih_1.00u,37.6692,-146.4016,0.0,top
+S39,~,SW_Cherry_Kalih_1.00u,221.229825,-150.9816,180.0,top
+S4,~,SW_Cherry_Kalih_1.00u,85.2942,-46.3891,0.0,top
+S40,~,SW_Cherry_Kalih_1.00u,151.476075,-149.5741,0.0,top
+S5,~,SW_Cherry_Kalih_1.00u,104.3442,-46.3891,0.0,top
+S6,~,SW_Cherry_Kalih_1.5u,67.6392,-93.8316,180.0,top
+S7,~,SW_Cherry_Kalih_1.75u,68.62545,-108.3016,0.0,top
+S8,~,SW_Cherry_Kalih_2.25u,74.08545,-130.5241,0.0,top
+S9,~,SW_Cherry_Kalih_1.25u,87.67545,-146.4016,0.0,top
+U1,RP2040,QFN-56-1EP_7x7mm_P0.4mm_EP3.2x3.2mm,59.8,-62.7,90.0,bottom
+U11,74LVC1G17,SOT-23-5,37.4,-67.8,180.0,bottom
+U12,74LVC1G17,SOT-23-5,45.2,-60.7,90.0,bottom
+U13,SN74HC165DR,SOP-16_3.9x9.9mm_P1.27mm,51.4,-85.435,0.0,bottom
+U2,W25Q128JVSIQ,SOIC127P790X216-8N,79.1,-65.5,90.0,bottom
+U3,LM3940IMP-3.3/NOPB,SOT-223,89.4,-34.1,270.0,bottom
+U4,SN74HC165DR,SOIC127P600X175-16N,89.16,-58.4962,0.0,bottom
+U5,SN74HC165DR,SOIC127P600X175-16N,109.48,-58.4962,0.0,bottom
+U6,SN74HC165DR,SOIC127P600X175-16N,129.8,-58.4962,0.0,bottom
+U7,SN74HC165DR,SOIC127P600X175-16N,150.4294,-58.4962,0.0,bottom
+U8,~,SC-74-6_1.55x2.9mm_P0.95mm,41.6,-60.75,90.0,bottom
+U9,~,SC-74-6_1.55x2.9mm_P0.95mm,37.4,-64.3,180.0,bottom
+X1,ABM8-272-T3,Crystal_SMD_Abracon_ABM8AIG-4Pin_3.2x2.5mm,51.0202,-66.3481,0.0,bottom
