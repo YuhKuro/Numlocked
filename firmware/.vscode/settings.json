@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "string.h": "c",
+        "stdio.h": "c",
+        "usb_descriptors.h": "c",
+        "math.h": "c",
+        "cstdint": "c",
+        "stdlib.h": "c"
+    }
+}

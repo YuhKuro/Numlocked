@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 
+add_compile_definitions(PICO_XOSC_STARTUP_DELAY_MULTIPLIER=64)
 
 #Set pico-sdk source directory. This is probably different for you!
 set(PICO_SDK_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../../pico-sdk")
@@ -10,7 +11,6 @@ pico_sdk_init()
 
 
 project(numlocked)
-
 
 
 
@@ -60,7 +60,7 @@ target_link_libraries(numlocked
 )
 
 #Enable USB
-pico_enable_stdio_usb(numlocked 1)
+#pico_enable_stdio_usb(numlocked 1)
 
 # Generate .uf2
 pico_add_extra_outputs(numlocked)
