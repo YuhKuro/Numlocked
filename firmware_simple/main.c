@@ -109,6 +109,7 @@ void gpio_initialize() {
 
     gpio_init(CAPS_LOCK_LED);
     gpio_set_dir(CAPS_LOCK_LED, GPIO_OUT); //Assert for caps on, deassert for caps off.
+    gpio_put(CAPS_LOCK_LED, 0); //start with LED off.
 
     gpio_init(SHIFT_REG_SH_LD);
     gpio_set_dir(SHIFT_REG_SH_LD, GPIO_OUT);
@@ -210,9 +211,43 @@ uint16_t tud_hid_get_report_cb(uint8_t instance, uint8_t report_id, hid_report_t
 
 // Invoked when received SET_REPORT control request or
 // received data on OUT endpoint ( Report ID = 0, Type = 0 )
-void tud_hid_set_report_cb(uint8_t instance, uint8_t report_id, hid_report_type_t report_type, uint8_t const* buffer, uint16_t bufsize)
+void tud_hid_set_report_cb(uint8_t instance, 
+                           uint8_t report_id, 
+                           hid_report_type_t report_type, 
+                           uint8_t const* buffer, 
+                           uint16_t bufsize)
 {
-  (void) instance;
+    (void) instance;
+    (void) report_id;
+
+    if (report_type == HID_REPORT_TYPE_OUTPUT && bufsize >= 1) {
+        uint8_t led_state = buffer[0];
+
+        bool caps_on   = led_state & KEYBOARD_LED_CAPSLOCK;
+        bool num_on    = led_state & KEYBOARD_LED_NUMLOCK;
+        bool scroll_on = led_state & KEYBOARD_LED_SCROLLLOCK;
+
+        if (caps_on) {
+            gpio_put(CAPS_LOCK_LED, 1); // Turn on Caps Lock LED
+        } else {
+            gpio_put(CAPS_LOCK_LED, 0); // Turn off Caps Lock LED
+        }
+
+        if (!num_on && scroll_on) {
+            gpio_set_dir(NUM_LOCK_SCROLL_LOCK_LED, GPIO_OUT);
+            gpio_put(NUM_LOCK_SCROLL_LOCK_LED, 1); // Turn on Num Lock LED
+        } else if (num_on && !scroll_on) {
+            gpio_set_dir(NUM_LOCK_SCROLL_LOCK_LED, GPIO_OUT);
+            gpio_put(NUM_LOCK_SCROLL_LOCK_LED, 0); // Turn on Scroll Lock LED
+        } else if (num_on && scroll_on) {
+          gpio_set_dir(NUM_LOCK_SCROLL_LOCK_LED, GPIO_OUT);
+          global.scrollNumPWM = true;
+        } else {
+          global.scrollNumPWM = false;
+          gpio_set_dir(NUM_LOCK_SCROLL_LOCK_LED, GPIO_IN); // Turn off both LEDs.
+        }
+
+    }
 }
 
 //--------------------------------------------------------------------+
@@ -257,6 +292,8 @@ int main(void)
   //tud_init(BOARD_TUD_RHPORT);
 
   gpio_initialize();
+
+
 
   if (board_init_after_tusb) {
     board_init_after_tusb();

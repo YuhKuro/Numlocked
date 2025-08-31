@@ -1,0 +1,3 @@
+/home/yuhkuro/projects/pico-sdk/src/common/pico_sync/include/pico/critical_section.h:44:6:critical_section_init	8	static
+/home/yuhkuro/projects/pico-sdk/src/common/pico_sync/include/pico/critical_section.h:51:6:critical_section_init_with_lock_num	0	static
+/home/yuhkuro/projects/pico-sdk/src/common/pico_sync/include/pico/critical_section.h:83:6:critical_section_deinit	16	static

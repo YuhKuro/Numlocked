@@ -1,0 +1,17 @@
+/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/tusb.c:46:6:tusb_init	8	static
+/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/tusb.c:60:6:tusb_inited	8	static
+/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/tusb.c:78:16:tu_desc_find	0	static
+/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/tusb.c:86:16:tu_desc_find2	8	static
+/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/tusb.c:94:16:tu_desc_find3	12	static
+/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/tusb.c:106:6:tu_edpt_claim	16	static
+/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/tusb.c:123:6:tu_edpt_release	16	static
+/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/tusb.c:137:6:tu_edpt_validate	0	static
+/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/tusb.c:171:6:tu_edpt_bind_driver	16	static
+/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/tusb.c:186:10:tu_desc_get_interface_total_len	12	static
+/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/tusb.c:217:6:tu_edpt_stream_init	48	static
+/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/tusb.c:233:6:tu_edpt_stream_deinit	0	static
+/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/tusb.c:287:6:tu_edpt_stream_write_zlp_if_needed	16	static
+/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/tusb.c:295:10:tu_edpt_stream_write_xfer	16	static
+/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/tusb.c:316:10:tu_edpt_stream_write	16	static
+/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/tusb.c:332:10:tu_edpt_stream_read_xfer	16	static
+/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/tusb.c:361:10:tu_edpt_stream_read	16	static

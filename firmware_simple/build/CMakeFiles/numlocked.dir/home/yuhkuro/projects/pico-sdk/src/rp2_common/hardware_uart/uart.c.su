@@ -1,0 +1,8 @@
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_uart/include/hardware/uart.h:280:6:uart_init	24	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_uart/include/hardware/uart.h:290:6:uart_deinit	0	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_uart/include/hardware/uart.h:312:6:uart_set_baudrate	24	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_uart/include/hardware/uart.h:348:6:uart_set_format	24	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_uart/include/hardware/uart.h:411:6:uart_set_fifo_enabled	24	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_uart/include/hardware/uart.h:561:6:uart_set_break	24	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_uart/include/hardware/uart.h:569:6:uart_set_translate_crlf	0	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_uart/include/hardware/uart.h:589:6:uart_is_readable_within_us	12	static

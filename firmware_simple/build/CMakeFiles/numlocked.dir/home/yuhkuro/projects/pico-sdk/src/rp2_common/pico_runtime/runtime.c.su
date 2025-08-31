@@ -1,0 +1,4 @@
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_runtime/runtime.c:45:13:first_per_core_initializer	0	static
+/home/yuhkuro/projects/pico-sdk/src/common/pico_base_headers/include/pico/assert.h:40:13:hard_assertion_failure	8	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_runtime/include/pico/runtime.h:50:6:runtime_run_initializers	16	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_runtime/include/pico/runtime.h:51:6:runtime_run_per_core_initializers	16	static

@@ -1,0 +1,2 @@
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_platform_panic/include/pico/platform/panic.h:31:32:panic	16	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_platform_panic/include/pico/platform/panic.h:20:32:panic_unsupported	8	static

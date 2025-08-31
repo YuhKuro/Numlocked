@@ -51,7 +51,6 @@ void tud_cdc_rx_cb(uint8_t itf)
 }
 
 
-*/
 
 void update_time() {
     absolute_time_t now = get_absolute_time();
@@ -72,6 +71,9 @@ void update_time() {
     }
 
 }
+
+*/
+
 
 /*WPM CALCULATOR*/
 /* Calculates the current WPM of the user by taking the number of keys typed, extrapolating to a minute
@@ -139,6 +141,7 @@ void cdc_animation() {
     	ssd1306_bmp_show_image(&disp, startup_frames[i], startUpFrameSize);
     }
     while (1) {
+        /*
 	if (multicore_fifo_rvalid()) {
 		uint8_t header = multicore_fifo_pop_blocking();
 		//New data from windows
@@ -172,6 +175,7 @@ void cdc_animation() {
 		}	
 		 
 	}
+        */
         int wpm = global.wpm;
 
         if (wpm == 0) {
@@ -226,7 +230,7 @@ void cdc_animation() {
         // Delay before showing the next frame
         sleep_ms(delay_time);
         calculate_wpm(board_millis());
-        update_time();
+        //update_time();
     }
 }
 

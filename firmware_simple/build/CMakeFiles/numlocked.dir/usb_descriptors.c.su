@@ -1,0 +1,4 @@
+/home/yuhkuro/projects/numlocked/firmware_simple/usb_descriptors.c:69:17:tud_descriptor_device_cb	0	static
+/home/yuhkuro/projects/numlocked/firmware_simple/usb_descriptors.c:89:17:tud_hid_descriptor_report_cb	0	static
+/home/yuhkuro/projects/numlocked/firmware_simple/usb_descriptors.c:169:17:tud_descriptor_configuration_cb	0	static
+/home/yuhkuro/projects/numlocked/firmware_simple/usb_descriptors.c:202:17:tud_descriptor_string_cb	80	static

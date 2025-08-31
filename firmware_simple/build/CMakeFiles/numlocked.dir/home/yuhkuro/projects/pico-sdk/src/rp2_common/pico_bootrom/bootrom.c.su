@@ -1,0 +1,4 @@
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_bootrom/include/pico/bootrom.h:129:7:rom_func_lookup	8	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_bootrom/include/pico/bootrom.h:137:7:rom_data_lookup	8	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_bootrom/include/pico/bootrom.h:150:6:rom_funcs_lookup	32	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_bootrom/include/pico/bootrom.h:259:32:rom_reset_usb_boot	16	static

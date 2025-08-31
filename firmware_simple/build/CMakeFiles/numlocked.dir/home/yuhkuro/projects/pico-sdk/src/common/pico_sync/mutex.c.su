@@ -1,0 +1,16 @@
+/home/yuhkuro/projects/pico-sdk/src/common/pico_sync/include/pico/mutex.h:308:6:runtime_init_mutex	16	static
+/home/yuhkuro/projects/pico-sdk/src/common/pico_sync/include/pico/mutex.h:73:6:mutex_init	8	static
+/home/yuhkuro/projects/pico-sdk/src/common/pico_sync/include/pico/mutex.h:82:6:recursive_mutex_init	8	static
+/home/yuhkuro/projects/pico-sdk/src/common/pico_sync/include/pico/mutex.h:92:6:mutex_enter_blocking	12	static
+/home/yuhkuro/projects/pico-sdk/src/common/pico_sync/include/pico/mutex.h:102:6:recursive_mutex_enter_blocking	12	static
+/home/yuhkuro/projects/pico-sdk/src/common/pico_sync/include/pico/mutex.h:115:6:mutex_try_enter	0	static
+/home/yuhkuro/projects/pico-sdk/src/common/pico_sync/include/pico/mutex.h:129:6:mutex_try_enter_block_until	24	static
+/home/yuhkuro/projects/pico-sdk/src/common/pico_sync/include/pico/mutex.h:143:6:recursive_mutex_try_enter	8	static
+/home/yuhkuro/projects/pico-sdk/src/common/pico_sync/include/pico/mutex.h:156:6:mutex_enter_timeout_ms	24	static
+/home/yuhkuro/projects/pico-sdk/src/common/pico_sync/include/pico/mutex.h:170:6:recursive_mutex_enter_timeout_ms	24	static
+/home/yuhkuro/projects/pico-sdk/src/common/pico_sync/include/pico/mutex.h:184:6:mutex_enter_timeout_us	24	static
+/home/yuhkuro/projects/pico-sdk/src/common/pico_sync/include/pico/mutex.h:198:6:recursive_mutex_enter_timeout_us	24	static
+/home/yuhkuro/projects/pico-sdk/src/common/pico_sync/include/pico/mutex.h:212:6:mutex_enter_block_until	32	static
+/home/yuhkuro/projects/pico-sdk/src/common/pico_sync/include/pico/mutex.h:226:6:recursive_mutex_enter_block_until	32	static
+/home/yuhkuro/projects/pico-sdk/src/common/pico_sync/include/pico/mutex.h:233:6:mutex_exit	0	static
+/home/yuhkuro/projects/pico-sdk/src/common/pico_sync/include/pico/mutex.h:240:6:recursive_mutex_exit	0	static

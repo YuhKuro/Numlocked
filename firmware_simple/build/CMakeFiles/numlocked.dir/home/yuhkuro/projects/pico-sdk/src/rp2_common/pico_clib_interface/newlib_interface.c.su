@@ -1,0 +1,17 @@
+/usr/include/newlib/sys/unistd.h:18:6:_exit	0	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c:50:14:_sbrk	0	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c:79:12:_gettimeofday	8	static
+/usr/include/newlib/sys/time.h:423:5:settimeofday	24	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c:96:12:_times	16	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c:108:14:_getpid	0	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c:112:12:_kill	0	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c:116:27:_read	8	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c:125:27:_write	8	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c:135:27:_open	0	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c:139:27:_close	0	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c:143:29:_lseek	0	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c:147:27:_fstat	0	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c:151:27:_isatty	0	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c:156:6:exit	8	static
+/usr/include/newlib/assert.h:41:6:__assert_func	24	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_runtime/include/pico/runtime.h:48:6:runtime_init	16	static

@@ -1,0 +1,11 @@
+/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c:123:17:prepare_ep_buffer	32	static
+/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c:223:17:sync_ep_buffer	20	static
+/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c:255:13:_hw_endpoint_xfer_sync	8	static
+/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c:358:13:e15_is_bulkin_ep	0	static
+/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c:365:13:e15_is_critical_frame_period	8	static
+/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c:65:6:rp2040_usb_init	8	static
+/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c:89:6:hw_endpoint_reset_transfer	0	static
+/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c:96:6:_hw_endpoint_buffer_control_update32	8	static
+/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c:155:6:hw_endpoint_start_next_buffer	16	static
+/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c:194:6:hw_endpoint_xfer_start	8	static
+/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c:302:6:hw_endpoint_xfer_continue	16	static

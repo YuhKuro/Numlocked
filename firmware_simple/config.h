@@ -37,7 +37,6 @@
 
 #define TOTAL_BITS 120 //The total number of keys on the keyboard. 8-bits x 15 shift regs = 120 bits.
 
-#define TOTAL_KEYS 120  //Modify this to add keys not handled by the shift registers: e.g. encoder button.
 
 
 
@@ -51,6 +50,8 @@
 
 #define TIME_BUFFER_SIZE 8
 
+#define QUEUE_SIZE 10
+
 
 typedef struct {
     uint32_t last_interrupt_time;
@@ -62,6 +63,9 @@ typedef struct {
     volatile bool rightSideConnected;
     volatile bool numpadConnected;
     volatile uint8_t lastEncoderState;
+    bool scrollNumPWM;
+    int bufferFrames;
+    
 } globalVariables;
 
 extern globalVariables global; 

@@ -1,0 +1,15 @@
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_printf/printf.c:128:20:_out_buffer	0	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_printf/printf.c:135:20:_out_null	0	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_printf/printf.c:180:15:_out_rev	40	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_printf/printf.c:208:15:_ntoa_format	48	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_printf/printf.c:913:20:_out_char	8	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_printf/printf.c:143:20:_out_fct	8	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_printf/printf.c:447:15:_etoa	136	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_printf/printf.c:322:15:_ftoa	120	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_printf/printf.c:561:12:_vsnprintf	184	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_printf/printf.c:876:5:__wrap_sprintf	28	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_printf/printf.c:884:5:__wrap_snprintf	32	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_printf/printf.c:892:5:__wrap_vsnprintf	24	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_printf/include/pico/printf.h:80:5:vfctprintf	32	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_printf/include/pico/printf.h:65:25:weak_raw_printf	32	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_printf/include/pico/printf.h:66:6:weak_raw_vprintf	24	static

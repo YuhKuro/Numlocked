@@ -1,0 +1,9 @@
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_watchdog/include/hardware/watchdog.h:62:6:watchdog_start_tick	8	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_watchdog/include/hardware/watchdog.h:68:6:watchdog_update	0	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_watchdog/include/hardware/watchdog.h:133:10:watchdog_get_time_remaining_ms	0	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c:43:6:_watchdog_enable	8	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_watchdog/include/hardware/watchdog.h:87:6:watchdog_enable	8	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_watchdog/include/hardware/watchdog.h:93:6:watchdog_disable	0	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_watchdog/include/hardware/watchdog.h:54:6:watchdog_reboot	8	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_watchdog/include/hardware/watchdog.h:102:6:watchdog_caused_reboot	0	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_watchdog/include/hardware/watchdog.h:121:6:watchdog_enable_caused_reboot	0	static

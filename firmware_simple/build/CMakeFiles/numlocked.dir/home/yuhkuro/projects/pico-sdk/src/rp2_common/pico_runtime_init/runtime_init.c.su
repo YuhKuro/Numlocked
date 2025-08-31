@@ -1,0 +1,6 @@
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_runtime_init/include/pico/runtime_init.h:141:6:runtime_init_early_resets	0	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_runtime_init/include/pico/runtime_init.h:163:6:runtime_init_usb_power_down	0	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_runtime_init/include/pico/runtime_init.h:255:6:runtime_init_post_clock_resets	0	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_runtime_init/include/pico/runtime_init.h:281:6:runtime_init_rp2040_gpio_ie_disable	0	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_runtime_init/include/pico/runtime_init.h:305:6:runtime_init_spin_locks_reset	8	static
+/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c:203:6:runtime_init_install_ram_vector_table	16	static
