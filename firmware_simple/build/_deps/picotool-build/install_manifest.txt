@@ -1,5 +1,0 @@
-/home/yuhkuro/projects/numlocked/firmware_simple/build/_deps/picotool/picotool
-/home/yuhkuro/projects/numlocked/firmware_simple/build/_deps/picotool/picotoolTargets.cmake
-/home/yuhkuro/projects/numlocked/firmware_simple/build/_deps/picotool/picotoolTargets-release.cmake
-/home/yuhkuro/projects/numlocked/firmware_simple/build/_deps/picotool/picotoolConfig.cmake
-/home/yuhkuro/projects/numlocked/firmware_simple/build/_deps/picotool/picotoolConfigVersion.cmake

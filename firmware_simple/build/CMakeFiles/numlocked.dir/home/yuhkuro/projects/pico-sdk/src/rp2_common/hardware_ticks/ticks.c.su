@@ -1,3 +1,0 @@
-/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_ticks/include/hardware/ticks.h:56:6:tick_start	0	static
-/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_ticks/include/hardware/ticks.h:64:6:tick_stop	0	static
-/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_ticks/include/hardware/ticks.h:72:6:tick_is_running	0	static

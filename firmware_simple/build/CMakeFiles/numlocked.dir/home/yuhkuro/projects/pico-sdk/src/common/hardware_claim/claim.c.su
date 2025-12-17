@@ -1,6 +1,0 @@
-/home/yuhkuro/projects/pico-sdk/src/common/hardware_claim/include/hardware/claim.h:93:10:hw_claim_lock	0	static
-/home/yuhkuro/projects/pico-sdk/src/common/hardware_claim/include/hardware/claim.h:102:6:hw_claim_unlock	0	static
-/home/yuhkuro/projects/pico-sdk/src/common/hardware_claim/include/hardware/claim.h:70:6:hw_is_claimed	0	static
-/home/yuhkuro/projects/pico-sdk/src/common/hardware_claim/include/hardware/claim.h:47:6:hw_claim_or_assert	16	static
-/home/yuhkuro/projects/pico-sdk/src/common/hardware_claim/include/hardware/claim.h:59:5:hw_claim_unused_from_range	32	static
-/home/yuhkuro/projects/pico-sdk/src/common/hardware_claim/include/hardware/claim.h:80:6:hw_claim_clear	12	static

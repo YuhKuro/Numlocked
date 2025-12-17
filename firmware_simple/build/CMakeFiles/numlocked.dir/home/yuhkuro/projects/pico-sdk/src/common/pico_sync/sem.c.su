@@ -1,9 +1,0 @@
-/home/yuhkuro/projects/pico-sdk/src/common/pico_sync/include/pico/sem.h:45:6:sem_init	16	static
-/home/yuhkuro/projects/pico-sdk/src/common/pico_sync/include/pico/sem.h:53:5:sem_available	0	static
-/home/yuhkuro/projects/pico-sdk/src/common/pico_sync/include/pico/sem.h:83:6:sem_acquire_blocking	8	static
-/home/yuhkuro/projects/pico-sdk/src/common/pico_sync/include/pico/sem.h:96:6:sem_acquire_timeout_ms	24	static
-/home/yuhkuro/projects/pico-sdk/src/common/pico_sync/include/pico/sem.h:109:6:sem_acquire_timeout_us	24	static
-/home/yuhkuro/projects/pico-sdk/src/common/pico_sync/include/pico/sem.h:123:6:sem_acquire_block_until	32	static
-/home/yuhkuro/projects/pico-sdk/src/common/pico_sync/include/pico/sem.h:134:6:sem_try_acquire	0	static
-/home/yuhkuro/projects/pico-sdk/src/common/pico_sync/include/pico/sem.h:64:6:sem_release	8	static
-/home/yuhkuro/projects/pico-sdk/src/common/pico_sync/include/pico/sem.h:74:6:sem_reset	0	static

@@ -1,4 +1,4 @@
-/* 
+/*
  * The MIT License (MIT)
  *
  * Copyright (c) 2019 Ha Thach (tinyusb.org)
@@ -23,7 +23,7 @@
  *
  */
 
-#include "pico/unique_id.h"
+#include "bsp/board_api.h"
 #include "tusb.h"
 #include "usb_descriptors.h"
 
@@ -78,9 +78,7 @@ uint8_t const * tud_descriptor_device_cb(void)
 uint8_t const desc_hid_report[] =
 {
   TUD_HID_REPORT_DESC_KEYBOARD( HID_REPORT_ID(REPORT_ID_KEYBOARD         )),
-  TUD_HID_REPORT_DESC_MOUSE   ( HID_REPORT_ID(REPORT_ID_MOUSE            )),
-  TUD_HID_REPORT_DESC_CONSUMER( HID_REPORT_ID(REPORT_ID_CONSUMER_CONTROL )),
-  TUD_HID_REPORT_DESC_GAMEPAD ( HID_REPORT_ID(REPORT_ID_GAMEPAD          ))
+  TUD_HID_REPORT_DESC_CONSUMER( HID_REPORT_ID(REPORT_ID_CONSUMER_CONTROL ))
 };
 
 // Invoked when received GET HID REPORT DESCRIPTOR
@@ -112,7 +110,7 @@ uint8_t const desc_configuration[] =
   TUD_CONFIG_DESCRIPTOR(1, ITF_NUM_TOTAL, 0, CONFIG_TOTAL_LEN, TUSB_DESC_CONFIG_ATT_REMOTE_WAKEUP, 100),
 
   // Interface number, string index, protocol, report descriptor len, EP In address, size & polling interval
-  TUD_HID_DESCRIPTOR(ITF_NUM_HID, 0, HID_ITF_PROTOCOL_NONE, sizeof(desc_hid_report), EPNUM_HID, CFG_TUD_HID_EP_BUFSIZE, 5)
+  TUD_HID_DESCRIPTOR(ITF_NUM_HID, 0, HID_ITF_PROTOCOL_NONE, sizeof(desc_hid_report), EPNUM_HID, CFG_TUD_HID_EP_BUFSIZE, 1)
 };
 
 #if TUD_OPT_HIGH_SPEED
@@ -178,56 +176,63 @@ uint8_t const * tud_descriptor_configuration_cb(uint8_t index)
 // String Descriptors
 //--------------------------------------------------------------------+
 
-// buffer to hold flash ID
-char serial[2 * PICO_UNIQUE_BOARD_ID_SIZE_BYTES + 1];
-
-// array of pointer to string descriptors
-char const* string_desc_arr [] =
-{
-  (const char[]) { 0x09, 0x04 }, // 0: is supported language is English (0x0409)
-  "YK",                     // 1: Manufacturer
-  "Numlocked Shift",              // 2: Product
-  serial,                        // 3: Serials, uses the flash ID
+// String Descriptor Index
+enum {
+  STRID_LANGID = 0,
+  STRID_MANUFACTURER,
+  STRID_PRODUCT,
+  STRID_SERIAL,
 };
 
-static uint16_t _desc_str[32];
+// array of pointer to string descriptors
+char const *string_desc_arr[] =
+{
+  (const char[]) { 0x09, 0x04 }, // 0: is supported language is English (0x0409)
+  "Numlocked",                     // 1: Manufacturer
+  "Numlocked Keyboard",              // 2: Product
+  NULL,                               // 3: Serials will use unique ID if possible
+};
+
+static uint16_t _desc_str[32 + 1];
 
 // Invoked when received GET STRING DESCRIPTOR request
 // Application return pointer to descriptor, whose contents must exist long enough for transfer to complete
-uint16_t const* tud_descriptor_string_cb(uint8_t index, uint16_t langid)
-{
+uint16_t const *tud_descriptor_string_cb(uint8_t index, uint16_t langid) {
   (void) langid;
+  size_t chr_count;
 
-  uint8_t chr_count;
+  switch ( index ) {
+    case STRID_LANGID:
+      memcpy(&_desc_str[1], string_desc_arr[0], 2);
+      chr_count = 1;
+      break;
 
-  if ( index == 0)
-  {
-    memcpy(&_desc_str[1], string_desc_arr[0], 2);
-    chr_count = 1;
-  }else
-  {
-    // Note: the 0xEE index string is a Microsoft OS 1.0 Descriptors.
-    // https://docs.microsoft.com/en-us/windows-hardware/drivers/usbcon/microsoft-defined-usb-descriptors
+    case STRID_SERIAL:
+      chr_count = board_usb_get_serial(_desc_str + 1, 32);
+      break;
 
-    if (index == 3) pico_get_unique_board_id_string(serial, sizeof(serial));
-    
-    if ( !(index < sizeof(string_desc_arr)/sizeof(string_desc_arr[0])) ) return NULL;
+    default:
+      // Note: the 0xEE index string is a Microsoft OS 1.0 Descriptors.
+      // https://docs.microsoft.com/en-us/windows-hardware/drivers/usbcon/microsoft-defined-usb-descriptors
 
-    const char* str = string_desc_arr[index];
+      if ( !(index < sizeof(string_desc_arr) / sizeof(string_desc_arr[0])) ) return NULL;
 
-    // Cap at max char
-    chr_count = strlen(str);
-    if ( chr_count > 31 ) chr_count = 31;
+      const char *str = string_desc_arr[index];
 
-    // Convert ASCII string into UTF-16
-    for(uint8_t i=0; i<chr_count; i++)
-    {
-      _desc_str[1+i] = str[i];
-    }
+      // Cap at max char
+      chr_count = strlen(str);
+      size_t const max_count = sizeof(_desc_str) / sizeof(_desc_str[0]) - 1; // -1 for string type
+      if ( chr_count > max_count ) chr_count = max_count;
+
+      // Convert ASCII string into UTF-16
+      for ( size_t i = 0; i < chr_count; i++ ) {
+        _desc_str[1 + i] = str[i];
+      }
+      break;
   }
 
   // first byte is length (including header), second byte is string type
-  _desc_str[0] = (TUSB_DESC_STRING << 8 ) | (2*chr_count + 2);
+  _desc_str[0] = (uint16_t) ((TUSB_DESC_STRING << 8) | (2 * chr_count + 2));
 
   return _desc_str;
 }

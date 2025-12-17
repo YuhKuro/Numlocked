@@ -1,4 +1,0 @@
-/home/yuhkuro/projects/pico-sdk/src/common/pico_time/timeout_helper.c:9:13:check_single_timeout_us	8	static
-/home/yuhkuro/projects/pico-sdk/src/common/pico_time/timeout_helper.c:18:13:check_per_iteration_timeout_us	24	static
-/home/yuhkuro/projects/pico-sdk/src/common/pico_time/include/pico/timeout_helper.h:23:18:init_single_timeout_until	0	static
-/home/yuhkuro/projects/pico-sdk/src/common/pico_time/include/pico/timeout_helper.h:24:18:init_per_iteration_timeout_us	16	static

@@ -1,8 +1,0 @@
-/home/yuhkuro/projects/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c:65:6:get_bootsel_button	8	static
-/home/yuhkuro/projects/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c:127:6:board_init	8	static
-/home/yuhkuro/projects/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c:187:6:board_led_write	0	static
-/home/yuhkuro/projects/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c:195:10:board_button_read	8	static
-/home/yuhkuro/projects/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c:203:8:board_get_unique_id	24	static
-/home/yuhkuro/projects/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c:214:5:board_uart_read	12	static
-/home/yuhkuro/projects/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c:228:5:board_uart_write	20	static
-/home/yuhkuro/projects/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c:241:5:board_getchar	8	static

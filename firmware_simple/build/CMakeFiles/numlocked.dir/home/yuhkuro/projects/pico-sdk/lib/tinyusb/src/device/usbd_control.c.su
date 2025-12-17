@@ -1,7 +1,0 @@
-/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/device/usbd_control.c:38:19:dcd_edpt0_status_complete	0	static
-/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/device/usbd_control.c:81:6:tud_control_status	24	static
-/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/device/usbd_control.c:111:6:tud_control_xfer	32	static
-/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/device/usbd_control.c:142:6:usbd_control_reset	8	static
-/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/device/usbd_control.c:147:6:usbd_control_set_complete_callback	0	static
-/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/device/usbd_control.c:152:6:usbd_control_set_request	16	static
-/home/yuhkuro/projects/pico-sdk/lib/tinyusb/src/device/usbd_control.c:162:6:usbd_control_xfer_cb	16	static

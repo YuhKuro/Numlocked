@@ -90,8 +90,8 @@ bool ssd1306_init(ssd1306_t *p, uint16_t width, uint16_t height, uint8_t address
         // charge pump
         SET_CHARGE_PUMP,
         p->external_vcc?0x10:0x14,
-        SET_SEG_REMAP | 0x01,           // column addr 127 mapped to SEG0
-        SET_COM_OUT_DIR | 0x08,         // scan from COM[N] to COM0
+        SET_SEG_REMAP | 0x00,           // column addr 127 mapped to SEG0
+        SET_COM_OUT_DIR | 0x00,         // scan from COM[N] to COM0
         SET_COM_PIN_CFG,
         width>2*height?0x02:0x12,
         // display

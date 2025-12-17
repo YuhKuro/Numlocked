@@ -1,4 +1,0 @@
-/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_malloc/malloc.c:35:7:__wrap_malloc	16	static
-/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_malloc/malloc.c:54:7:__wrap_calloc	24	static
-/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_malloc/malloc.c:73:7:__wrap_realloc	16	static
-/home/yuhkuro/projects/pico-sdk/src/rp2_common/pico_malloc/malloc.c:92:6:__wrap_free	16	static

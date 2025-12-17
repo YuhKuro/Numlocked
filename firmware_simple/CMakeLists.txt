@@ -10,6 +10,20 @@ target_sources(dev_hid_composite PUBLIC
         ${CMAKE_CURRENT_LIST_DIR}/ssd1306.c
         )
 
+
+target_compile_options(dev_hid_composite PRIVATE 
+    -Wall 
+    -Wextra 
+    -Wuninitialized 
+    -Warray-bounds
+    -Wstack-usage=2048
+    -g3 
+    -O0
+    -fno-omit-frame-pointer
+    -fstack-usage
+)
+
+
 # Make sure TinyUSB can find tusb_config.h
 target_include_directories(dev_hid_composite PUBLIC
         ${CMAKE_CURRENT_LIST_DIR})

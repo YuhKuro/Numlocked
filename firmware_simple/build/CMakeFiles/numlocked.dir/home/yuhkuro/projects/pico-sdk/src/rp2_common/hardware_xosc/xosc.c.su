@@ -1,3 +1,0 @@
-/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_xosc/include/hardware/xosc.h:37:6:xosc_init	0	static
-/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_xosc/include/hardware/xosc.h:44:6:xosc_disable	0	static
-/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_xosc/include/hardware/xosc.h:53:6:xosc_dormant	0	static

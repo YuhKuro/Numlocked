@@ -1,7 +1,0 @@
-/home/yuhkuro/projects/pico-sdk/src/common/pico_util/include/pico/util/datetime.h:32:6:datetime_to_str	40	static
-/home/yuhkuro/projects/pico-sdk/src/common/pico_util/include/pico/util/datetime.h:34:6:time_to_datetime	56	static
-/home/yuhkuro/projects/pico-sdk/src/common/pico_util/include/pico/util/datetime.h:35:6:datetime_to_time	48	static
-/home/yuhkuro/projects/pico-sdk/src/common/pico_util/include/pico/util/datetime.h:39:10:timespec_to_ms	16	static
-/home/yuhkuro/projects/pico-sdk/src/common/pico_util/include/pico/util/datetime.h:41:6:ms_to_timespec	8	static
-/home/yuhkuro/projects/pico-sdk/src/common/pico_util/include/pico/util/datetime.h:40:10:timespec_to_us	24	static
-/home/yuhkuro/projects/pico-sdk/src/common/pico_util/include/pico/util/datetime.h:42:6:us_to_timespec	8	static

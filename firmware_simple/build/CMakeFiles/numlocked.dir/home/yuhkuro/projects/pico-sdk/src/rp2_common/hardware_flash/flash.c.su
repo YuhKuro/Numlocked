@@ -1,9 +1,0 @@
-/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_flash/flash.c:38:13:flash_init_boot2_copyout	8	static
-/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_flash/flash.c:55:13:flash_enable_xip_via_boot2	8	static
-/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_flash/flash.c:131:13:flash_cs_force.constprop	0	static
-/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_flash/flash.c:131:13:flash_cs_force.constprop	0	static
-/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_flash/include/hardware/flash.h:67:6:flash_range_erase	32	static
-/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_flash/include/hardware/flash.h:120:6:flash_flush_cache	8	static
-/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_flash/include/hardware/flash.h:81:6:flash_range_program	40	static
-/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_flash/include/hardware/flash.h:118:6:flash_do_cmd	32	static
-/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_flash/include/hardware/flash.h:93:6:flash_get_unique_id	40	static

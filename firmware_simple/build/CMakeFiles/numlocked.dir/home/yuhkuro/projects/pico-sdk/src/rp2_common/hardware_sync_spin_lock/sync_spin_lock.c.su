@@ -1,2 +1,0 @@
-/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_sync_spin_lock/include/hardware/sync/spin_lock.h:350:6:spin_locks_reset	0	static
-/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_sync_spin_lock/include/hardware/sync/spin_lock.h:345:14:spin_lock_init	0	static

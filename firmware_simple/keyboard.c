@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include "hardware/gpio.h"
 #include "bsp/board_api.h"
-
+#include "oled_cdc.h"
 
 
 //static uint8_t last_state = 0b11;  // Initialize with the idle state (11)
@@ -21,89 +21,79 @@
 typedef struct {
     uint8_t lastEightSamples;               //00000101
     bool held;
+    uint8_t initialPress;                   //00: not pressed 01: first press 10: already read.
 } keyStatus_t;
 
-typedef struct {
-    uint8_t items[QUEUE_SIZE];
-    int start;
-    int end;
-    int count;
-} keyQueue_t;
 
-void initialize_queue(keyQueue_t* q){
-    q->start = 0;
-    q->end = 0;
-    q->count = 0;
-}
 
-bool is_queue_empty(keyQueue_t* q){
+
+bool is_queue_empty(queue_t* q){
     return q->count == 0;
 }
 
-bool is_queue_full (keyQueue_t* q) {
+bool is_queue_full (queue_t* q) {
     return q->count == QUEUE_SIZE; 
 }
 
-void enqueue (keyQueue_t* q, uint8_t key) {
+void enqueue (queue_t* q, uint8_t input) {
     if (is_queue_full(q)) return;
-    q->items[q->end] = key;
+    q->items[q->end] = input;
     q->end = (q->end + 1) % QUEUE_SIZE;
     q->count++;
 }
 
-int dequeue(keyQueue_t* q) {
+uint8_t dequeue_when_ready(queue_t* q, uint32_t currentCycle) {
     if (is_queue_empty(q)) return -1;
-    uint8_t key = q->items[q->start];
+
+    if (((currentCycle - q->enqueue_cycle[q->start]) & 31) != 0){
+        return -1; // Not ready yet
+    }
+
+    uint8_t output = q->items[q->start];
     q->start = (q->start + 1) % QUEUE_SIZE;
     q->count--;
-    return key;
+    return output;
 }
 
 keyStatus_t keyStatus[TOTAL_BITS] = {0};
 
-keyQueue_t queue = {0};
+queue_t keyQueue = {0};
 
 
-void encoderCallBack(uint gpio, uint32_t events) {
+static void calculate_wpm(uint32_t current_time) {
 
-    static uint32_t lastValidTime = 0;
-    uint32_t currentTime = board_millis();
-
-    if ((currentTime - lastValidTime) < 20) {
+    if (keyboard.last_wpm_calc_time == 0) {
+        keyboard.last_wpm_calc_time = current_time;
         return;
     }
-    lastValidTime = currentTime;
+    uint32_t time_elapsed_ms = current_time - keyboard.last_wpm_calc_time;
 
-
-    uint8_t enc_a_state = gpio_get(MAIN_ENC_A);
-    uint8_t enc_b_state = gpio_get(MAIN_ENC_B);
-
-    uint8_t currentEncoderState = (enc_a_state << 1) | enc_b_state;
-
-    uint16_t volumeUp = HID_USAGE_CONSUMER_VOLUME_INCREMENT;
-    uint16_t volumeDown = HID_USAGE_CONSUMER_VOLUME_DECREMENT;
-    uint16_t release = 0;
-    // Determine direction by comparing the current state to the previous state
-    if ((global.lastEncoderState == 0b11 && currentEncoderState == 0b01) ||
-        (global.lastEncoderState == 0b01 && currentEncoderState == 0b00) ||
-        (global.lastEncoderState == 0b00 && currentEncoderState == 0b10) ||
-        (global.lastEncoderState == 0b10 && currentEncoderState == 0b11)) {
-        tud_hid_report(REPORT_ID_CONSUMER_CONTROL, &volumeUp, 2);
-	    sleep_ms(10);
-	    tud_hid_report(REPORT_ID_CONSUMER_CONTROL, &release, 2);
-    } else if ((global.lastEncoderState == 0b11 && currentEncoderState == 0b10) ||
-               (global.lastEncoderState == 0b10 && currentEncoderState == 0b00) ||
-               (global.lastEncoderState == 0b00 && currentEncoderState == 0b01) ||
-               (global.lastEncoderState == 0b01 && currentEncoderState == 0b11)) {
- 
-        tud_hid_report(REPORT_ID_CONSUMER_CONTROL, &volumeDown, 2);
-	    tud_hid_report(REPORT_ID_CONSUMER_CONTROL, &release, 2);	
-    }
     
+    if (time_elapsed_ms >= WPM_CALC_INTERVAL_MS) {
+        if (keyboard.characters_typed > 0) {
+            // Calculate WPM only if new characters were typed
+            double time_elapsed_min = (double)time_elapsed_ms / 60000.0;  // Convert ms to minutes
+            double current_wpm = ((double)keyboard.characters_typed / CHARACTERS_PER_WORD) / time_elapsed_min;
 
-    // Update the last state with the current state
-    global.lastEncoderState = currentEncoderState;
+            // Update WPM directly with new value, no rolling average
+            global.wpm = (uint32_t)current_wpm;
+
+            // Reset characters_typed for the next interval
+            keyboard.characters_typed = 0;
+        } else {
+            // No new characters typed: Decay WPM towards zero
+           if (global.wpm > 0) {
+                int decay_amount = 5; // Amount to decay per interval
+                global.wpm = (global.wpm > decay_amount) ? global.wpm - decay_amount : 0;
+            }
+        }
+
+        // Update the last calculation time
+        keyboard.last_wpm_calc_time = current_time;
+    }
 }
+
+
 
 
 
@@ -118,27 +108,37 @@ static uint8_t key_modifier_bit(uint8_t key) {
     if (bit_pos >= 8) return 0; // Safety check
     return 1 << bit_pos;
 }
-void get_keyboard_status(uint8_t* key_report, size_t len){
+bool get_keyboard_status(uint8_t* key_report, size_t len){
 
-    if (global.bufferFrames != 0) {
-        global.bufferFrames--;
+    static uint32_t cycle = 0;
+    cycle++;
+    if (to_ms_since_boot(get_absolute_time()) < keyboard.quietUntil) {
         memset(key_report, 0, len);
-        return;
+        return false;
     }
 
-    uint8_t keyState[TOTAL_BITS] = {0};
+    bool keyState[TOTAL_BITS] = {0};
 
     int keyIndex = 2;  // Start filling regular key codes from the third byte
     bool anyKeyPressed = false;  // Flag to check if any key is pressed
 
-    if (!is_queue_empty(&queue)) {
-        key_report[keyIndex++] = dequeue(&queue);
-        anyKeyPressed = true;
+    if (!is_queue_empty(&keyQueue)) {
+        uint8_t item = dequeue_when_ready(&keyQueue, cycle);
+        if (item != (uint8_t)-1) {
+            key_report[keyIndex++] = item;
+            anyKeyPressed = true;
+        }
     }
 
-    uint8_t *key_map= (global.rightSideConnected && !global.numpadConnected) ? key_map_noright:key_map_standard;
+    uint8_t *key_map= (!global.rightSideConnected && global.numpadConnected) ? key_map_noright:key_map_standard;
 
-    uint8_t startKeyboardState = (global.rightSideConnected << 1 | global.numpadConnected);
+
+    int loopIterations = TOTAL_BITS;
+    if (!(global.rightSideConnected) && !(global.numpadConnected)) {
+        loopIterations = 40;
+    } else if ((global.rightSideConnected) && !(global.numpadConnected)){
+        loopIterations = 96;
+    }
 
     gpio_put(SHIFT_REG_SH_LD, 0); // Set shift register shift/~load pin low to load in data.
     sleep_us(1);              // Short delay
@@ -146,60 +146,91 @@ void get_keyboard_status(uint8_t* key_report, size_t len){
     sleep_us(1);              // Short delay
     
     //This loop shifts the data for n number of keys to read the state of each key.
-    for (int i = 0; i < TOTAL_BITS; i++) {
-
-        uint8_t currentKeyboardState = (global.rightSideConnected << 1 | global.numpadConnected);
-
-        if (currentKeyboardState != startKeyboardState){
+    for (int i = 0; i < loopIterations; i++) {
+        if (keyboard.keyboardStateChanged == true) {
+            anyKeyPressed = false;
+            keyboard.keyboardStateChanged = false;
+            keyboard.quietUntil = to_ms_since_boot(get_absolute_time()) + 500;
             memset(key_report, 0, len);
-            global.bufferFrames = 8;
+            return false;
             break;
         }
 
         bool currentPressed = gpio_get(SHIFT_REG_SERIAL_OUT) ? 0 : 1; // Read the bit, flip it so 0 means not pressed, 1 means pressed.
 
         uint8_t key = key_map[i];
-        if (global.gameMode && (key == HID_KEY_GUI_LEFT || key == HID_KEY_GUI_RIGHT)) { //if game mode is active, skip windows.
-            continue;  
+
+        if (key == HID_KEY_F20){
+            gpio_put(SHIFT_REG_CLK, 1);  // Pulse the clock to shift the data
+            sleep_us(1);              // Short delay
+            gpio_put(SHIFT_REG_CLK, 0);  // Reset clock to low
+            sleep_us(1);              // Short delay
+            continue; //skip these. 
         }
-
-        keyStatus[i].lastEightSamples = ((keyStatus[i].lastEightSamples << 1) | (currentPressed & 1)) & 0xFF;       
         
+        // Shift in the new sample
+        keyStatus[i].lastEightSamples = ((keyStatus[i].lastEightSamples << 1) | (currentPressed & 1)) & 0xFF;
 
-        
-        if (currentPressed && !keyStatus[i].held && ((keyStatus[i].lastEightSamples & 0x1F) == 0)) {           //we check against the last 5 keys.          
-            //new press, last five presses were 0.
+        // Rising edge detection after debounce
+        if (currentPressed && ((keyStatus[i].held) ||((keyStatus[i].lastEightSamples & 0x1F) == 0x1F))) {  
             keyState[i] = true;
-        } else if (currentPressed && ((keyStatus[i].held) ||((keyStatus[i].lastEightSamples & 0x1F) == 0x1F))) {   
-            keyStatus[i].held = true;
-            keyState[i] = true;
+            if ((keyStatus[i].initialPress & 0x03) == 0x00) {
+                keyStatus[i].initialPress = 0x01; 
+            }
         } else if (!currentPressed) {
-            keyStatus[i].held = false;
+            keyStatus[i].initialPress = 0x00; 
             keyState[i] = false;
+
         }
-            
+
+
         if (keyState[i]){
             anyKeyPressed = true;
 
             if (key_is_modifier(key)) { 
-                key_report[0] |= key_modifier_bit(key);
+                if (!global.gameMode || !(key == HID_KEY_GUI_LEFT || key == HID_KEY_GUI_RIGHT)) { //if game mode is active, skip windows.
+                    key_report[0] |= key_modifier_bit(key);
+                }
             } else {
                 if (keyIndex < 8) {
                     switch (key){
                         case HID_KEY_F13:
                             key_report[0] |= key_modifier_bit(HID_KEY_GUI_LEFT);
                             key_report[keyIndex++] = HID_KEY_SPACE;
-                            enqueue(&queue, HID_KEY_GRAVE);
+                            if ((keyStatus[i].initialPress & 0x03) == 0x01){
+                                enqueue(&keyQueue, HID_KEY_GRAVE);
+                                keyStatus[i].initialPress = 0x02;
+                            } 
                             break;
                         case HID_KEY_F14:
+                            if ((keyStatus[i].initialPress & 0x03) == 0x01){
+                                keyboard.pauseFlag = true;
+                                keyStatus[i].initialPress = 0x02;
+                            } 
+                            break;
                         case HID_KEY_F15:
+                            key_report[0] |= key_modifier_bit(HID_KEY_GUI_LEFT);
+                            key_report[0] |= key_modifier_bit(HID_KEY_SHIFT_LEFT);
+                            key_report[keyIndex++] = HID_KEY_S;
+                            break;
                         case HID_KEY_F16:
+                            key_report[keyIndex++] = HID_KEY_SCROLL_LOCK;
+                            break;
+                        case HID_KEY_F18:
+                            //Numpad volume knob. Set flag for pause/play handled by main.
+                            if ((keyStatus[i].initialPress & 0x03) == 0x01){
+                                keyboard.pauseFlag = true;
+                                keyStatus[i].initialPress = 0x02;   
+                            }
+                            break;
                         case HID_KEY_F17:
                         default: 
                             key_report[keyIndex++] = key;
-                            if ((key != HID_KEY_SPACE) && (keyStatus[i].held == false)) {
-                                global.characters_typed++;
+                             if ((key != HID_KEY_SPACE) && (key != HID_KEY_BACKSPACE) && ((keyStatus[i].initialPress & 0x03) == 0x01))  {
+                                keyboard.characters_typed++;
+                                keyStatus[i].initialPress = 0x02;
                             }
+                        break;
 
                     }
                   
@@ -208,18 +239,40 @@ void get_keyboard_status(uint8_t* key_report, size_t len){
 
         }
         gpio_put(SHIFT_REG_CLK, 1);  // Pulse the clock to shift the data
-        sleep_us(1);              // Short delay
+        //sleep_us(1);              // Short delay
         gpio_put(SHIFT_REG_CLK, 0);  // Reset clock to low
-        sleep_us(1);              // Short delay
+        //sleep_us(1);              // Short delay
     }
+    if (key_report[0] & key_modifier_bit(HID_KEY_ALT_LEFT) && key_report[2] == HID_KEY_BACKSPACE) {
+        global.gameMode = !global.gameMode;
+    }
+
+    calculate_wpm(board_millis());
+    
+
+    if (keyboard.numEncoderDelta >= ENCODER_STEPS_PER_INDENT){
+        //arrow right to forward video, add to keyreport if keyIndex < 8
+        if (keyIndex < 8) {
+            key_report[keyIndex++] = HID_KEY_ARROW_RIGHT;
+            anyKeyPressed = true;
+            keyboard.numEncoderDelta = 0;
+        }
+    } else if (keyboard.numEncoderDelta <= -ENCODER_STEPS_PER_INDENT){
+        //arrow left to rewind video, add to keyreport if keyIndex < 8
+        if (keyIndex < 8) {
+            key_report[keyIndex++] = HID_KEY_ARROW_LEFT;
+            anyKeyPressed = true;
+            keyboard.numEncoderDelta = 0;
+        }
+    }
+
 
     if (!anyKeyPressed) {
         memset(key_report, 0, len);
+        return false;
     }
     
-    if (key_report[0] & key_modifier_bit(HID_KEY_CONTROL_LEFT) && key_report[2] == HID_KEY_COMMA) {
-        global.gameMode = !global.gameMode;
-    }
+    return anyKeyPressed;
 
 }
 

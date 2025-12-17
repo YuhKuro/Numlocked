@@ -1,8 +1,0 @@
-/home/yuhkuro/projects/pico-sdk/src/common/pico_util/include/pico/util/queue.h:52:6:queue_init_with_spinlock	24	static
-/home/yuhkuro/projects/pico-sdk/src/common/pico_util/include/pico/util/queue.h:72:6:queue_free	8	static
-/home/yuhkuro/projects/pico-sdk/src/common/pico_util/include/pico/util/queue.h:166:6:queue_try_add	16	static
-/home/yuhkuro/projects/pico-sdk/src/common/pico_util/include/pico/util/queue.h:178:6:queue_try_remove	16	static
-/home/yuhkuro/projects/pico-sdk/src/common/pico_util/include/pico/util/queue.h:190:6:queue_try_peek	16	static
-/home/yuhkuro/projects/pico-sdk/src/common/pico_util/include/pico/util/queue.h:202:6:queue_add_blocking	24	static
-/home/yuhkuro/projects/pico-sdk/src/common/pico_util/include/pico/util/queue.h:212:6:queue_remove_blocking	16	static
-/home/yuhkuro/projects/pico-sdk/src/common/pico_util/include/pico/util/queue.h:222:6:queue_peek_blocking	16	static

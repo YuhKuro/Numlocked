@@ -38,10 +38,7 @@
 #define TOTAL_BITS 120 //The total number of keys on the keyboard. 8-bits x 15 shift regs = 120 bits.
 
 
-
-
-
-#define WPM_CALC_INTERVAL_MS 5000  // Interval to calculate WPM in milliseconds (e.g., 5 seconds)
+#define WPM_CALC_INTERVAL_MS 5000  // Interval to calculate WPM in milliseconds
 #define CHARACTERS_PER_WORD 5
 
 #define IDLE_SPEED 10  // below this wpm value the animation will idle
@@ -50,25 +47,69 @@
 
 #define TIME_BUFFER_SIZE 8
 
-#define QUEUE_SIZE 10
+#define QUEUE_SIZE 8
+
+#define ENCODER_QUEUE_SIZE 8
+
+#define FRAME_SIZE 574
+
+#define ENCODER_STEPS_PER_INDENT 4
+#define ENC_SW_DEBOUNCE_MS 1000
+
+
+#define R_START 0x0
+#define R_CCW_BEGIN 0x1
+#define R_CW_BEGIN 0x2
+#define R_START_M 0x3
+#define R_CW_BEGIN_M 0x4
+#define R_CCW_BEGIN_M 0x5
+#define DIR_CW 0x10
+#define DIR_CCW 0x20
 
 
 typedef struct {
-    uint32_t last_interrupt_time;
-    uint32_t characters_typed;      // Counts characters typed
-    uint32_t last_wpm_calc_time;    // Last time WPM was calculated
+   
+    
     volatile int wpm;               // Words per minute
-    uint8_t currentFrame;
-    bool gameMode;
+    
+    volatile bool gameMode;
+
     volatile bool rightSideConnected;
+    volatile bool rightSideOLEDChange;
+
     volatile bool numpadConnected;
-    volatile uint8_t lastEncoderState;
-    bool scrollNumPWM;
-    int bufferFrames;
+    volatile bool numpadOLEDChange;
+
+    volatile bool usb_suspended;
+    volatile bool usb_mounted;
     
 } globalVariables;
 
+typedef struct {
+    int lastMainEncoderState;
+    int lastNumEncoderState;
+    volatile int8_t mainEncoderDelta;
+    volatile int8_t numEncoderDelta;
+    bool scrollNumPWM;
+    bool pauseFlag;
+    bool muteFlag;
+    int keyQueueDelay;
+    volatile bool keyboardStateChanged;
+    uint32_t quietUntil;
+    volatile uint32_t characters_typed;      // Counts characters typed
+    uint32_t last_wpm_calc_time;    // Last time WPM was calculated
+
+    volatile bool mainEncoderChanged;
+    volatile bool numEncoderChanged;
+} keyboardVariables;
+
+typedef struct {
+    uint8_t currentFrame;
+
+} oledVariables;
 extern globalVariables global; 
+extern keyboardVariables keyboard; 
+extern oledVariables oled; 
 
 
 

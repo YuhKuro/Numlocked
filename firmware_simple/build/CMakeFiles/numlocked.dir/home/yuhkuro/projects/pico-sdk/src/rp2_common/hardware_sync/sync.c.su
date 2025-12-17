@@ -1,6 +1,0 @@
-/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_sync/include/hardware/sync.h:279:6:next_striped_spin_lock_num	0	static
-/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_sync/include/hardware/sync.h:290:6:spin_lock_claim	8	static
-/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_sync/include/hardware/sync.h:301:6:spin_lock_claim_mask	24	static
-/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_sync/include/hardware/sync.h:310:6:spin_lock_unclaim	8	static
-/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_sync/include/hardware/sync.h:318:5:spin_lock_claim_unused	16	static
-/home/yuhkuro/projects/pico-sdk/src/rp2_common/hardware_sync/include/hardware/sync.h:328:6:spin_lock_is_claimed	8	static

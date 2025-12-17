@@ -44,6 +44,10 @@
   #define BOARD_DEVICE_RHPORT_NUM     0
 #endif
 
+// Enable Device stack
+#define CFG_TUD_ENABLED       1
+
+
 // RHPort max operational speed can defined by board.mk
 // Default to Highspeed for MCU with internal HighSpeed PHY (can be port specific), otherwise FullSpeed
 #ifndef BOARD_DEVICE_RHPORT_SPEED
