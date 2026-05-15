@@ -38,8 +38,8 @@
         "other_text_upright": false,
         "pads": {
           "drill": 0.0,
-          "height": 0.8,
-          "width": 0.3
+          "height": 0.95,
+          "width": 0.9
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -58,9 +58,9 @@
           "width": 0.0
         },
         {
-          "gap": 0.25,
-          "via_gap": 0.3,
-          "width": 0.167386
+          "gap": 0.2,
+          "via_gap": 0.0,
+          "width": 0.284
         }
       ],
       "drc_exclusions": [],

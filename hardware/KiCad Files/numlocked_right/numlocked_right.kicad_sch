@@ -1596,6 +1596,151 @@
 				)
 			)
 		)
+		(symbol "R_1"
+			(pin_numbers hide)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "R4"
+				(at 3.81 -1.016 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "R"
+				(at 3.81 1.524 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+				(at -1.778 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Resistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "R res resistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "R_1_0_1"
+				(rectangle
+					(start -1.016 -2.54)
+					(end 1.016 2.54)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -5.08 -3.81) (xy 5.08 3.81)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -5.08 3.81) (xy 5.08 -3.81)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R_1_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 		(symbol "SN74HC165DR_1"
 			(pin_names
 				(offset 1.016)
@@ -10712,6 +10857,16 @@
 		)
 		(uuid "1a5a4dcc-1866-4846-8686-ea0c69859806")
 	)
+	(text "33 uF is minimum value. \n47 uF may be used in assembly."
+		(exclude_from_sim no)
+		(at 206.502 280.924 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "2552a21d-2d49-4de4-9276-985421203528")
+	)
 	(text "Power"
 		(exclude_from_sim no)
 		(at 147.066 286.512 0)
@@ -10732,15 +10887,35 @@
 		)
 		(uuid "4c934b98-150a-4545-803e-83c19f9dd726")
 	)
-	(text "If res is too high: Lower LED will not turn on."
+	(text "Do not connect, experimental. "
 		(exclude_from_sim no)
-		(at 316.738 282.448 0)
+		(at 310.896 283.718 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 		)
 		(uuid "952f21b8-33a0-490b-a3e1-08c6fd61db63")
+	)
+	(text "LED pin LOW: top LED on, bot LED off.\nLED pin HIGH: top LED off, bot LED on.\nPWM 50%: Both LEDs ON\nHigh Z: Both off (theoretically). Worried about slight potential leakage."
+		(exclude_from_sim no)
+		(at 326.136 272.034 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "e4ba79d5-426c-4a5b-81aa-6b03c20a8a9e")
+	)
+	(text "3v3V - 2.2V / 5 mA = 240 Ohms\n"
+		(exclude_from_sim no)
+		(at 289.052 259.588 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "f160ca35-ff51-4320-b9d4-06ad69d3f87b")
 	)
 	(text "L-R Connector"
 		(exclude_from_sim no)
@@ -13303,10 +13478,9 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "3042a3ef-9709-486a-a1a2-cdee4ab6cf9c")
 		(property "Reference" "U8"
-			(at 176.53 252.73 0)
+			(at 176.53 253.746 0)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -13314,7 +13488,7 @@
 			)
 		)
 		(property "Value" "LM3940IMP-3.3/NOPB"
-			(at 176.53 255.27 0)
+			(at 176.53 256.54 0)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -15343,7 +15517,7 @@
 				)
 			)
 		)
-		(property "Value" "R"
+		(property "Value" "240"
 			(at 265.43 305.816 0)
 			(effects
 				(font
@@ -20645,6 +20819,7 @@
 		)
 	)
 	(symbol
+		(lib_name "R_1")
 		(lib_id "Device:R")
 		(at 287.02 283.21 0)
 		(unit 1)
@@ -21533,8 +21708,8 @@
 				)
 			)
 		)
-		(property "Value" "R"
-			(at 265.938 257.81 0)
+		(property "Value" "240"
+			(at 268.478 257.556 0)
 			(effects
 				(font
 					(size 1.27 1.27)

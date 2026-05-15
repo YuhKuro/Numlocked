@@ -79,16 +79,15 @@ uint8_t const * tud_descriptor_device_cb(void)
 
 
 // define endpoint numbers
-#define EPNUM_CDC_0_NOTIF   0x81 // notification endpoint for CDC 0
-#define EPNUM_CDC_0_OUT     0x02 // out endpoint for CDC 0
-#define EPNUM_CDC_0_IN      0x82 // in endpoint for CDC 0
+#define EPNUM_CDC_0_NOTIF   0x81
+#define EPNUM_CDC_0_OUT     0x02
+#define EPNUM_CDC_0_IN      0x83
 
-#define EPNUM_CDC_1_NOTIF   0x84 // notification endpoint for CDC 1
-#define EPNUM_CDC_1_OUT     0x05 // out endpoint for CDC 1
-#define EPNUM_CDC_1_IN      0x85 // in endpoint for CDC 1
+#define EPNUM_CDC_1_NOTIF   0x84
+#define EPNUM_CDC_1_OUT     0x05
+#define EPNUM_CDC_1_IN      0x85
 
-#define EPNUM_HID   0x81
-
+#define EPNUM_HID           0x86
 
 //--------------------------------------------------------------------+
 // HID Report Descriptor
@@ -114,13 +113,14 @@ uint8_t const * tud_hid_descriptor_report_cb(uint8_t instance)
 
 
 enum {
-    ITF_NUM_HID,
-    ITF_NUM_CDC_0 = 0,
+    ITF_NUM_CDC_0,
     ITF_NUM_CDC_0_DATA,
     ITF_NUM_CDC_1,
     ITF_NUM_CDC_1_DATA,
+    ITF_NUM_HID,
     ITF_NUM_TOTAL
 };
+
 
 // configure descriptor (for 2 CDC interfaces)
 uint8_t const desc_configuration[] = {
@@ -147,8 +147,8 @@ uint8_t const desc_configuration[] = {
 
 // more device descriptor this time the qualifier
 tusb_desc_device_qualifier_t const desc_device_qualifier = {
-    .bLength = sizeof(tusb_desc_device_t),
-    .bDescriptorType = TUSB_DESC_DEVICE,
+    .bLength = sizeof(tusb_desc_device_qualifier_t),
+    .bDescriptorType = TUSB_DESC_DEVICE_QUALIFIER,
     .bcdUSB = USB_BCD,
 
     .bDeviceClass = TUSB_CLASS_CDC,

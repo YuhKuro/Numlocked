@@ -9881,81 +9881,6 @@
 		)
 	)
 	(symbol
-		(lib_id "SM04B-SRSS-TB:SM04B-SRSS-TB")
-		(at 111.76 214.63 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "7ca5e415-c311-4c0b-aa65-bf861c0f7ed2")
-		(property "Reference" "J5"
-			(at 102.87 222.25 0)
-			(effects
-				(font
-					(size 1.524 1.524)
-				)
-			)
-		)
-		(property "Value" "SM04B-SRSS-TB"
-			(at 102.87 219.71 0)
-			(effects
-				(font
-					(size 1.524 1.524)
-				)
-			)
-		)
-		(property "Footprint" "SM04B:CONN_SM04B-SRSS-TB_JST"
-			(at 111.76 214.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-					(italic yes)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "SM04B-SRSS-TB"
-			(at 111.76 214.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-					(italic yes)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 111.76 214.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "73e2de7d-7f1c-4bc1-a07d-c928e10c30f7")
-		)
-		(pin "4"
-			(uuid "b1774c4d-0f41-4ecf-9453-489b0ab5ea88")
-		)
-		(pin "2"
-			(uuid "8bcf23ff-0c89-48a7-bdb5-bfc1ddfc0857")
-		)
-		(pin "3"
-			(uuid "ffbf3673-8119-435c-a77a-e7d3d838cd12")
-		)
-		(instances
-			(project "numlocked_HUB"
-				(path "/a8e68231-28c6-46cf-b395-5d42dd5c0cd9"
-					(reference "J5")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 129.54 261.62 0)
 		(unit 1)
@@ -11985,6 +11910,82 @@
 			(project "numlocked_HUB"
 				(path "/a8e68231-28c6-46cf-b395-5d42dd5c0cd9"
 					(reference "#PWR050")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "SM04B-SRSS-TB:SM04B-SRSS-TB")
+		(at 111.76 207.01 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d32e658c-f16c-4d4e-b927-ac6d15520bce")
+		(property "Reference" "J5"
+			(at 102.87 199.39 0)
+			(effects
+				(font
+					(size 1.524 1.524)
+				)
+			)
+		)
+		(property "Value" "SM04B-SRSS-TB"
+			(at 102.87 201.93 0)
+			(effects
+				(font
+					(size 1.524 1.524)
+				)
+			)
+		)
+		(property "Footprint" "SM04B:CONN_SM04B-SRSS-TB_JST"
+			(at 111.76 207.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "SM04B-SRSS-TB"
+			(at 111.76 207.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 111.76 207.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d33b27b3-1055-44c9-8e51-3b3eae68adf9")
+		)
+		(pin "4"
+			(uuid "0e276bbc-10bd-4596-8a77-69ccb65a5360")
+		)
+		(pin "2"
+			(uuid "ebed3109-c147-422f-bc60-9fa3aa40398e")
+		)
+		(pin "3"
+			(uuid "c175e578-a270-4883-b8c2-541840a19194")
+		)
+		(instances
+			(project "numlocked_HUB"
+				(path "/a8e68231-28c6-46cf-b395-5d42dd5c0cd9"
+					(reference "J5")
 					(unit 1)
 				)
 			)

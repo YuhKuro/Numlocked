@@ -19,6 +19,8 @@ add_executable(numlocked
 	main.c
 	usb_descriptors.c
 	ssd1306.c
+	oled_cdc.c
+	keyboard.c
 )
 
 #Include directories
