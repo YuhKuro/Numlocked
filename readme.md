@@ -29,11 +29,16 @@
 - **Real-Time Clock (RTC)**: Keeps accurate time for the user.
 #### - **Open Source**
 ![Ortho](pictures/orthoGreen.png)
-- **My Numlocked Build**:
+- **Home Build**:
 	- Akko CS Silver Switches
-	- Durock V2 PCB Mount Stabilizers
+	- Durock V2 PCB Mount Stabilizers + holee mod
 	- FR4 Plate
-	- Red Oak Case
+	- Resin 3D Printed case
+- **Work Build**:
+	- Akko CS Penguin case
+	- Durock V2 PCB Mount Stabilizers + holee mod
+	- FR4 Plate
+	- Resin 3D Printed case
 
 ## Build Instructions
 *See the [Build Guide](hardware/docs/buildInstructions.md) for detailed steps.*
